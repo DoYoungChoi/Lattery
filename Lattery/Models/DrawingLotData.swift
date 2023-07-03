@@ -11,7 +11,7 @@ class DrawingLotData: ObservableObject {
     @Published var numberSets: [Group: [Int]] = [:]
     
     init() {
-        drawLot()
+        reset()
     }
     
     func add(_ numberSet: [Int], forGroup group: Group) -> Bool {
@@ -30,6 +30,12 @@ class DrawingLotData: ObservableObject {
     
     func delete(_ group: Group) {
         numberSets[group] = nil
+    }
+    
+    func reset() {
+        for group in Group.allCases {
+            self.numberSets[group] = Array.init(repeating: 0, count: 6)
+        }
     }
     
     func drawLot() {

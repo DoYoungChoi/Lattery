@@ -16,10 +16,12 @@ struct DrawingLotView: View {
             ForEach(data.numberSets.sorted { $0.key < $1.key }, id: \.key) { key, value in
                 HStack {
                     Text(key.rawValue)
+                        .font(.title)
                         .bold()
+                        .padding(.trailing)
                     
                     ForEach(value, id: \.self) { number in
-                        Text("\(number)")
+                        LottoBall(number: number)
                     }
                 }
             }

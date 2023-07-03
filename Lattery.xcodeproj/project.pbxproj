@@ -14,6 +14,8 @@
 		D8AB9BC82A526E5800E5883C /* DrawingLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BC72A526E5800E5883C /* DrawingLotView.swift */; };
 		D8AB9BCA2A52705F00E5883C /* DrawingLotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BC92A52705F00E5883C /* DrawingLotData.swift */; };
 		D8AB9BCC2A52841200E5883C /* WinNumberFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BCB2A52841200E5883C /* WinNumberFetcher.swift */; };
+		D8AB9BD22A52ADD500E5883C /* LottoBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BD12A52ADD500E5883C /* LottoBall.swift */; };
+		D8AB9BD42A52B68B00E5883C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BD32A52B68B00E5883C /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D8AB9BC72A526E5800E5883C /* DrawingLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingLotView.swift; sourceTree = "<group>"; };
 		D8AB9BC92A52705F00E5883C /* DrawingLotData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingLotData.swift; sourceTree = "<group>"; };
 		D8AB9BCB2A52841200E5883C /* WinNumberFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinNumberFetcher.swift; sourceTree = "<group>"; };
+		D8AB9BD12A52ADD500E5883C /* LottoBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoBall.swift; sourceTree = "<group>"; };
+		D8AB9BD32A52B68B00E5883C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 				D8AB9BBC2A526B5500E5883C /* Assets.xcassets */,
 				D8AB9BBE2A526B5500E5883C /* Lattery.entitlements */,
 				D8AB9BBF2A526B5500E5883C /* Preview Content */,
+				D8AB9BD32A52B68B00E5883C /* ColorExtension.swift */,
 			);
 			path = Lattery;
 			sourceTree = "<group>";
@@ -90,6 +95,7 @@
 			children = (
 				D8AB9BBA2A526B5400E5883C /* ContentView.swift */,
 				D8AB9BC72A526E5800E5883C /* DrawingLotView.swift */,
+				D8AB9BD12A52ADD500E5883C /* LottoBall.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +175,8 @@
 				D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */,
 				D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */,
 				D8AB9BCA2A52705F00E5883C /* DrawingLotData.swift in Sources */,
+				D8AB9BD42A52B68B00E5883C /* ColorExtension.swift in Sources */,
+				D8AB9BD22A52ADD500E5883C /* LottoBall.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
