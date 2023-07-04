@@ -16,6 +16,8 @@
 		D8AB9BCC2A52841200E5883C /* WinNumberFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BCB2A52841200E5883C /* WinNumberFetcher.swift */; };
 		D8AB9BD22A52ADD500E5883C /* LottoBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BD12A52ADD500E5883C /* LottoBall.swift */; };
 		D8AB9BD42A52B68B00E5883C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BD32A52B68B00E5883C /* ColorExtension.swift */; };
+		D8C4EE5E2A53F1FC0092BCA6 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8C4EE5D2A53F1FC0092BCA6 /* Launch Screen.storyboard */; };
+		D8C4EE702A5434A40092BCA6 /* GangwonEduPower.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8C4EE6F2A5434A40092BCA6 /* GangwonEduPower.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,9 @@
 		D8AB9BCB2A52841200E5883C /* WinNumberFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinNumberFetcher.swift; sourceTree = "<group>"; };
 		D8AB9BD12A52ADD500E5883C /* LottoBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoBall.swift; sourceTree = "<group>"; };
 		D8AB9BD32A52B68B00E5883C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		D8C4EE5D2A53F1FC0092BCA6 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		D8C4EE6A2A5431240092BCA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D8C4EE6F2A5434A40092BCA6 /* GangwonEduPower.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GangwonEduPower.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +67,15 @@
 		D8AB9BB72A526B5400E5883C /* Lattery */ = {
 			isa = PBXGroup;
 			children = (
+				D8C4EE6A2A5431240092BCA6 /* Info.plist */,
 				D8AB9BB82A526B5400E5883C /* LatteryApp.swift */,
+				D8C4EE5D2A53F1FC0092BCA6 /* Launch Screen.storyboard */,
 				D8AB9BCE2A5284DF00E5883C /* Views */,
 				D8AB9BCD2A5284CB00E5883C /* Models */,
-				D8AB9BBC2A526B5500E5883C /* Assets.xcassets */,
+				D8C4EE632A53F5D90092BCA6 /* Utils */,
+				D8C4EE642A542EC70092BCA6 /* Assets */,
 				D8AB9BBE2A526B5500E5883C /* Lattery.entitlements */,
 				D8AB9BBF2A526B5500E5883C /* Preview Content */,
-				D8AB9BD32A52B68B00E5883C /* ColorExtension.swift */,
 			);
 			path = Lattery;
 			sourceTree = "<group>";
@@ -98,6 +105,31 @@
 				D8AB9BD12A52ADD500E5883C /* LottoBall.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D8C4EE632A53F5D90092BCA6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB9BD32A52B68B00E5883C /* ColorExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D8C4EE642A542EC70092BCA6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D8C4EE652A542ED70092BCA6 /* Fonts */,
+				D8AB9BBC2A526B5500E5883C /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		D8C4EE652A542ED70092BCA6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D8C4EE6F2A5434A40092BCA6 /* GangwonEduPower.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,8 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C4EE5E2A53F1FC0092BCA6 /* Launch Screen.storyboard in Resources */,
 				D8AB9BC12A526B5500E5883C /* Preview Assets.xcassets in Resources */,
 				D8AB9BBD2A526B5500E5883C /* Assets.xcassets in Resources */,
+				D8C4EE702A5434A40092BCA6 /* GangwonEduPower.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,28 +339,35 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lattery/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Lattery;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dodor.Lattery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -343,28 +384,35 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lattery/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Lattery;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dodor.Lattery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -9,14 +9,41 @@ import SwiftUI
 
 struct DrawingLotView: View {
     @EnvironmentObject var data: DrawingLotData
+    @State private var isEditing: Bool = false
+    @State private var paw: Paw = .pink
+    private enum Paw: String, Identifiable, CaseIterable {
+        case pink = "Pink"
+        case black = "Black"
+        case spotted = "Spotted"
+        
+        var id: String { rawValue }
+        var description: String {
+            switch (self) {
+                case .pink:
+                    return "삥꾸발바닥"
+                case .black:
+                    return "까망발바닥"
+                case .spotted:
+                    return "점박이발바닥"
+            }
+        }
+    }
     @State private var timer: Timer?
     
     var body: some View {
         VStack {
+            if isEditing {
+                pawTypePicker
+            }
+            
+            Text("로또 번호 추첨")
+                .font(.custom("GangwonEduPowerExtraBold", size: 34, relativeTo: .largeTitle))
+            
+            
             ForEach(data.numberSets.sorted { $0.key < $1.key }, id: \.key) { key, value in
                 HStack {
                     Text(key.rawValue)
-                        .font(.title)
+                        .font(.custom("GangwonEduPowerExtraBold", size: 28, relativeTo: .title))
                         .bold()
                         .padding(.trailing)
                     
@@ -26,7 +53,10 @@ struct DrawingLotView: View {
                 }
             }
             
+            Spacer()
+            
             pawButton
+                .padding()
                 .onLongPressGesture {
                 } onPressingChanged: { tapped in
                     if tapped {
@@ -35,35 +65,55 @@ struct DrawingLotView: View {
                         invalidateTimer()
                     }
                 }
+            
+            Spacer()
         }
+        .foregroundColor(.accentColor)
+        .padding(.horizontal)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    withAnimation { isEditing.toggle() }
+                } label: {
+                    Label("발바닥", systemImage: isEditing ? "pawprint" : "pawprint.fill")
+                }
+            }
+        }
+//        .task {
+//            for family: String in UIFont.familyNames {
+//                            print(family)
+//                            for names : String in UIFont.fontNames(forFamilyName: family){
+//                                print("=== \(names)")
+//                            }
+//                        }
+//        }
+    }
+    
+    private var pawTypePicker: some View {
+        Picker("발바닥 타입", selection: $paw) {
+            ForEach(Paw.allCases) { type in
+                Text(type.description)
+                    .font(.custom("GangwonEduPowerExtraBold", size: 15, relativeTo: .subheadline))
+                    .tag(type)
+            }
+        }
+        .pickerStyle(.segmented)
+        .padding()
     }
     
     private var pawButton: some View {
-        GeometryReader { geo in
-            Button {
-                data.drawLot()
-            } label: {
-                ZStack(alignment: .top) {
-                    Capsule()
-                        .foregroundColor(.pink)
-                        .opacity(0.2)
-                        .aspectRatio(CGSize(width: 1, height: 1.05), contentMode: .fit)
-                        .frame(height: geo.size.height / 1.4)
-                    
-                    Circle()
-                        .foregroundColor(.pink)
-                        .opacity(0.2)
-                        .frame(height: geo.size.height / 1.5)
-                    
-                    Image(systemName: "pawprint.fill")
+        Button {
+            data.drawLot()
+        } label: {
+            Circle()
+                .foregroundColor(.accentColor)
+                .shadow(color: .accentColor, radius: 8, y: 8)
+                .overlay {
+                    Image("\(paw.id)Paw")
                         .resizable()
                         .scaledToFit()
-                        .foregroundColor(.pink)
-                        .frame(height: geo.size.height / 2)
-                        .padding(.top, geo.size.height / 15)
+                        .aspectRatio(0.8, contentMode: .fit)
                 }
-            }
-            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
     

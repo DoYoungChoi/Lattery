@@ -11,8 +11,21 @@ struct ContentView: View {
     @StateObject private var data = DrawingLotData()
     
     var body: some View {
-        DrawingLotView()
-            .environmentObject(data)
+        NavigationView {
+            ZStack {
+                DrawingLotView()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                    }
+                }
+            }
+        }
+        .environmentObject(data)
     }
 }
 
