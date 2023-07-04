@@ -39,25 +39,31 @@ struct DrawingLotView: View {
     }
     
     private var pawButton: some View {
-        Button {
-        } label: {
-            ZStack(alignment: .top) {
-                Capsule()
-                    .foregroundColor(.pink)
-                    .opacity(0.2)
-                    .frame(width: 200, height: 220)
-                Circle()
-                    .foregroundColor(.pink)
-                    .opacity(0.2)
-                    .frame(height: 200)
-                
-                Image(systemName: "pawprint.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.pink)
-                    .frame(height: 150)
-                    .padding(.top, 20)
+        GeometryReader { geo in
+            Button {
+                data.drawLot()
+            } label: {
+                ZStack(alignment: .top) {
+                    Capsule()
+                        .foregroundColor(.pink)
+                        .opacity(0.2)
+                        .aspectRatio(CGSize(width: 1, height: 1.05), contentMode: .fit)
+                        .frame(height: geo.size.height / 1.4)
+                    
+                    Circle()
+                        .foregroundColor(.pink)
+                        .opacity(0.2)
+                        .frame(height: geo.size.height / 1.5)
+                    
+                    Image(systemName: "pawprint.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.pink)
+                        .frame(height: geo.size.height / 2)
+                        .padding(.top, geo.size.height / 15)
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
     
