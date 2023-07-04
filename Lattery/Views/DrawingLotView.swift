@@ -39,7 +39,6 @@ struct DrawingLotView: View {
             Text("로또 번호 추첨")
                 .font(.custom("GangwonEduPowerExtraBold", size: 34, relativeTo: .largeTitle))
             
-            
             ForEach(data.numberSets.sorted { $0.key < $1.key }, id: \.key) { key, value in
                 HStack {
                     Text(key.rawValue)
@@ -68,7 +67,6 @@ struct DrawingLotView: View {
             
             Spacer()
         }
-        .foregroundColor(.accentColor)
         .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -106,12 +104,14 @@ struct DrawingLotView: View {
             data.drawLot()
         } label: {
             Circle()
-                .foregroundColor(.accentColor)
-                .shadow(color: .accentColor, radius: 8, y: 8)
+                .foregroundColor(.latteIvory)
+                .shadow(color: .latteBrown, radius: 8, y: 8)
                 .overlay {
                     Image("\(paw.id)Paw")
                         .resizable()
                         .scaledToFit()
+                        .shadow(color: .latteBrown, radius: 3, y: 3)
+                        .padding(.bottom)
                         .aspectRatio(0.8, contentMode: .fit)
                 }
         }
