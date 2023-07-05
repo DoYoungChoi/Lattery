@@ -13,6 +13,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                BackgroundView()
+                    .opacity(0.1)
+                
                 DrawingLotView()
             }
             .toolbar {
