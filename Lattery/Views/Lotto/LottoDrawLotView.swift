@@ -1,5 +1,5 @@
 //
-//  DrawingLotView.swift
+//  LottoDrawLotView.swift
 //  Lattery
 //
 //  Created by dodor on 2023/07/03.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DrawingLotView: View {
+struct LottoDrawLotView: View {
     @EnvironmentObject var data: DrawingLotData
     @State private var isEditing: Bool = false
     @State private var paw: Paw = .pink
@@ -136,9 +136,9 @@ struct DrawingLotView: View {
     }
 }
 
-struct DrawingLotView_Previews: PreviewProvider {
+struct LottoDrawLotView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingLotView()
+        LottoDrawLotView()
             .environmentObject(DrawingLotData())
     }
 }
