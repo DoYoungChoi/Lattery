@@ -8,50 +8,105 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var data = DrawingLotData()
-    @State private var showSideBar: Bool = false
-    @State private var page: Page = .lottoDrawLot
-    enum Page {
-        case lottoDrawLot
-        case lottoStat
-        case pensionDrawLot
-        case pensionStat
-        case settings
-    }
+    @StateObject private var data = LottoData()
+    @ScaledMetric(relativeTo: .body) var textSize = 16
     
     var body: some View {
-        ZStack {
-            NavigationView {
-                ZStack {
-                    BackgroundView()
-                        .opacity(0.1)
-                    
-                    if page == .lottoDrawLot {
-                        LottoDrawLotView()
-                    } else if page == .lottoStat {
-                        LottoStatView()
-                    } else if page == .pensionDrawLot {
-                        PensionDrawLotView()
-                    } else if page == .pensionStat {
-                        PensionStatView()
-                    } else if page == .settings {
-                        SettingView()
-                    }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            showSideBar.toggle()
-                        } label: {
-                            Image(systemName: "line.3.horizontal")
+        NavigationView {
+            VStack {
+                Rectangle().fill(.background).frame(height: 1)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("로또 6/45")
+                            .bold()
+                            .padding(.horizontal)
+                        NavigationLink(destination: LottoDrawLotView()) {
+                            lottoDrawLot
+                        }
+                        NavigationLink(destination: LottoStatView()) {
+                            lottoStat
+                        }
+                        
+                        Text("연금복권720+")
+                            .bold()
+                            .padding(.horizontal)
+                        NavigationLink(destination: PensionDrawLotView()) {
+                            pensionDrawLot
+                        }
+                        NavigationLink(destination: PensionStatView()) {
+                            pensionStat
+                        }
+                        
+                        Text("MY 메뉴")
+                            .bold()
+                            .padding(.horizontal)
+                        NavigationLink(destination: SettingView()) {
+                            setting
                         }
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .buttonStyle(.plain)
             }
-            
-            SideBar(show: $showSideBar, page: $page)
+            .navigationTitle("전체 메뉴")
+            .navigationBarTitleDisplayMode(.large)
         }
         .environmentObject(data)
+    }
+    
+    private var lottoDrawLot: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .fill(.background)
+            .frame(minHeight: textSize * 3, maxHeight: 150)
+            .padding(.horizontal)
+            .shadow(color: .primary.opacity(0.4), radius: 5)
+            .overlay {
+                Text("로또 번호 추첨")
+            }
+    }
+    
+    private var lottoStat: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .fill(.background)
+            .frame(minHeight: textSize * 3, maxHeight: 150)
+            .padding(.horizontal)
+            .shadow(color: .primary.opacity(0.4), radius: 5)
+            .overlay {
+                Text("로또 통계")
+            }
+    }
+    
+    private var pensionDrawLot: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .fill(.background)
+            .frame(minHeight: textSize * 3, maxHeight: 150)
+            .padding(.horizontal)
+            .shadow(color: .primary.opacity(0.4), radius: 5)
+            .overlay {
+                Text("연금복권 번호 추첨")
+            }
+    }
+    
+    private var pensionStat: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .fill(.background)
+            .frame(minHeight: textSize * 3, maxHeight: 150)
+            .padding(.horizontal)
+            .shadow(color: .primary.opacity(0.4), radius: 5)
+            .overlay {
+                Text("연금복권 통계")
+            }
+    }
+    
+    private var setting: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .fill(.background)
+            .frame(minHeight: textSize * 3, maxHeight: 150)
+            .padding(.horizontal)
+            .shadow(color: .primary.opacity(0.4), radius: 5)
+            .overlay {
+                Text("설정")
+            }
     }
 }
 

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LottoDrawLotView: View {
-    @EnvironmentObject var data: DrawingLotData
+    @EnvironmentObject var data: LottoData
+    @State private var isPressed: Bool = false
     @State private var isEditing: Bool = false
     @State private var paw: Paw = .pink
     private enum Paw: String, Identifiable, CaseIterable {
@@ -36,13 +37,10 @@ struct LottoDrawLotView: View {
                 pawTypePicker
             }
             
-            Text("로또 번호 추첨")
-                .font(.custom("GangwonEduPowerExtraBold", size: 34, relativeTo: .largeTitle))
-            
             ForEach(data.numberSets.sorted { $0.key < $1.key }, id: \.key) { key, value in
                 HStack {
                     Text(key.rawValue)
-                        .font(.custom("GangwonEduPowerExtraBold", size: 28, relativeTo: .title))
+                        .font(.title2)
                         .bold()
                         .padding(.trailing)
                     
@@ -67,8 +65,20 @@ struct LottoDrawLotView: View {
             
             Spacer()
         }
-        .padding(.horizontal)
+        .padding()
+        .navigationTitle("⭐️로또 번호 추첨⭐️")
         .toolbar {
+            ToolbarItem {
+                Button {
+                    withAnimation { isPressed.toggle() }
+                    data.reset()
+                    isPressed.toggle()
+                } label: {
+                    Label("재시작", systemImage: "arrow.counterclockwise")
+                        .rotationEffect(Angle(degrees: isPressed ? 0 : 360))
+                }
+            }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     withAnimation { isEditing.toggle() }
@@ -139,6 +149,6 @@ struct LottoDrawLotView: View {
 struct LottoDrawLotView_Previews: PreviewProvider {
     static var previews: some View {
         LottoDrawLotView()
-            .environmentObject(DrawingLotData())
+            .environmentObject(LottoData())
     }
 }
