@@ -24,7 +24,7 @@ struct LottoBall: View {
                 
                 Text("\(number)")
                     .foregroundColor(.white)
-                    .font(.custom("GangwonEduPowerExtraBold", size: basic, relativeTo: .body))
+                    .bold()
             }
             .frame(width: basic * 1.8, height: basic * 1.8)
         } else {
