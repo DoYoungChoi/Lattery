@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LottoBall: View {
     var number: Int? = nil
-    @ScaledMetric var basic = 20
+    @ScaledMetric var basic = 18
     
     var body: some View {
         if let number = number, Range(1...45).contains(number) {
