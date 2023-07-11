@@ -1,5 +1,5 @@
 //
-//  LottoGraph.swift
+//  LottoCountGraphView.swift
 //  Lattery
 //
 //  Created by dodor on 2023/07/10.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LottoGraph: View {
+struct LottoCountGraphView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.nth, order: .reverse)]) var lottos: FetchedResults<LottoEntity>
     @State private var statMode: Mode = .ordered
     private enum Mode: String, Identifiable, CaseIterable {
@@ -50,8 +50,8 @@ struct LottoGraph: View {
 //    }
 }
 
-//struct LottoGraph_Previews: PreviewProvider {
+//struct LottoCountGraphView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        LottoGraph()
+//        LottoCountGraphView()
 //    }
 //}
