@@ -9,12 +9,16 @@ import SwiftUI
 
 @main
 struct LatteryApp: App {
-    @StateObject private var dataController = DataController()
+    @Environment(\.scenePhase) var scenePhase
+    let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        }
+        .onChange(of: scenePhase) { _ in
+            persistenceController.save()
         }
     }
 }

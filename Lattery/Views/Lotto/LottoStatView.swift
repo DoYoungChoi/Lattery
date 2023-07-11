@@ -41,8 +41,7 @@ struct LottoStatView: View {
                 if page == .detail {
                     LottoResultList()
                 } else if page == .total {
-                    ScrollView(.horizontal) {
-                    }
+                    LottoGraph()
                 } else if page == .colorPersent {
                     
                 }
@@ -89,7 +88,7 @@ struct LottoStatView: View {
                 }
             }
             
-            try moc.save()
+            PersistenceController.shared.save()
             isFetching.toggle()
         }
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8174BD42A5C311100FC76FC /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */; };
+		D8919DCA2A5BE999008591F1 /* BarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8919DC92A5BE999008591F1 /* BarGraph.swift */; };
 		D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BB82A526B5400E5883C /* LatteryApp.swift */; };
 		D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BBA2A526B5400E5883C /* ContentView.swift */; };
 		D8AB9BBD2A526B5500E5883C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AB9BBC2A526B5500E5883C /* Assets.xcassets */; };
@@ -23,16 +25,19 @@
 		D8C4EE7D2A5545E40092BCA6 /* PensionStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE7C2A5545E40092BCA6 /* PensionStatView.swift */; };
 		D8C4EE7F2A5545ED0092BCA6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */; };
 		D8D659062A556965003F2516 /* Lotto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659052A556965003F2516 /* Lotto.swift */; };
-		D8D6590B2A5665AD003F2516 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D6590A2A5665AD003F2516 /* DataController.swift */; };
-		D8D6590E2A5670BE003F2516 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8D6590C2A5670BE003F2516 /* DataModel.xcdatamodeld */; };
 		D8D659102A568830003F2516 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D6590F2A568830003F2516 /* LoadingView.swift */; };
 		D8D659142A57D192003F2516 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659132A57D192003F2516 /* DateExtension.swift */; };
 		D8D659162A5806CE003F2516 /* LottoResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659152A5806CE003F2516 /* LottoResultList.swift */; };
 		D8D6591A2A594D26003F2516 /* LastestLottoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659192A594D26003F2516 /* LastestLottoResult.swift */; };
 		D8D6591E2A5A61B2003F2516 /* LottoResultDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D6591D2A5A61B2003F2516 /* LottoResultDetail.swift */; };
+		D8D659202A5BAEFD003F2516 /* LottoGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D6591F2A5BAEFD003F2516 /* LottoGraph.swift */; };
+		D8D659222A5BB42C003F2516 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659212A5BB42C003F2516 /* PersistenceController.swift */; };
+		D8D659282A5BCB2E003F2516 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8D659262A5BCB2E003F2516 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
+		D8919DC92A5BE999008591F1 /* BarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraph.swift; sourceTree = "<group>"; };
 		D8AB9BB52A526B5400E5883C /* Lattery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AB9BB82A526B5400E5883C /* LatteryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatteryApp.swift; sourceTree = "<group>"; };
 		D8AB9BBA2A526B5400E5883C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,13 +57,14 @@
 		D8C4EE7C2A5545E40092BCA6 /* PensionStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionStatView.swift; sourceTree = "<group>"; };
 		D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		D8D659052A556965003F2516 /* Lotto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lotto.swift; sourceTree = "<group>"; };
-		D8D6590A2A5665AD003F2516 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		D8D6590D2A5670BE003F2516 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D8D6590F2A568830003F2516 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D8D659132A57D192003F2516 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D8D659152A5806CE003F2516 /* LottoResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoResultList.swift; sourceTree = "<group>"; };
 		D8D659192A594D26003F2516 /* LastestLottoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastestLottoResult.swift; sourceTree = "<group>"; };
 		D8D6591D2A5A61B2003F2516 /* LottoResultDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoResultDetail.swift; sourceTree = "<group>"; };
+		D8D6591F2A5BAEFD003F2516 /* LottoGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoGraph.swift; sourceTree = "<group>"; };
+		D8D659212A5BB42C003F2516 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		D8D659272A5BCB2E003F2516 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +121,10 @@
 		D8AB9BCD2A5284CB00E5883C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D8D659262A5BCB2E003F2516 /* DataModel.xcdatamodeld */,
 				D8AB9BC92A52705F00E5883C /* LottoData.swift */,
 				D8D659052A556965003F2516 /* Lotto.swift */,
-				D8D6590A2A5665AD003F2516 /* DataController.swift */,
-				D8D6590C2A5670BE003F2516 /* DataModel.xcdatamodeld */,
+				D8D659212A5BB42C003F2516 /* PersistenceController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,11 +133,10 @@
 			isa = PBXGroup;
 			children = (
 				D8AB9BBA2A526B5400E5883C /* ContentView.swift */,
-				D8C4EE712A5441D30092BCA6 /* BackgroundView.swift */,
 				D8C4EE762A5545930092BCA6 /* Lotto */,
 				D8C4EE772A5545A20092BCA6 /* Pension */,
 				D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */,
-				D8D6590F2A568830003F2516 /* LoadingView.swift */,
+				D8F87BD22A5DB66A00940E3B /* Common */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,11 +171,12 @@
 			isa = PBXGroup;
 			children = (
 				D8AB9BC72A526E5800E5883C /* LottoDrawLotView.swift */,
+				D8AB9BD12A52ADD500E5883C /* LottoBall.swift */,
 				D8C4EE782A5545C30092BCA6 /* LottoStatView.swift */,
 				D8D659192A594D26003F2516 /* LastestLottoResult.swift */,
-				D8AB9BD12A52ADD500E5883C /* LottoBall.swift */,
 				D8D659152A5806CE003F2516 /* LottoResultList.swift */,
 				D8D6591D2A5A61B2003F2516 /* LottoResultDetail.swift */,
+				D8D6591F2A5BAEFD003F2516 /* LottoGraph.swift */,
 			);
 			path = Lotto;
 			sourceTree = "<group>";
@@ -182,6 +188,17 @@
 				D8C4EE7C2A5545E40092BCA6 /* PensionStatView.swift */,
 			);
 			path = Pension;
+			sourceTree = "<group>";
+		};
+		D8F87BD22A5DB66A00940E3B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D8C4EE712A5441D30092BCA6 /* BackgroundView.swift */,
+				D8D6590F2A568830003F2516 /* LoadingView.swift */,
+				D8919DC92A5BE999008591F1 /* BarGraph.swift */,
+				D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,24 +274,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8AB9BC82A526E5800E5883C /* LottoDrawLotView.swift in Sources */,
+				D8D659282A5BCB2E003F2516 /* DataModel.xcdatamodeld in Sources */,
 				D8C4EE722A5441D30092BCA6 /* BackgroundView.swift in Sources */,
 				D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */,
 				D8D659102A568830003F2516 /* LoadingView.swift in Sources */,
 				D8D659062A556965003F2516 /* Lotto.swift in Sources */,
+				D8919DCA2A5BE999008591F1 /* BarGraph.swift in Sources */,
 				D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */,
 				D8D6591A2A594D26003F2516 /* LastestLottoResult.swift in Sources */,
 				D8C4EE7B2A5545D90092BCA6 /* PensionDrawLotView.swift in Sources */,
 				D8AB9BCA2A52705F00E5883C /* LottoData.swift in Sources */,
 				D8AB9BD42A52B68B00E5883C /* ColorExtension.swift in Sources */,
+				D8174BD42A5C311100FC76FC /* OffsetObservingScrollView.swift in Sources */,
 				D8D659142A57D192003F2516 /* DateExtension.swift in Sources */,
-				D8D6590E2A5670BE003F2516 /* DataModel.xcdatamodeld in Sources */,
 				D8C4EE7F2A5545ED0092BCA6 /* SettingView.swift in Sources */,
 				D8AB9BD22A52ADD500E5883C /* LottoBall.swift in Sources */,
-				D8D6590B2A5665AD003F2516 /* DataController.swift in Sources */,
+				D8D659222A5BB42C003F2516 /* PersistenceController.swift in Sources */,
 				D8C4EE792A5545C30092BCA6 /* LottoStatView.swift in Sources */,
 				D8D659162A5806CE003F2516 /* LottoResultList.swift in Sources */,
 				D8C4EE7D2A5545E40092BCA6 /* PensionStatView.swift in Sources */,
 				D8D6591E2A5A61B2003F2516 /* LottoResultDetail.swift in Sources */,
+				D8D659202A5BAEFD003F2516 /* LottoGraph.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +447,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,7 +491,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -502,12 +522,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D8D6590C2A5670BE003F2516 /* DataModel.xcdatamodeld */ = {
+		D8D659262A5BCB2E003F2516 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D8D6590D2A5670BE003F2516 /* DataModel.xcdatamodel */,
+				D8D659272A5BCB2E003F2516 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = D8D6590D2A5670BE003F2516 /* DataModel.xcdatamodel */;
+			currentVersion = D8D659272A5BCB2E003F2516 /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
