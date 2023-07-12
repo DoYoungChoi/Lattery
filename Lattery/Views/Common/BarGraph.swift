@@ -12,6 +12,7 @@ struct Bar: Identifiable {
     var name: String
     var value: Double
     var color: Color = .accentColor
+    var order: Int = 0
     
     static var samples: [Bar] {
         var tempBars = [Bar]()
@@ -20,6 +21,26 @@ struct Bar: Identifiable {
             let rand = Double.random(in: 20..<300)
             let bar = Bar(name: "\(i)",
                           value: rand)
+            tempBars.append(bar)
+        }
+        
+        return tempBars
+    }
+    
+    static var samplesForRatio: [Bar] {
+        var tempBars = [Bar]()
+        let colors = [Color.latteYellow,
+                      Color.latteBlue,
+                      Color.latteRed,
+                      Color.latteGray,
+                      Color.latteGreen]
+        
+        for (i, color) in colors.enumerated() {
+            let rand = Double.random(in: 20..<300)
+            let bar = Bar(name: "\(i)",
+                          value: rand,
+                          color: color,
+                          order: i)
             tempBars.append(bar)
         }
         

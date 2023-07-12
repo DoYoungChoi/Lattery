@@ -43,7 +43,7 @@ struct LottoStatView: View {
                 } else if page == .total {
                     LottoCountGraphView()
                 } else if page == .colorPersent {
-                    
+                    LottoRatioGraphView()
                 }
                 
                 Spacer()

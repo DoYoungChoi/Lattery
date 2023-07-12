@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LottoCountGraphView: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.nth, order: .reverse)]) var lottos: FetchedResults<LottoEntity>
+    @FetchRequest(sortDescriptors: []) var lottos: FetchedResults<LottoEntity>
     @State private var statMode: Mode = .ordered
     private enum Mode: String, Identifiable, CaseIterable {
         case ordered = "번호순"
