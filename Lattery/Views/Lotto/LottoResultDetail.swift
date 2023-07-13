@@ -14,14 +14,14 @@ struct LottoResultDetail: View {
         VStack {
             HStack {
                 Text(verbatim: "\(lotto.nth)회")
-                LottoBall(number: Int(lotto.no1))
-                LottoBall(number: Int(lotto.no2))
-                LottoBall(number: Int(lotto.no3))
-                LottoBall(number: Int(lotto.no4))
-                LottoBall(number: Int(lotto.no5))
-                LottoBall(number: Int(lotto.no6))
+                LottoBall(number: lotto.no1)
+                LottoBall(number: lotto.no2)
+                LottoBall(number: lotto.no3)
+                LottoBall(number: lotto.no4)
+                LottoBall(number: lotto.no5)
+                LottoBall(number: lotto.no6)
                 Image(systemName: "plus")
-                LottoBall(number: Int(lotto.noBonus))
+                LottoBall(number: lotto.noBonus)
             }
         }
     }

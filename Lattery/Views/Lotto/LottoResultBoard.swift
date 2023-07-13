@@ -1,5 +1,5 @@
 //
-//  LastestLottoResult.swift
+//  LottoResultBoard.swift
 //  Lattery
 //
 //  Created by dodor on 2023/07/08.
@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct LastestLottoResult: View {
+struct LottoResultBoard: View {
     @FetchRequest var lottos: FetchedResults<LottoEntity>
     @State private var isAnimating: Bool = false
     
@@ -38,19 +38,18 @@ struct LastestLottoResult: View {
                         .font(.callout)
                         .foregroundColor(.primary.opacity(0.7))
                     
-                    ScrollView(.horizontal) {
-                        HStack {
-                            LottoBall(number: Int(lastestLotto.no1))
-                            LottoBall(number: Int(lastestLotto.no2))
-                            LottoBall(number: Int(lastestLotto.no3))
-                            LottoBall(number: Int(lastestLotto.no4))
-                            LottoBall(number: Int(lastestLotto.no5))
-                            LottoBall(number: Int(lastestLotto.no6))
-                            Image(systemName: "plus")
-                            LottoBall(number: Int(lastestLotto.noBonus))
-                        }
+                    HStack {
+                        LottoBall(number: lastestLotto.no1)
+                        LottoBall(number: lastestLotto.no2)
+                        LottoBall(number: lastestLotto.no3)
+                        LottoBall(number: lastestLotto.no4)
+                        LottoBall(number: lastestLotto.no5)
+                        LottoBall(number: lastestLotto.no6)
+                        Image(systemName: "plus")
+                        LottoBall(number: lastestLotto.noBonus)
                     }
                     .padding()
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .background {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.white.opacity(0.5))
@@ -120,8 +119,8 @@ struct LastestLottoResult: View {
     }
 }
 
-struct LastestLottoResult_Previews: PreviewProvider {
+struct LottoResultBoard_Previews: PreviewProvider {
     static var previews: some View {
-        LastestLottoResult()
+        LottoResultBoard()
     }
 }

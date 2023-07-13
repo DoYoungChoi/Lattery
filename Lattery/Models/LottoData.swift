@@ -8,46 +8,46 @@
 import Foundation
 
 class LottoData: ObservableObject {
-    @Published var numberSets: [LottoGroup: [Int]] = [:]
+    @Published var fixedNumbers = [LottoGroup: Set<Int16>]()
+    @Published var numbers = [LottoGroup: [Int16]]()
+    @Published var selectedGroup: LottoGroup? = nil
     
     init() {
         reset()
     }
     
-    func add(_ numberSet: [Int], forGroup group: LottoGroup) -> Bool {
-        guard numberSet.count == 6 else { return false }
-        
-        numberSets[group] = numberSet
+    func setFixedNumbers(_ numbers: [Int16]) -> Bool {
+        guard let group = selectedGroup else { return false }
+        fixedNumbers[group] = Set(numbers)
+        self.numbers[group] = Array(fixedNumbers[group]!).sorted() + Array(repeating: 0, count: 6-fixedNumbers[group]!.count)
         return true
     }
     
-    func update(_ group: LottoGroup, to numberSet: [Int]) {
-        numberSets[group] = numberSet
-    }
-    
-    func update(_ group: LottoGroup, to number: [Int], at index: Int) {
-    }
-    
-    func delete(_ group: LottoGroup) {
-        numberSets[group] = nil
+    func deleteFixedNumber(_ number: Int16) -> Bool {
+        guard let group = selectedGroup else { return false }
+        return (fixedNumbers[group]?.remove(number) != nil) ? true : false
     }
     
     func reset() {
         for group in LottoGroup.allCases {
-            self.numberSets[group] = Array.init(repeating: 0, count: 6)
+            if let fixed = fixedNumbers[group] {
+                self.numbers[group] = Array(fixed).sorted() + Array(repeating: 0, count: 6 - fixed.count)
+            } else {
+                self.numbers[group] = Array(repeating: 0, count: 6)
+            }
         }
     }
     
     func drawLot() {
         for group in LottoGroup.allCases {
-            var numberSet: [Int] = []
-            while numberSet.count < 6 {
-                let number = Int.random(in: 1...45)
-                if !numberSet.contains(number) {
-                    numberSet.append(number)
+            var numbers: [Int16] = Array(fixedNumbers[group] ?? [])
+            while numbers.count < 6 {
+                let number = Int16.random(in: 1...45)
+                if !numbers.contains(number) {
+                    numbers.append(number)
                 }
             }
-            self.numberSets[group] = numberSet.sorted()
+            self.numbers[group] = numbers.sorted()
         }
     }
     

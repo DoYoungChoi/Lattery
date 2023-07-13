@@ -28,6 +28,7 @@ extension Color {
     static let latteRed = Color(hex: "#ff704d")
     static let latteGray = Color(hex: "#737373")
     static let latteGreen = Color(hex: "#71da71")
+    static let lattePink = Color(hex: "#feb2b2")
     
     static let latteIvory = Color("LatteIvory")
     static let latteBrown = Color("LatteBrown")

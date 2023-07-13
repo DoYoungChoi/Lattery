@@ -26,7 +26,7 @@ struct LottoStatView: View {
         ZStack {
             VStack {
                 // 최신 로또 당첨 결과
-                LastestLottoResult()
+                LottoResultBoard()
                     .redacted(reason: isFetching ? .placeholder : [])
                 
                 // 통계 페이지

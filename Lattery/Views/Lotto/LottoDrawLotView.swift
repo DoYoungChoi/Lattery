@@ -29,6 +29,7 @@ struct LottoDrawLotView: View {
             }
         }
     }
+    @State private var showNumberBoard: Bool = false
     @State private var timer: Timer?
     
     var body: some View {
@@ -37,16 +38,10 @@ struct LottoDrawLotView: View {
                 pawTypePicker
             }
             
-            ForEach(data.numberSets.sorted { $0.key < $1.key }, id: \.key) { key, value in
+            ForEach(LottoGroup.allCases) { group in
                 HStack {
-                    Text(key.rawValue)
-                        .font(.title2)
-                        .bold()
-                        .padding(.trailing)
-                    
-                    ForEach(value, id: \.self) { number in
-                        LottoBall(number: number)
-                    }
+                    LottoBallRow(group: group,
+                                 showNumberBoard: $showNumberBoard)
                 }
             }
             
@@ -88,14 +83,9 @@ struct LottoDrawLotView: View {
                 }
             }
         }
-//        .task {
-//            for family: String in UIFont.familyNames {
-//                            print(family)
-//                            for names : String in UIFont.fontNames(forFamilyName: family){
-//                                print("=== \(names)")
-//                            }
-//                        }
-//        }
+        .sheet(isPresented: $showNumberBoard) {
+            LottoNumberBoard()
+        }
     }
     
     private var pawTypePicker: some View {
