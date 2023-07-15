@@ -37,6 +37,7 @@
 		D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */; };
 		D8F87BD82A5E95DF00940E3B /* LottoBallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */; };
 		D8F87BDC2A5EEC8E00940E3B /* LottoNumberBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BDB2A5EEC8E00940E3B /* LottoNumberBoard.swift */; };
+		D8F87BE02A6029C300940E3B /* DrawLotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioBarGraph.swift; sourceTree = "<group>"; };
 		D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoBallRow.swift; sourceTree = "<group>"; };
 		D8F87BDB2A5EEC8E00940E3B /* LottoNumberBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoNumberBoard.swift; sourceTree = "<group>"; };
+		D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawLotButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */,
 				D8919DC92A5BE999008591F1 /* BarGraph.swift */,
 				D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */,
+				D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				D8F87BDC2A5EEC8E00940E3B /* LottoNumberBoard.swift in Sources */,
 				D8AB9BC82A526E5800E5883C /* LottoDrawLotView.swift in Sources */,
 				D8D659282A5BCB2E003F2516 /* DataModel.xcdatamodeld in Sources */,
+				D8F87BE02A6029C300940E3B /* DrawLotButton.swift in Sources */,
 				D8C4EE722A5441D30092BCA6 /* BackgroundView.swift in Sources */,
 				D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */,
 				D8D659102A568830003F2516 /* LoadingView.swift in Sources */,

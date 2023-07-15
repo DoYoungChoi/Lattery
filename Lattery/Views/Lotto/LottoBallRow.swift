@@ -38,6 +38,7 @@ struct LottoBallRow: View {
             .padding(.horizontal)
         }
         .padding(.vertical, 10)
+        .frame(maxWidth: .infinity, alignment: .center)
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(.thinMaterial)
