@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LottoDrawLotView: View {
     @EnvironmentObject var data: LottoData
-    @State private var isPressed: Bool = false
     @State private var isEditing: Bool = false
     @State private var showNumberBoard: Bool = false
     
@@ -29,14 +28,7 @@ struct LottoDrawLotView: View {
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem {
-                Button {
-                    withAnimation { isPressed.toggle() }
-                    data.reset()
-                    isPressed.toggle()
-                } label: {
-                    Label("재시작", systemImage: "arrow.counterclockwise")
-                        .rotationEffect(Angle(degrees: isPressed ? 0 : 360))
-                }
+                RefreshButton(action: data.reset)
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
