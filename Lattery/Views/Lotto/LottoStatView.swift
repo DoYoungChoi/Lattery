@@ -58,18 +58,18 @@ struct LottoStatView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    fetchLastLottoData()
+                    fetchLastestLottoData()
                 } label: {
                     Label("발바닥", systemImage: isFetching ? "pawprint" : "pawprint.fill")
                 }
             }
         }
         .task {
-            fetchLastLottoData()
+            fetchLastestLottoData()
         }
     }
     
-    private func fetchLastLottoData() {
+    private func fetchLastestLottoData() {
         isFetching.toggle()
         var keepGoing: Bool = true
         

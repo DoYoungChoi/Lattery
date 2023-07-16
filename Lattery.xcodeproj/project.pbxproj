@@ -38,6 +38,8 @@
 		D8F87BD82A5E95DF00940E3B /* LottoBallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */; };
 		D8F87BDC2A5EEC8E00940E3B /* LottoNumberBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BDB2A5EEC8E00940E3B /* LottoNumberBoard.swift */; };
 		D8F87BE02A6029C300940E3B /* DrawLotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */; };
+		D8F87BE22A62750900940E3B /* Pension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE12A62750900940E3B /* Pension.swift */; };
+		D8F87BE42A62769C00940E3B /* PensionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE32A62769C00940E3B /* PensionData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoBallRow.swift; sourceTree = "<group>"; };
 		D8F87BDB2A5EEC8E00940E3B /* LottoNumberBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoNumberBoard.swift; sourceTree = "<group>"; };
 		D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawLotButton.swift; sourceTree = "<group>"; };
+		D8F87BE12A62750900940E3B /* Pension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pension.swift; sourceTree = "<group>"; };
+		D8F87BE32A62769C00940E3B /* PensionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,9 +136,11 @@
 			isa = PBXGroup;
 			children = (
 				D8D659262A5BCB2E003F2516 /* DataModel.xcdatamodeld */,
+				D8D659212A5BB42C003F2516 /* PersistenceController.swift */,
 				D8AB9BC92A52705F00E5883C /* LottoData.swift */,
 				D8D659052A556965003F2516 /* Lotto.swift */,
-				D8D659212A5BB42C003F2516 /* PersistenceController.swift */,
+				D8F87BE32A62769C00940E3B /* PensionData.swift */,
+				D8F87BE12A62750900940E3B /* Pension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 				D8D659282A5BCB2E003F2516 /* DataModel.xcdatamodeld in Sources */,
 				D8F87BE02A6029C300940E3B /* DrawLotButton.swift in Sources */,
 				D8C4EE722A5441D30092BCA6 /* BackgroundView.swift in Sources */,
+				D8F87BE42A62769C00940E3B /* PensionData.swift in Sources */,
 				D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */,
 				D8D659102A568830003F2516 /* LoadingView.swift in Sources */,
 				D8D659062A556965003F2516 /* Lotto.swift in Sources */,
@@ -308,6 +315,7 @@
 				D8F87BD82A5E95DF00940E3B /* LottoBallRow.swift in Sources */,
 				D8F87BD42A5DB7A700940E3B /* LottoRatioGraphView.swift in Sources */,
 				D8C4EE7F2A5545ED0092BCA6 /* SettingView.swift in Sources */,
+				D8F87BE22A62750900940E3B /* Pension.swift in Sources */,
 				D8AB9BD22A52ADD500E5883C /* LottoBall.swift in Sources */,
 				D8D659222A5BB42C003F2516 /* PersistenceController.swift in Sources */,
 				D8C4EE792A5545C30092BCA6 /* LottoStatView.swift in Sources */,

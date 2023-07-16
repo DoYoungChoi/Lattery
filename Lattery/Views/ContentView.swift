@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var data = LottoData()
+    @StateObject private var lottoData = LottoData()
+    @StateObject private var pensionData = PensionData()
     @ScaledMetric(relativeTo: .body) var textSize = 16
     
     var body: some View {
@@ -51,7 +52,8 @@ struct ContentView: View {
             .navigationTitle("전체 메뉴")
             .navigationBarTitleDisplayMode(.large)
         }
-        .environmentObject(data)
+        .environmentObject(lottoData)
+        .environmentObject(pensionData)
     }
     
     private var lottoDrawLot: some View {

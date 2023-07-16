@@ -51,13 +51,6 @@ class LottoData: ObservableObject {
         }
     }
     
-    enum FetchError: Error {
-        case badURL
-        case badRequest
-        case badResponse
-        case badJSON
-    }
-    
     func fetchData(_ nth: Int) async throws -> Lotto {
         guard let url = URL(string: "https://dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(nth)") else { throw FetchError.badURL }
         
@@ -82,4 +75,11 @@ enum LottoGroup: String, CaseIterable, Identifiable, Comparable {
     static func < (lhs: LottoGroup, rhs: LottoGroup) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
+}
+
+enum FetchError: Error {
+    case badURL
+    case badRequest
+    case badResponse
+    case badJSON
 }
