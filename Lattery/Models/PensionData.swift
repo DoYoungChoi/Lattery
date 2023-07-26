@@ -8,7 +8,35 @@
 import Foundation
 
 class PensionData: ObservableObject {
-    init() { }
+    @Published var fixedNumbers = [[Int16]]()
+    @Published var pensionGroup: PensionGroup = .allGroup
+    @Published var sets = [[Int16]]()
+    
+    init() {
+        reset()
+    }
+    
+    func reset() {
+        sets = [[Int16]]()
+        if pensionGroup == .allGroup {
+            for group in 1...5 {
+                let numbers = [Int16(group)] + Array(repeating: -1, count: 6)
+                sets.append(numbers)
+            }
+        } else if pensionGroup == .eachGroup {
+            var setCount = sets.count
+            if setCount == 0 {
+                setCount = 1
+            }
+            for _ in 1...setCount {
+                let numbers = Array(repeating: Int16(-1), count: 7)
+                sets.append(numbers)
+            }
+        }
+    }
+    
+    func drawLot() {
+    }
     
     func fetchData(_ nth: Int) async throws -> Pension {
         guard let url = URL(string: "https://dhlottery.co.kr/common.do?method=get720Number&drwNo=\(nth)") else { throw FetchError.badURL }
@@ -21,4 +49,11 @@ class PensionData: ObservableObject {
         
         return pension
     }
+}
+
+enum PensionGroup: String, Identifiable, CaseIterable {
+    case allGroup = "모든조"
+    case eachGroup = "조선택"
+    
+    var id: String { self.rawValue }
 }

@@ -41,6 +41,7 @@
 		D8F87BE22A62750900940E3B /* Pension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE12A62750900940E3B /* Pension.swift */; };
 		D8F87BE42A62769C00940E3B /* PensionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE32A62769C00940E3B /* PensionData.swift */; };
 		D8F87BE62A63AAF500940E3B /* RefreshButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE52A63AAF500940E3B /* RefreshButton.swift */; };
+		D8F87BE82A6404A500940E3B /* PensionBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE72A6404A500940E3B /* PensionBall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		D8F87BE12A62750900940E3B /* Pension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pension.swift; sourceTree = "<group>"; };
 		D8F87BE32A62769C00940E3B /* PensionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionData.swift; sourceTree = "<group>"; };
 		D8F87BE52A63AAF500940E3B /* RefreshButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshButton.swift; sourceTree = "<group>"; };
+		D8F87BE72A6404A500940E3B /* PensionBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionBall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				D8C4EE7A2A5545D90092BCA6 /* PensionDrawLotView.swift */,
 				D8C4EE7C2A5545E40092BCA6 /* PensionStatView.swift */,
+				D8F87BE72A6404A500940E3B /* PensionBall.swift */,
 			);
 			path = Pension;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				D8D659062A556965003F2516 /* Lotto.swift in Sources */,
 				D8919DCA2A5BE999008591F1 /* BarGraph.swift in Sources */,
 				D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */,
+				D8F87BE82A6404A500940E3B /* PensionBall.swift in Sources */,
 				D8D6591A2A594D26003F2516 /* LottoResultBoard.swift in Sources */,
 				D8C4EE7B2A5545D90092BCA6 /* PensionDrawLotView.swift in Sources */,
 				D8AB9BCA2A52705F00E5883C /* LottoData.swift in Sources */,

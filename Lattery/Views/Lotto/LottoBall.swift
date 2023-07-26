@@ -11,7 +11,7 @@ struct LottoBall: View {
     var number: Int16? = nil
     var isFixed: Bool = false
     private var color: Color {
-        guard let number = number else { return .lattePink }
+        guard let number = number, number > 0 else { return .latteLightGray }
         
         if number <= 10 {
             return .latteYellow
@@ -42,7 +42,7 @@ struct LottoBall: View {
             .frame(width: 30, height: 30)
         } else {
             Circle()
-                .stroke(Color.secondary, style: StrokeStyle(lineWidth: 1, dash: [5]))
+                .stroke(color, style: StrokeStyle(lineWidth: 1, dash: [5]))
                 .frame(width: 30, height: 30)
                 .background {
                     Circle()
@@ -55,8 +55,6 @@ struct LottoBall: View {
 struct LottoBall_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            LottoBall(number: 0)
-            
             ForEach(0...4, id: \.self) { tens in
                 ScrollView(.horizontal) {
                     HStack {

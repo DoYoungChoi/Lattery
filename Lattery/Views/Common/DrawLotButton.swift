@@ -80,7 +80,6 @@ struct DrawLotButton: View {
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             action()
         }
-        print("longPress ended")
     }
     
     private func invalidateTimer() {
@@ -88,7 +87,6 @@ struct DrawLotButton: View {
             timer!.invalidate()
         }
         timer = nil
-        print("button tapped")
     }
 }
 

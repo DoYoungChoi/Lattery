@@ -42,9 +42,8 @@ struct LottoDrawLotView: View {
         .sheet(isPresented: $showNumberBoard) {
             LottoNumberBoard()
         }
+        .onAppear(perform: data.reset)
     }
-    
-
 }
 
 struct LottoDrawLotView_Previews: PreviewProvider {
