@@ -42,6 +42,7 @@
 		D8F87BE42A62769C00940E3B /* PensionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE32A62769C00940E3B /* PensionData.swift */; };
 		D8F87BE62A63AAF500940E3B /* RefreshButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE52A63AAF500940E3B /* RefreshButton.swift */; };
 		D8F87BE82A6404A500940E3B /* PensionBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE72A6404A500940E3B /* PensionBall.swift */; };
+		D8F87BEA2A72332400940E3B /* LottoFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BE92A72332400940E3B /* LottoFavorites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		D8F87BE32A62769C00940E3B /* PensionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionData.swift; sourceTree = "<group>"; };
 		D8F87BE52A63AAF500940E3B /* RefreshButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshButton.swift; sourceTree = "<group>"; };
 		D8F87BE72A6404A500940E3B /* PensionBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionBall.swift; sourceTree = "<group>"; };
+		D8F87BE92A72332400940E3B /* LottoFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoFavorites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */,
 				D8AB9BD12A52ADD500E5883C /* LottoBall.swift */,
 				D8F87BDB2A5EEC8E00940E3B /* LottoNumberBoard.swift */,
+				D8F87BE92A72332400940E3B /* LottoFavorites.swift */,
 				D8C4EE782A5545C30092BCA6 /* LottoStatView.swift */,
 				D8D659192A594D26003F2516 /* LottoResultBoard.swift */,
 				D8D659152A5806CE003F2516 /* LottoResultList.swift */,
@@ -320,6 +323,7 @@
 				D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */,
 				D8174BD42A5C311100FC76FC /* OffsetObservingScrollView.swift in Sources */,
 				D8D659142A57D192003F2516 /* DateExtension.swift in Sources */,
+				D8F87BEA2A72332400940E3B /* LottoFavorites.swift in Sources */,
 				D8F87BD82A5E95DF00940E3B /* LottoBallRow.swift in Sources */,
 				D8F87BD42A5DB7A700940E3B /* LottoRatioGraphView.swift in Sources */,
 				D8C4EE7F2A5545ED0092BCA6 /* SettingView.swift in Sources */,

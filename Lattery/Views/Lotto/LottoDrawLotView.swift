@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LottoDrawLotView: View {
     @EnvironmentObject var data: LottoData
-    @State private var isEditing: Bool = false
     @State private var showNumberBoard: Bool = false
     
     var body: some View {
@@ -21,22 +20,14 @@ struct LottoDrawLotView: View {
                 }
             }
             
-            DrawLotButton(showPawPicker: $isEditing, action: data.drawLot)
+            DrawLotButton(action: data.drawLot)
         }
         .padding()
         .navigationTitle("⭐️로또 번호 추첨⭐️")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem {
                 RefreshButton(action: data.reset)
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    withAnimation { isEditing.toggle() }
-                } label: {
-                    Label("발바닥", systemImage: isEditing ? "pawprint" : "pawprint.fill")
-                }
             }
         }
         .sheet(isPresented: $showNumberBoard) {

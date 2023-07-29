@@ -19,10 +19,10 @@ struct LottoBallRow: View {
                 .font(.title3)
                 .padding(.horizontal)
             
-            if let numbers = data.numbers[group] {
+            if let numbers = data.numberGroups[group] {
                 ForEach(numbers, id:\.self) { number in
                     LottoBall(number: number,
-                              isFixed: data.fixedNumbers[group]?.contains(number) ?? false)
+                              isSelected: data.selectedNumbers[group]?.contains(number) ?? false)
                 }
             } 
             

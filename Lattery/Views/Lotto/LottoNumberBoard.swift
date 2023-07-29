@@ -11,18 +11,21 @@ struct LottoNumberBoard: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var data: LottoData
     let columnLayout = Array(repeating: GridItem(), count: 6)
-    @State private var selectedNumbers: [Int16] = []
-    @State private var isFavorite: Bool = false
+    @State private var selectedNumbers: Set<Int16> = []
+    private var isFavorite: Bool {
+        data.favorites.contains(selectedNumbers)
+    }
     
     var body: some View {
         VStack {
+            // MARK: - 상단 버튼
             HStack {
                 Button("취소") {
                     presentationMode.wrappedValue.dismiss()
                 }
                 Spacer()
                 Button("저장") {
-                    saveFixedNumber()
+                    data.addSelectedNumbers(selectedNumbers)
                     presentationMode.wrappedValue.dismiss()
                 }
             }
@@ -30,50 +33,58 @@ struct LottoNumberBoard: View {
             
             Spacer()
             
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                    .foregroundColor(.latteGray)
-                
-                HStack {
-                    ForEach(selectedNumbers.sorted(), id: \.self) { number in
-                        LottoBall(number: number)
+            // MARK: - 고른 번호 보는 곳 + 즐겨찾기 등록/취소
+            HStack {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
+                        .foregroundColor(.latteGray)
+                    
+                    HStack {
+                        ForEach(selectedNumbers.sorted(), id: \.self) { number in
+                            LottoBall(number: number)
+                        }
                     }
                 }
-            }
-            .frame(height: 60)
-            
-            Spacer()
-            
-            HStack {
-                Text("나의 번호로 저장")
-                    .font(.title3)
-                    .bold()
-                Spacer()
+                .frame(height: 43)
+                
                 Button {
-                    isFavorite.toggle()
+                    if isFavorite {
+                        data.deleteFavorites(selectedNumbers)
+                    } else {
+                        data.addFavorites(selectedNumbers)
+                    }
                 } label: {
                     Image(systemName: isFavorite ? "star.fill" : "star")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 40, height: 40)
+                        .frame(width: 30, height: 30)
                         .foregroundColor(.latteYellow)
                         .shadow(color: .latteYellow, radius: isFavorite ? 5 : 0)
                 }
             }
-            .padding(.horizontal, 9)
             
             Spacer()
             
+            // 나의 즐겨찾기 번호
+            VStack(alignment: .leading, spacing: 0) {
+                Text("나의 즐겨찾기 번호")
+                    .padding(.bottom, 5)
+                LottoFavorites(selectedNumbers: $selectedNumbers)
+            }
+            
+            Spacer()
+            
+            // 번호판
             LazyVGrid(columns: columnLayout) {
                 ForEach(1...45, id: \.self) { number in
                     Button {
                         withAnimation {
                             if selectedNumbers.contains(Int16(number)) {
-                                selectedNumbers.removeAll { $0 == number }
+                                selectedNumbers.remove(Int16(number))
                             } else {
                                 if selectedNumbers.count < 6 {
-                                    selectedNumbers.append(Int16(number))
+                                    selectedNumbers.insert(Int16(number))
                                 }
                             }
                         }
@@ -97,6 +108,7 @@ struct LottoNumberBoard: View {
             
             Spacer()
             
+            // 저장, 초기화 버튼
             HStack {
                 Button {
                     selectedNumbers = []
@@ -112,7 +124,7 @@ struct LottoNumberBoard: View {
                 }
                 
                 Button {
-                    saveFixedNumber()
+                    data.addSelectedNumbers(selectedNumbers)
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("저장")
@@ -129,13 +141,9 @@ struct LottoNumberBoard: View {
         .padding()
         .onAppear {
             guard let group = data.selectedGroup else { return }
-            guard let fixed = data.fixedNumbers[group] else { return }
-            selectedNumbers = Array(fixed).sorted()
+            guard let selected = data.selectedNumbers[group] else { return }
+            selectedNumbers = Set(selected.sorted())
         }
-    }
-    
-    private func saveFixedNumber() {
-        let _ = data.setFixedNumbers(selectedNumbers)
     }
 }
 

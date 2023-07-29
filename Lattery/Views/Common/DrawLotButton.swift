@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 struct DrawLotButton: View {
-    @Binding var showPawPicker: Bool
     var action: () -> ()
+    @State private var showPawPicker: Bool = false
     @State private var paw: Paw = .pink
     private enum Paw: String, Identifiable, CaseIterable {
         case pink = "Pink"
@@ -38,17 +38,33 @@ struct DrawLotButton: View {
             }
 
         VStack {
-            if showPawPicker {
-                Picker("발바닥 타입", selection: $paw) {
-                    ForEach(Paw.allCases) { type in
-                        Text(type.description)
-                            .font(.subheadline)
-                            .tag(type)
+            HStack(alignment: .top) {
+                if showPawPicker {
+                    Picker("발바닥 타입", selection: $paw) {
+                        ForEach(Paw.allCases) { type in
+                            Text(type.description)
+                                .font(.subheadline)
+                                .tag(type)
+                        }
                     }
+                    .pickerStyle(.segmented)
+                    .padding(.bottom)
                 }
-                .pickerStyle(.segmented)
-                .padding(.bottom)
+                
+                Spacer()
+                
+                Button {
+                    withAnimation { showPawPicker.toggle() }
+                } label: {
+                    Image(systemName: showPawPicker ? "pawprint" : "pawprint.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 25)
+                }
+                .padding(.top, 3)
             }
+            
+            Spacer()
             
             Button {
                 action()
@@ -66,7 +82,6 @@ struct DrawLotButton: View {
                             .aspectRatio(0.8, contentMode: .fit)
                     }
             }
-//            .simultaneousGesture(dragGesture)
             .simultaneousGesture(longPressGesture)
         }
     }
@@ -92,7 +107,7 @@ struct DrawLotButton: View {
 
 struct DrawLotButton_Previews: PreviewProvider {
     static var previews: some View {
-        DrawLotButton(showPawPicker: .constant(true)) {
+        DrawLotButton() {
             print("Hey~")
         }
     }

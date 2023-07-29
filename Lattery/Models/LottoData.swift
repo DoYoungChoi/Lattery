@@ -8,46 +8,66 @@
 import Foundation
 
 class LottoData: ObservableObject {
-    @Published var fixedNumbers = [LottoGroup: Set<Int16>]()
-    @Published var numbers = [LottoGroup: [Int16]]()
+    @Published var numberGroups = [LottoGroup: [Int16]]()
     @Published var selectedGroup: LottoGroup? = nil
+    @Published var selectedNumbers = [LottoGroup: Set<Int16>]()
+    @Published var favorites = [Set<Int16>]()
     
     init() {
-        reset()
+        totallyReset()
     }
     
-    func setFixedNumbers(_ numbers: [Int16]) -> Bool {
-        guard let group = selectedGroup else { return false }
-        fixedNumbers[group] = Set(numbers)
-        self.numbers[group] = Array(fixedNumbers[group]!).sorted() + Array(repeating: 0, count: 6-fixedNumbers[group]!.count)
-        return true
+    func addSelectedNumbers(_ numbers: Set<Int16>) {
+        guard let group = selectedGroup else { return }
+        selectedNumbers[group] = numbers
+        self.numberGroups[group] = Array(selectedNumbers[group]!).sorted() + Array(repeating: 0, count: 6-selectedNumbers[group]!.count)
     }
     
-    func deleteFixedNumber(_ number: Int16) -> Bool {
-        guard let group = selectedGroup else { return false }
-        return (fixedNumbers[group]?.remove(number) != nil) ? true : false
+    func deleteFixedNumber(_ number: Int16) {
+        guard let group = selectedGroup else { return }
+        selectedNumbers[group]?.remove(number)
+    }
+    
+    func addFavorites(_ numbers: Set<Int16>) {
+        if !favorites.contains(numbers) {
+            favorites.append(numbers)
+        }
+    }
+    
+    func deleteFavorites(_ numbers: Set<Int16>) {
+        if let index = favorites.firstIndex(of: numbers) {
+            favorites.remove(at: index)
+        }
+    }
+    
+    func totallyReset() {
+        for group in LottoGroup.allCases {
+            self.numberGroups[group] = Array(repeating: 0, count: 6)
+            selectedGroup = nil
+            selectedNumbers = [LottoGroup: Set<Int16>]()
+        }
     }
     
     func reset() {
         for group in LottoGroup.allCases {
-            if let fixed = fixedNumbers[group] {
-                self.numbers[group] = Array(fixed).sorted() + Array(repeating: 0, count: 6 - fixed.count)
+            if let selected = selectedNumbers[group] {
+                self.numberGroups[group] = Array(selected).sorted() + Array(repeating: 0, count: 6 - selected.count)
             } else {
-                self.numbers[group] = Array(repeating: 0, count: 6)
+                self.numberGroups[group] = Array(repeating: 0, count: 6)
             }
         }
     }
     
     func drawLot() {
         for group in LottoGroup.allCases {
-            var numbers: [Int16] = Array(fixedNumbers[group] ?? [])
+            var numbers: [Int16] = Array(selectedNumbers[group] ?? [])
             while numbers.count < 6 {
                 let number = Int16.random(in: 1...45)
                 if !numbers.contains(number) {
                     numbers.append(number)
                 }
             }
-            self.numbers[group] = numbers.sorted()
+            self.numberGroups[group] = numbers.sorted()
         }
     }
     

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PensionDrawLotView: View {
     @EnvironmentObject var data: PensionData
-    @State private var isEditing: Bool = false
     
     var body: some View {
         VStack {
@@ -48,24 +47,16 @@ struct PensionDrawLotView: View {
             }
             
             Spacer()
-            DrawLotButton(showPawPicker: $isEditing) {
+            DrawLotButton {
                 print("버튼 눌리는 중")
             }
         }
         .padding()
         .navigationTitle("⭐️연금720 번호 추첨⭐️")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem {
                 RefreshButton(action: data.reset)
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    withAnimation { isEditing.toggle() }
-                } label: {
-                    Label("발바닥", systemImage: isEditing ? "pawprint" : "pawprint.fill")
-                }
             }
         }
         .onAppear(perform: data.reset)

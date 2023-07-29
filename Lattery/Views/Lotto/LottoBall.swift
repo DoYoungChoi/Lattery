@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LottoBall: View {
     var number: Int16? = nil
-    var isFixed: Bool = false
+    var isSelected: Bool = false
     private var color: Color {
         guard let number = number, number > 0 else { return .latteLightGray }
         
@@ -32,7 +32,7 @@ struct LottoBall: View {
                 Circle()
                     .foregroundColor(color)
                     .aspectRatio(1, contentMode: .fit)
-                    .shadow(color: color, radius: isFixed ? 10 : 0)
+                    .shadow(color: color, radius: isSelected ? 10 : 0)
                 
                 Text("\(number)")
                     .foregroundColor(.white)
