@@ -86,6 +86,9 @@ struct DrawLotButton: View {
             .simultaneousGesture(longPressGesture)
             .disabled(isActive)
         }
+        .onDisappear {
+            invalidateTimer()
+        }
     }
     
     private func fireTimer() {
