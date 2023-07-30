@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-let lastestLottoKey: String = "Lotto"
-
 struct LottoStatView: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var data: LottoData

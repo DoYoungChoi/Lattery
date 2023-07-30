@@ -66,7 +66,7 @@ struct LottoNumberBoard: View {
             
             Spacer()
             
-            // 나의 즐겨찾기 번호
+            // MARK: - 나의 즐겨찾기 번호
             VStack(alignment: .leading, spacing: 0) {
                 Text("나의 즐겨찾기 번호")
                     .padding(.bottom, 5)
@@ -75,7 +75,7 @@ struct LottoNumberBoard: View {
             
             Spacer()
             
-            // 번호판
+            // MARK: - 번호판
             LazyVGrid(columns: columnLayout) {
                 ForEach(1...45, id: \.self) { number in
                     Button {
@@ -108,7 +108,7 @@ struct LottoNumberBoard: View {
             
             Spacer()
             
-            // 저장, 초기화 버튼
+            // MARK: - 저장, 초기화 버튼
             HStack {
                 Button {
                     selectedNumbers = []

@@ -7,6 +7,9 @@
 
 import Foundation
 
+let lastestLottoKey: String = "Lotto"
+let favoritesLottoKey: String = "LottoFavorites"
+
 class LottoData: ObservableObject {
     @Published var numberGroups = [LottoGroup: [Int16]]()
     @Published var selectedGroup: LottoGroup? = nil
@@ -15,6 +18,7 @@ class LottoData: ObservableObject {
     
     init() {
         totallyReset()
+        getFavorites()
     }
     
     func addSelectedNumbers(_ numbers: Set<Int16>) {
@@ -31,13 +35,42 @@ class LottoData: ObservableObject {
     func addFavorites(_ numbers: Set<Int16>) {
         if !favorites.contains(numbers) {
             favorites.append(numbers)
+            setFavorites()
         }
     }
     
     func deleteFavorites(_ numbers: Set<Int16>) {
         if let index = favorites.firstIndex(of: numbers) {
             favorites.remove(at: index)
+            setFavorites()
         }
+    }
+    
+    // For UserDefaults (type from [String] to [Set<Int16>]
+    // ["1,2,3", "3,4,5"]
+    private func getFavorites() {
+        var favorites: [Set<Int16>] = []
+        let favoritesFromUD = UserDefaults.standard.stringArray(forKey: favoritesLottoKey) ?? []
+        for favoriteFromUD in favoritesFromUD {
+            var favorite: [Int16] = []
+            let numbers = favoriteFromUD.split(separator: ",")
+            for number in numbers {
+                favorite.append(Int16(number) ?? 0)
+            }
+            favorites.append(Set(favorite))
+        }
+        self.favorites = favorites
+    }
+    
+    // For UserDefaults (type from [Set<Int16>] to [String]
+    private func setFavorites() {
+        var favoritesToUD: [String] = []
+        for favorite in self.favorites {
+            let numbers = favorite.map { String($0) }.joined(separator: ",")
+            print(numbers)
+            favoritesToUD.append(numbers)
+        }
+        UserDefaults.standard.set(favoritesToUD, forKey: favoritesLottoKey)
     }
     
     func totallyReset() {
