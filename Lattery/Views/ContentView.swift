@@ -13,44 +13,50 @@ struct ContentView: View {
     @ScaledMetric(relativeTo: .body) var textSize = 16
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Rectangle().fill(.background).frame(height: 1)
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 15) {
-                        Text("로또 6/45")
-                            .bold()
-                            .padding(.horizontal)
-                        NavigationLink(destination: LottoDrawLotView()) {
-                            lottoDrawLot
+        ZStack {
+            NavigationView {
+                VStack {
+                    Rectangle().fill(.background).frame(height: 1)
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 15) {
+                            Text("로또 6/45")
+                                .bold()
+                                .padding(.horizontal)
+                            NavigationLink(destination: LottoDrawLotView()) {
+                                lottoDrawLot
+                            }
+                            NavigationLink(destination: LottoStatView()) {
+                                lottoStat
+                            }
+                            
+                            Text("연금복권720+")
+                                .bold()
+                                .padding(.horizontal)
+                            NavigationLink(destination: PensionDrawLotView()) {
+                                pensionDrawLot
+                            }
+                            NavigationLink(destination: PensionStatView()) {
+                                pensionStat
+                            }
+                            
+                            Text("MY 메뉴")
+                                .bold()
+                                .padding(.horizontal)
+                            NavigationLink(destination: SettingView()) {
+                                setting
+                            }
                         }
-                        NavigationLink(destination: LottoStatView()) {
-                            lottoStat
-                        }
-                        
-                        Text("연금복권720+")
-                            .bold()
-                            .padding(.horizontal)
-                        NavigationLink(destination: PensionDrawLotView()) {
-                            pensionDrawLot
-                        }
-                        NavigationLink(destination: PensionStatView()) {
-                            pensionStat
-                        }
-                        
-                        Text("MY 메뉴")
-                            .bold()
-                            .padding(.horizontal)
-                        NavigationLink(destination: SettingView()) {
-                            setting
-                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
+                .navigationTitle("전체 메뉴")
+                .navigationBarTitleDisplayMode(.large)
             }
-            .navigationTitle("전체 메뉴")
-            .navigationBarTitleDisplayMode(.large)
+            
+            if lottoData.isEnded {
+                LottoTicket(show: $lottoData.isEnded)
+            }
         }
         .environmentObject(lottoData)
         .environmentObject(pensionData)

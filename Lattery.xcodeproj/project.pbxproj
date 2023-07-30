@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D8174BD42A5C311100FC76FC /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */; };
+		D87CA2142A7633860008FA9C /* LottoTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2132A7633860008FA9C /* LottoTicket.swift */; };
+		D87CA2162A76489B0008FA9C /* LottoTicketRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2152A76489B0008FA9C /* LottoTicketRow.swift */; };
 		D8919DCA2A5BE999008591F1 /* BarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8919DC92A5BE999008591F1 /* BarGraph.swift */; };
 		D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BB82A526B5400E5883C /* LatteryApp.swift */; };
 		D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BBA2A526B5400E5883C /* ContentView.swift */; };
@@ -47,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
+		D87CA2132A7633860008FA9C /* LottoTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoTicket.swift; sourceTree = "<group>"; };
+		D87CA2152A76489B0008FA9C /* LottoTicketRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoTicketRow.swift; sourceTree = "<group>"; };
 		D8919DC92A5BE999008591F1 /* BarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraph.swift; sourceTree = "<group>"; };
 		D8AB9BB52A526B5400E5883C /* Lattery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AB9BB82A526B5400E5883C /* LatteryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatteryApp.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				D8AB9BC72A526E5800E5883C /* LottoDrawLotView.swift */,
 				D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */,
 				D8AB9BD12A52ADD500E5883C /* LottoBall.swift */,
+				D87CA2132A7633860008FA9C /* LottoTicket.swift */,
+				D87CA2152A76489B0008FA9C /* LottoTicketRow.swift */,
 				D8F87BDB2A5EEC8E00940E3B /* LottoNumberBoard.swift */,
 				D8F87BE92A72332400940E3B /* LottoFavorites.swift */,
 				D8C4EE782A5545C30092BCA6 /* LottoStatView.swift */,
@@ -305,9 +311,11 @@
 			files = (
 				D8F87BDC2A5EEC8E00940E3B /* LottoNumberBoard.swift in Sources */,
 				D8AB9BC82A526E5800E5883C /* LottoDrawLotView.swift in Sources */,
+				D87CA2142A7633860008FA9C /* LottoTicket.swift in Sources */,
 				D8D659282A5BCB2E003F2516 /* DataModel.xcdatamodeld in Sources */,
 				D8F87BE02A6029C300940E3B /* DrawLotButton.swift in Sources */,
 				D8C4EE722A5441D30092BCA6 /* BackgroundView.swift in Sources */,
+				D87CA2162A76489B0008FA9C /* LottoTicketRow.swift in Sources */,
 				D8F87BE42A62769C00940E3B /* PensionData.swift in Sources */,
 				D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */,
 				D8F87BE62A63AAF500940E3B /* RefreshButton.swift in Sources */,

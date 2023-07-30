@@ -13,4 +13,13 @@
         <attribute name="winnerCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="winnerReward" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="LottoResult" representedClassName="LottoResult" syncable="YES" codeGenerationType="class">
+        <attribute name="aGroup" optional="YES" attributeType="String"/>
+        <attribute name="bGroup" optional="YES" attributeType="String"/>
+        <attribute name="cGroup" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dGroup" optional="YES" attributeType="String"/>
+        <attribute name="eGroup" optional="YES" attributeType="String"/>
+        <attribute name="lotteryDate" optional="YES" attributeType="String"/>
+    </entity>
 </model>

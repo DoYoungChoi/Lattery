@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PensionDrawLotView: View {
     @EnvironmentObject var data: PensionData
+    @State private var isEnded: Bool = false
     
     var body: some View {
         VStack {
@@ -47,7 +48,7 @@ struct PensionDrawLotView: View {
             }
             
             Spacer()
-            DrawLotButton {
+            DrawLotButton(isEnded: $isEnded) {
                 print("버튼 눌리는 중")
             }
         }

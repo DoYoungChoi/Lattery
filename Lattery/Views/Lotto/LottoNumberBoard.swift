@@ -49,18 +49,19 @@ struct LottoNumberBoard: View {
                 .frame(height: 43)
                 
                 Button {
+                    if selectedNumbers.count < 1 { return }
                     if isFavorite {
                         data.deleteFavorites(selectedNumbers)
                     } else {
                         data.addFavorites(selectedNumbers)
                     }
                 } label: {
-                    Image(systemName: isFavorite ? "star.fill" : "star")
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(.latteYellow)
-                        .shadow(color: .latteYellow, radius: isFavorite ? 5 : 0)
+                        .foregroundColor(.latteRed)
+                        .shadow(color: .latteRed, radius: isFavorite ? 5 : 0)
                 }
             }
             

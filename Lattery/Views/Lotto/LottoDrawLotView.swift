@@ -12,15 +12,17 @@ struct LottoDrawLotView: View {
     @State private var showNumberBoard: Bool = false
     
     var body: some View {
-        VStack {
-            ForEach(LottoGroup.allCases) { group in
-                HStack {
-                    LottoBallRow(group: group,
-                                 showNumberBoard: $showNumberBoard)
+        ZStack {
+            VStack {
+                ForEach(LottoGroup.allCases) { group in
+                    HStack {
+                        LottoBallRow(group: group,
+                                     showNumberBoard: $showNumberBoard)
+                    }
                 }
+                
+                DrawLotButton(isEnded: $data.isEnded, action: data.drawLot)
             }
-            
-            DrawLotButton(action: data.drawLot)
         }
         .padding()
         .navigationTitle("⭐️로또 번호 추첨⭐️")

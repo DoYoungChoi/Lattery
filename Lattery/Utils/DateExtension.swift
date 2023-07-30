@@ -10,7 +10,28 @@ import Foundation
 extension Date {
     var toDateStringKor: String {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier:"ko_KR")
         formatter.dateFormat = "yyyy년 MM월 dd일"
         return formatter.string(from: self)
+    }
+    
+    var toDateStringSlash: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier:"ko_KR")
+        formatter.dateFormat = "yyyy/MM/dd"
+        return formatter.string(from: self)
+    }
+    
+    var toDateTimeString: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier:"ko_KR")
+        formatter.dateFormat = "yyyy/MM/dd (E) HH:mm:ss"
+        return formatter.string(from: self)
+    }
+    
+    var nextSatureday: Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let dayOfWeek = calendar.component(.weekday, from: self)
+        return Date(timeIntervalSinceNow: 60*60*24*(7-1))
     }
 }

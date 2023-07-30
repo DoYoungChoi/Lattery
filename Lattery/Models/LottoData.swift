@@ -15,6 +15,7 @@ class LottoData: ObservableObject {
     @Published var selectedGroup: LottoGroup? = nil
     @Published var selectedNumbers = [LottoGroup: Set<Int16>]()
     @Published var favorites = [Set<Int16>]()
+    @Published var isEnded: Bool = false
     
     init() {
         totallyReset()
