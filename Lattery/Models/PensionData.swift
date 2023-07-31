@@ -8,34 +8,104 @@
 import Foundation
 
 class PensionData: ObservableObject {
-    @Published var fixedNumbers = [[Int16]]()
     @Published var pensionGroup: PensionGroup = .allGroup
-    @Published var sets = [[Int16]]()
+    // reset number는 -1
+    // 모든 조에 대한 경우는 숫자 조합만 6개 Elements를 가진 Array
+    // 조까지 추첨받는 경우는 조 + 숫자 조합까지 7개 Elements를 가진 Array
+    @Published var numberGroupForAll: [Int16] = Array(repeating: -1, count: 6)
+    @Published var selectedNumbersForAll = [Int16]()
+    @Published var groupCount: Int = 1
+    @Published var numberGroupsForEach: [[Int16]] = [Array(repeating: -1, count: 7)]
+    @Published var selectedGroup: Int = 1
+    @Published var selectedNumbersForEach = [[Int16]]()
+    @Published var isEnded: Bool = false
     
     init() {
-        reset()
+        totallyReset()
+    }
+    
+    func totallyReset() {
+        numberGroupForAll = Array(repeating: -1, count: 6)
+        selectedNumbersForAll = []
+        groupCount = 1
+        numberGroupsForEach = [Array(repeating: -1, count: 7)]
+        selectedGroup = 1
+        selectedNumbersForEach = []
     }
     
     func reset() {
-        sets = [[Int16]]()
-        if pensionGroup == .allGroup {
-            for group in 1...5 {
-                let numbers = [Int16(group)] + Array(repeating: -1, count: 6)
-                sets.append(numbers)
-            }
-        } else if pensionGroup == .eachGroup {
-            var setCount = sets.count
-            if setCount == 0 {
-                setCount = 1
-            }
-            for _ in 1...setCount {
-                let numbers = Array(repeating: Int16(-1), count: 7)
-                sets.append(numbers)
-            }
+        resetForAll()
+        resetForEach()
+    }
+    
+    private func resetForAll() {
+        if selectedNumbersForAll.count < 1 {
+            numberGroupForAll = Array(repeating: -1, count: 6)
+        } else {
+            numberGroupForAll = selectedNumbersForAll
         }
     }
     
+    private func resetForEach() {
+        var newNumbers = [[Int16]]()
+        for index in 0..<groupCount {
+            if index < selectedNumbersForEach.count {
+                newNumbers.append(selectedNumbersForEach[index])
+            } else {
+                newNumbers.append(Array(repeating: -1, count: 7))
+            }
+        }
+        numberGroupsForEach = newNumbers
+    }
+    
     func drawLot() {
+        if pensionGroup == .allGroup {
+            drawLotForAll()
+        } else {
+            drawLotForEach()
+        }
+    }
+    
+    private func drawLotForAll() {
+        var numbers: [Int16] = []
+        for i in 0..<6 {
+            if i < selectedNumbersForAll.count && selectedNumbersForAll[i] != -1 {
+                numbers.append(selectedNumbersForAll[i])
+            } else {
+                numbers.append(Int16.random(in: 0...9))
+            }
+        }
+        numberGroupForAll = numbers
+    }
+    
+    private func drawLotForEach() {
+        var numbers: [[Int16]] = []
+        for i in 0..<groupCount {
+            var group: [Int16] = []
+            if i < selectedNumbersForEach.count {
+                for selectedNumber in selectedNumbersForEach[i] {
+                    if selectedNumber != -1 {
+                        group.append(selectedNumber)
+                    } else {
+                        if group.count < 1 {
+                            group.append(Int16.random(in: 1...5))
+                        } else {
+                            group.append(Int16.random(in: 0...9))
+                        }
+                    }
+                }
+            } else {
+                for _ in 0..<7 {
+                    if group.count < 1 {
+                        group.append(Int16.random(in: 1...5))
+                    } else {
+                        group.append(Int16.random(in: 0...9))
+                    }
+                }
+            }
+            numbers.append(group)
+        }
+        numberGroupsForEach = numbers
     }
     
     func fetchData(_ nth: Int) async throws -> Pension {

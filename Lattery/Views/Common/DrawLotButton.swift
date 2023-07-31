@@ -40,6 +40,8 @@ struct DrawLotButton: View {
             }
 
         VStack {
+            Spacer()
+            
             HStack(alignment: .top) {
                 if showPawPicker {
                     Picker("발바닥 타입", selection: $paw) {
@@ -65,8 +67,6 @@ struct DrawLotButton: View {
                 }
                 .padding(.top, 3)
             }
-            
-            Spacer()
             
             Button {
             } label: {

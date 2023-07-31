@@ -9,10 +9,11 @@ import SwiftUI
 
 struct PensionDrawLotView: View {
     @EnvironmentObject var data: PensionData
-    @State private var isEnded: Bool = false
+    @State private var showNumberBoard: Bool = false
     
     var body: some View {
         VStack {
+            // MARK: - '모든 조' 또는 '조 선택'
             HStack {
                 ForEach(PensionGroup.allCases) { pensionGroup in
                     RoundedRectangle(cornerRadius: 5)
@@ -36,21 +37,24 @@ struct PensionDrawLotView: View {
                 }
             }
             
-            ForEach(data.sets, id:\.self) { numbers in
-                HStack {
-                    ForEach(Array(numbers.enumerated()), id:\.offset) { (index, number) in
-                        PensionBall(number: number, unit: index)
-                        if index == 0 {
-                            Text("조")
-                        }
-                    }
+            // MARK: - 숫자 조합
+            if data.pensionGroup == .allGroup {
+                ForEach(0..<5, id:\.self) { index in
+                    let group = Int16(index + 1)
+                    PensionBallRow(group: [group] + data.numberGroupForAll)
+                }
+            } else {
+                ForEach(data.numberGroupsForEach, id: \.self) { numbers in
+                    PensionBallRow(group: numbers)
+                }
+                
+                if data.numberGroupsForEach.count < 5 {
+                    addButton
                 }
             }
             
             Spacer()
-            DrawLotButton(isEnded: $isEnded) {
-                print("버튼 눌리는 중")
-            }
+            DrawLotButton(isEnded: $data.isEnded, action: data.drawLot)
         }
         .padding()
         .navigationTitle("⭐️연금720 번호 추첨⭐️")
@@ -61,6 +65,23 @@ struct PensionDrawLotView: View {
             }
         }
         .onAppear(perform: data.reset)
+    }
+    
+    private var addButton: some View {
+        Button {
+            withAnimation {
+                data.groupCount += 1
+                data.reset()
+            }
+        } label: {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(.thinMaterial)
+                .overlay {
+                    Image(systemName: "plus")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+        }
+        .frame(height: 30)
     }
 }
 

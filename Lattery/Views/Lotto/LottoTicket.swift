@@ -78,6 +78,7 @@ struct LottoTicket: View {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color(uiColor: .systemBackground))
             }
+            .frame(maxWidth: 400)
             .padding()
         }
     }

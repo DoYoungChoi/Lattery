@@ -11,6 +11,7 @@ let lastestLottoKey: String = "Lotto"
 let favoritesLottoKey: String = "LottoFavorites"
 
 class LottoData: ObservableObject {
+    // reset number는 0
     @Published var numberGroups = [LottoGroup: [Int16]]()
     @Published var selectedGroup: LottoGroup? = nil
     @Published var selectedNumbers = [LottoGroup: Set<Int16>]()
@@ -28,7 +29,7 @@ class LottoData: ObservableObject {
         self.numberGroups[group] = Array(selectedNumbers[group]!).sorted() + Array(repeating: 0, count: 6-selectedNumbers[group]!.count)
     }
     
-    func deleteFixedNumber(_ number: Int16) {
+    func deleteSelectedNumber(_ number: Int16) {
         guard let group = selectedGroup else { return }
         selectedNumbers[group]?.remove(number)
     }

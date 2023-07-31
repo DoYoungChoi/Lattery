@@ -35,7 +35,7 @@ struct PensionBall: View {
         if let number = number, Range(0...9).contains(number) {
             ZStack {
                 Circle()
-                    .stroke(lineWidth: 5)
+                    .stroke(lineWidth: 2)
                     .shadow(color: color, radius: isFixed ? 10 : 0)
                 
                 Circle()
@@ -48,11 +48,11 @@ struct PensionBall: View {
             }
             .foregroundColor(color)
             .font(.system(size: 18))
-            .frame(width: 35, height: 35)
+            .frame(width: 30, height: 30)
         } else {
             Circle()
                 .stroke(color, style: StrokeStyle(lineWidth: 1, dash: [5]))
-                .frame(width: 35, height: 35)
+                .frame(width: 30, height: 30)
                 .background {
                     Circle()
                         .fill(.background.opacity(0.7))
