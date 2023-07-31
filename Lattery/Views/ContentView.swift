@@ -57,6 +57,10 @@ struct ContentView: View {
             if lottoData.isEnded {
                 LottoTicket(show: $lottoData.isEnded)
             }
+            
+            if pensionData.isEnded {
+                PensionTicket(show: $pensionData.isEnded)
+            }
         }
         .environmentObject(lottoData)
         .environmentObject(pensionData)

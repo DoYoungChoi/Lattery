@@ -32,6 +32,13 @@ extension Date {
     var nextSatureday: Date {
         let calendar = Calendar(identifier: .gregorian)
         let dayOfWeek = calendar.component(.weekday, from: self)
-        return Date(timeIntervalSinceNow: 60*60*24*(7-1))
+        return Date(timeIntervalSinceNow: 60*60*24*(7-Double(dayOfWeek)))
+    }
+    
+    var nextThursday: Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let dayOfWeek = calendar.component(.weekday, from: self)
+        let dayDiff = dayOfWeek > 5 ? 7 : 0
+        return Date(timeIntervalSinceNow: 60*60*24*(5-Double(dayOfWeek+dayDiff)))
     }
 }

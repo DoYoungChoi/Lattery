@@ -1,15 +1,15 @@
 //
-//  LottoTicket.swift
+//  PensionTicket.swift
 //  Lattery
 //
-//  Created by dodor on 2023/07/30.
+//  Created by dodor on 2023/07/31.
 //
 
 import SwiftUI
 
-struct LottoTicket: View {
+struct PensionTicket: View {
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var data: LottoData
+    @EnvironmentObject var data: PensionData
     @Binding var show: Bool
     @State private var isSaved: Bool = false
     private let verticalPadding: CGFloat = 15
@@ -25,7 +25,7 @@ struct LottoTicket: View {
                     Image("LatteryLogo")
                         .resizable()
                         .scaledToFit()
-                    Text("Lotto6/45")
+                    Text("연금복권720+")
                         .bold()
                         .padding(.leading, 2)
                     
@@ -37,7 +37,7 @@ struct LottoTicket: View {
                         Image(systemName: isSaved ? "heart.fill" : "heart")
                             .resizable()
                             .scaledToFit()
-//                            .frame(width: 30, height: 30)
+                        //                            .frame(width: 30, height: 30)
                             .foregroundColor(.latteRed)
                             .shadow(color: .latteRed, radius: isSaved ? 5 : 0)
                     }
@@ -48,16 +48,23 @@ struct LottoTicket: View {
                     .kerning(1.5)
                     .foregroundColor(.latteGray)
                     .padding(.vertical, verticalPadding)
-                Text("추첨일: \(now.nextSatureday.toDateStringSlash)")
+                Text("추첨일: \(now.nextThursday.toDateStringSlash)")
                     .kerning(1.5)
                     .foregroundColor(.latteGray)
-                    
+                
                 Divider()
                     .padding(.vertical, verticalPadding)
                 
-                ForEach(LottoGroup.allCases) { group in
-                    LottoTicketRow(group: group)
-                        .padding(.bottom, verticalPadding)
+                if data.pensionGroup == .allGroup {
+                    ForEach(1...5, id:\.self) { number in
+                        PensionTicketRow(numbers: [Int16(number)] + data.numberGroupForAll)
+                            .padding(.bottom, verticalPadding)
+                    }
+                } else {
+                    ForEach(data.numberGroupsForEach, id:\.self) { numbers in
+                        PensionTicketRow(numbers: numbers)
+                            .padding(.bottom, verticalPadding)
+                    }
                 }
                 
                 Divider()
@@ -65,7 +72,7 @@ struct LottoTicket: View {
                 
                 Button {
                     if isSaved {
-                        saveLottoResult()
+                        savePensionResult()
                     }
                     show.toggle()
                 } label: {
@@ -83,23 +90,22 @@ struct LottoTicket: View {
         }
     }
     
-    private func saveLottoResult() {
-        let result = LottoResult(context: moc)
-        result.date = now
-        result.lotteryDate = now.nextSatureday.toDateStringSlash
-        result.aGroup = data.numberGroups[LottoGroup.a]?.map { String($0) }.joined(separator: ",")
-        result.bGroup = data.numberGroups[LottoGroup.b]?.map { String($0) }.joined(separator: ",")
-        result.cGroup = data.numberGroups[LottoGroup.c]?.map { String($0) }.joined(separator: ",")
-        result.dGroup = data.numberGroups[LottoGroup.d]?.map { String($0) }.joined(separator: ",")
-        result.eGroup = data.numberGroups[LottoGroup.e]?.map { String($0) }.joined(separator: ",")
-        
-        PersistenceController.shared.save()
+    private func savePensionResult() {
+//        let result = LottoResult(context: moc)
+//        result.date = now
+//        result.lotteryDate = now.nextSatureday.toDateStringSlash
+//        result.aGroup = data.numberGroups[LottoGroup.a]?.map { String($0) }.joined(separator: ",")
+//        result.bGroup = data.numberGroups[LottoGroup.b]?.map { String($0) }.joined(separator: ",")
+//        result.cGroup = data.numberGroups[LottoGroup.c]?.map { String($0) }.joined(separator: ",")
+//        result.dGroup = data.numberGroups[LottoGroup.d]?.map { String($0) }.joined(separator: ",")
+//        result.eGroup = data.numberGroups[LottoGroup.e]?.map { String($0) }.joined(separator: ",")
+//
+//        PersistenceController.shared.save()
     }
 }
 
-struct LottoTicket_Previews: PreviewProvider {
+struct PensionTicket_Previews: PreviewProvider {
     static var previews: some View {
-        LottoTicket(show: .constant(true))
-            .environmentObject(LottoData())
+        PensionTicket(show: .constant(true))
     }
 }

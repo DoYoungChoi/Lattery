@@ -11,6 +11,8 @@
 		D87CA2142A7633860008FA9C /* LottoTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2132A7633860008FA9C /* LottoTicket.swift */; };
 		D87CA2162A76489B0008FA9C /* LottoTicketRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2152A76489B0008FA9C /* LottoTicketRow.swift */; };
 		D87CA2182A775A420008FA9C /* PensionBallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2172A775A420008FA9C /* PensionBallRow.swift */; };
+		D87CA21A2A77ED240008FA9C /* PensionTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2192A77ED240008FA9C /* PensionTicket.swift */; };
+		D87CA21C2A77EF380008FA9C /* PensionTicketRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA21B2A77EF380008FA9C /* PensionTicketRow.swift */; };
 		D8919DCA2A5BE999008591F1 /* BarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8919DC92A5BE999008591F1 /* BarGraph.swift */; };
 		D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BB82A526B5400E5883C /* LatteryApp.swift */; };
 		D8AB9BBB2A526B5400E5883C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB9BBA2A526B5400E5883C /* ContentView.swift */; };
@@ -53,6 +55,8 @@
 		D87CA2132A7633860008FA9C /* LottoTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoTicket.swift; sourceTree = "<group>"; };
 		D87CA2152A76489B0008FA9C /* LottoTicketRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoTicketRow.swift; sourceTree = "<group>"; };
 		D87CA2172A775A420008FA9C /* PensionBallRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionBallRow.swift; sourceTree = "<group>"; };
+		D87CA2192A77ED240008FA9C /* PensionTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionTicket.swift; sourceTree = "<group>"; };
+		D87CA21B2A77EF380008FA9C /* PensionTicketRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionTicketRow.swift; sourceTree = "<group>"; };
 		D8919DC92A5BE999008591F1 /* BarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraph.swift; sourceTree = "<group>"; };
 		D8AB9BB52A526B5400E5883C /* Lattery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lattery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AB9BB82A526B5400E5883C /* LatteryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatteryApp.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				D8C4EE7A2A5545D90092BCA6 /* PensionDrawLotView.swift */,
 				D87CA2172A775A420008FA9C /* PensionBallRow.swift */,
 				D8F87BE72A6404A500940E3B /* PensionBall.swift */,
+				D87CA2192A77ED240008FA9C /* PensionTicket.swift */,
+				D87CA21B2A77EF380008FA9C /* PensionTicketRow.swift */,
 				D8C4EE7C2A5545E40092BCA6 /* PensionStatView.swift */,
 			);
 			path = Pension;
@@ -333,6 +339,7 @@
 				D8AB9BCA2A52705F00E5883C /* LottoData.swift in Sources */,
 				D8AB9BD42A52B68B00E5883C /* ColorExtension.swift in Sources */,
 				D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */,
+				D87CA21C2A77EF380008FA9C /* PensionTicketRow.swift in Sources */,
 				D8174BD42A5C311100FC76FC /* OffsetObservingScrollView.swift in Sources */,
 				D8D659142A57D192003F2516 /* DateExtension.swift in Sources */,
 				D8F87BEA2A72332400940E3B /* LottoFavorites.swift in Sources */,
@@ -346,6 +353,7 @@
 				D8D659162A5806CE003F2516 /* LottoResultList.swift in Sources */,
 				D8C4EE7D2A5545E40092BCA6 /* PensionStatView.swift in Sources */,
 				D8D6591E2A5A61B2003F2516 /* LottoResultDetail.swift in Sources */,
+				D87CA21A2A77ED240008FA9C /* PensionTicket.swift in Sources */,
 				D8D659202A5BAEFD003F2516 /* LottoCountGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
