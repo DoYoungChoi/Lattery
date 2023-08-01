@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 
 struct DrawLotButton: View {
+    @Binding var isRunning: Bool
     @Binding var isEnded: Bool
     var action: () -> ()
     @State private var showPawPicker: Bool = false
@@ -30,7 +31,6 @@ struct DrawLotButton: View {
             }
         }
     }
-    @State private var isActive: Bool = false
     @State private var timer: Timer?
     
     var body: some View {
@@ -82,9 +82,9 @@ struct DrawLotButton: View {
                             .aspectRatio(0.8, contentMode: .fit)
                     }
             }
-            .opacity(isActive ? 0.5 : 1)
+            .opacity(isRunning ? 0.5 : 1)
             .simultaneousGesture(longPressGesture)
-            .disabled(isActive)
+            .disabled(isRunning)
         }
         .onDisappear {
             invalidateTimer()
@@ -96,7 +96,7 @@ struct DrawLotButton: View {
             timer!.invalidate()
             timer = nil
         }
-        isActive.toggle()
+        isRunning.toggle()
         var times = 0
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
@@ -105,7 +105,7 @@ struct DrawLotButton: View {
             
             if times > 30 {
                 invalidateTimer()
-                isActive.toggle()
+                isRunning.toggle()
                 isEnded.toggle()
             }
         }
@@ -121,7 +121,7 @@ struct DrawLotButton: View {
 
 struct DrawLotButton_Previews: PreviewProvider {
     static var previews: some View {
-        DrawLotButton(isEnded: .constant(true)) {
+        DrawLotButton(isRunning: .constant(false), isEnded: .constant(true)) {
             print("Hey~")
         }
     }

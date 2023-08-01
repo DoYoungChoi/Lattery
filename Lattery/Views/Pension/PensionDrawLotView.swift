@@ -10,6 +10,7 @@ import SwiftUI
 struct PensionDrawLotView: View {
     @EnvironmentObject var data: PensionData
     @State private var showNumberBoard: Bool = false
+    @State private var isRunning: Bool = false
     
     var body: some View {
         VStack {
@@ -54,7 +55,7 @@ struct PensionDrawLotView: View {
             }
             
             Spacer()
-            DrawLotButton(isEnded: $data.isEnded, action: data.drawLot)
+            DrawLotButton(isRunning: $isRunning, isEnded: $data.isEnded, action: data.drawLot)
         }
         .padding()
         .navigationTitle("⭐️연금720 번호 추첨⭐️")
@@ -75,6 +76,7 @@ struct PensionDrawLotView: View {
                 }
             }
         }
+        .disabled(isRunning)
         .sheet(isPresented: $showNumberBoard) {
             PensionNumberBoard()
         }

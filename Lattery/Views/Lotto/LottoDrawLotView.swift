@@ -10,6 +10,7 @@ import SwiftUI
 struct LottoDrawLotView: View {
     @EnvironmentObject var data: LottoData
     @State private var showNumberBoard: Bool = false
+    @State private var isRunning: Bool = false
     
     var body: some View {
         ZStack {
@@ -21,7 +22,7 @@ struct LottoDrawLotView: View {
                     }
                 }
                 
-                DrawLotButton(isEnded: $data.isEnded, action: data.drawLot)
+                DrawLotButton(isRunning: $isRunning, isEnded: $data.isEnded, action: data.drawLot)
             }
         }
         .padding()
@@ -32,6 +33,7 @@ struct LottoDrawLotView: View {
                 RefreshButton(action: data.reset)
             }
         }
+        .disabled(isRunning)
         .sheet(isPresented: $showNumberBoard) {
             LottoNumberBoard()
         }
