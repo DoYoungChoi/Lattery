@@ -108,8 +108,8 @@ class PensionData: ObservableObject {
         numberGroupsForEach = numbers
     }
     
-    func fetchData(_ nth: Int) async throws -> Pension {
-        guard let url = URL(string: "https://dhlottery.co.kr/common.do?method=get720Number&drwNo=\(nth)") else { throw FetchError.badURL }
+    func fetchData(_ round: Int) async throws -> Pension {
+        guard let url = URL(string: "https://dhlottery.co.kr/common.do?method=get720Number&drwNo=\(round)") else { throw FetchError.badURL }
         
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
         guard let httpResponse = response as? HTTPURLResponse, (200..<300) ~= httpResponse.statusCode else { throw FetchError.badRequest }

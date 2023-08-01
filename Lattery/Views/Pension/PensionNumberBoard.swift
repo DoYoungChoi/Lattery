@@ -179,9 +179,11 @@ struct PensionNumberBoard: View {
     
     private func save() {
         if data.pensionGroup == .allGroup {
+            var replaceNumbers = [Int16]()
             if selectedNumbers[0].filter({ $0 != -1 }).count > 0 {
-                data.selectedNumbersForAll = Array(selectedNumbers[0].suffix(from: 1))
+                replaceNumbers = Array(selectedNumbers[0].suffix(from: 1))
             }
+            data.selectedNumbersForAll = replaceNumbers
         } else {
             var replaceNumbers = [[Int16]]()
             for numbers in selectedNumbers {

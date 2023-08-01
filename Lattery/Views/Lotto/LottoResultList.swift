@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LottoResultList: View {
     @FetchRequest(sortDescriptors: [
-        SortDescriptor(\.nth, order: .reverse)
+        SortDescriptor(\.round, order: .reverse)
     ]) var lottos: FetchedResults<LottoEntity>
     
     var body: some View {
@@ -19,7 +19,7 @@ struct LottoResultList: View {
                     LottoResultDetail(lotto: lotto)
                 } label: {
                     HStack {
-                        Text(verbatim: "\(lotto.nth)회")
+                        Text(verbatim: "\(lotto.round)회")
                         LottoBall(number: lotto.no1)
                         LottoBall(number: lotto.no2)
                         LottoBall(number: lotto.no3)

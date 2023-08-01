@@ -16,7 +16,7 @@ struct LottoResultBoard: View {
         // Core Data 처리
         let request: NSFetchRequest<LottoEntity> = LottoEntity.fetchRequest()
         request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \LottoEntity.nth, ascending: false)
+            NSSortDescriptor(keyPath: \LottoEntity.round, ascending: false)
         ]
 
         request.fetchLimit = 1
@@ -30,7 +30,7 @@ struct LottoResultBoard: View {
         VStack {
             if let lastestLotto = lottos.first {
                 VStack {
-                    Text(verbatim: "\(lastestLotto.nth)회 당첨 결과🎊")
+                    Text(verbatim: "\(lastestLotto.round)회 당첨 결과🎊")
                         .font(.title)
                         .bold()
                     

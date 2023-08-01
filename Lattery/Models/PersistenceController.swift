@@ -22,7 +22,7 @@ struct PersistenceController {
         // Create 10 example programming languages.
         for i in 0..<10 {
             let lotto = LottoEntity(context: controller.container.viewContext)
-            lotto.nth = Int16(i + 1)
+            lotto.round = Int16(i + 1)
             lotto.no1 = (1..<5).randomElement()!
             lotto.no2 = (5..<11).randomElement()!
             lotto.no3 = (11..<21).randomElement()!

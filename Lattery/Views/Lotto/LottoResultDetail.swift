@@ -13,7 +13,7 @@ struct LottoResultDetail: View {
     var body: some View {
         VStack {
             HStack {
-                Text(verbatim: "\(lotto.nth)회")
+                Text(verbatim: "\(lotto.round)회")
                 LottoBall(number: lotto.no1)
                 LottoBall(number: lotto.no2)
                 LottoBall(number: lotto.no3)

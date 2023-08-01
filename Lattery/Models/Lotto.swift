@@ -26,10 +26,10 @@ struct Lotto: Codable, Identifiable {
     var bnusNo: Int?
     
     func toEntity(context: NSManagedObjectContext) -> LottoEntity? {
-        guard let nth = self.drwNo else { return nil }
+        guard let round = self.drwNo else { return nil }
         
         let lotto = LottoEntity(context: context)
-        lotto.nth = Int16(self.drwNo ?? nth)
+        lotto.round = Int16(self.drwNo ?? round)
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         lotto.date = formatter.date(from: self.drwNoDate ?? "")
