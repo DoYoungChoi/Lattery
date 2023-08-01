@@ -91,16 +91,25 @@ struct PensionTicket: View {
     }
     
     private func savePensionResult() {
-//        let result = LottoResult(context: moc)
-//        result.date = now
-//        result.lotteryDate = now.nextSatureday.toDateStringSlash
-//        result.aGroup = data.numberGroups[LottoGroup.a]?.map { String($0) }.joined(separator: ",")
-//        result.bGroup = data.numberGroups[LottoGroup.b]?.map { String($0) }.joined(separator: ",")
-//        result.cGroup = data.numberGroups[LottoGroup.c]?.map { String($0) }.joined(separator: ",")
-//        result.dGroup = data.numberGroups[LottoGroup.d]?.map { String($0) }.joined(separator: ",")
-//        result.eGroup = data.numberGroups[LottoGroup.e]?.map { String($0) }.joined(separator: ",")
-//
-//        PersistenceController.shared.save()
+        let result = PensionResult(context: moc)
+        result.date = now
+        result.lotteryDate = now.nextThursday.toDateStringSlash
+        if data.pensionGroup == .allGroup {
+            result.numbers1 = "1\(data.numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers2 = "2\(data.numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers3 = "3\(data.numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers4 = "4\(data.numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers5 = "5\(data.numberGroupForAll.map { String($0) }.joined(separator: ""))"
+        } else {
+            let count = data.numberGroupsForEach.count
+            if count > 0 { result.numbers1 = data.numberGroupsForEach[0].map { String($0) }.joined(separator: "") }
+            if count > 1 { result.numbers2 = data.numberGroupsForEach[1].map { String($0) }.joined(separator: "") }
+            if count > 2 { result.numbers3 = data.numberGroupsForEach[2].map { String($0) }.joined(separator: "") }
+            if count > 3 { result.numbers4 = data.numberGroupsForEach[3].map { String($0) }.joined(separator: "") }
+            if count > 4 { result.numbers5 = data.numberGroupsForEach[4].map { String($0) }.joined(separator: "") }
+        }
+
+        PersistenceController.shared.save()
     }
 }
 
