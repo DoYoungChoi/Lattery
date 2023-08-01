@@ -63,6 +63,20 @@ struct PensionDrawLotView: View {
             ToolbarItem {
                 RefreshButton(action: data.reset)
             }
+            
+            ToolbarItem {
+                Button {
+                    showNumberBoard.toggle()
+                } label: {
+                    Image(systemName: "rectangle.and.pencil.and.ellipsis")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 20)
+                }
+            }
+        }
+        .sheet(isPresented: $showNumberBoard) {
+            PensionNumberBoard()
         }
         .onAppear(perform: data.reset)
     }
