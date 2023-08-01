@@ -49,6 +49,10 @@ struct PensionBall: View {
             .foregroundColor(color)
             .font(.system(size: 18))
             .frame(width: 30, height: 30)
+            .background {
+                Circle()
+                    .fill(.background)
+            }
         } else {
             Circle()
                 .stroke(color, style: StrokeStyle(lineWidth: 1, dash: [5]))
