@@ -8,50 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var moc
     @StateObject private var lottoData = LottoData()
     @StateObject private var pensionData = PensionData()
-    @ScaledMetric(relativeTo: .body) var textSize = 16
+    @State private var isFetching: Bool = true
+    @State private var errorTitle: String? = nil
+    @State private var errorMessage: String? = nil
     
     var body: some View {
         ZStack {
             NavigationView {
-                VStack {
-                    Rectangle().fill(.background).frame(height: 1)
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 15) {
-                            Text("로또 6/45")
-                                .bold()
-                                .padding(.horizontal)
-                            NavigationLink(destination: LottoDrawLotView()) {
-                                lottoDrawLot
-                            }
-                            NavigationLink(destination: LottoStatView()) {
-                                lottoStat
-                            }
-                            
-                            Text("연금복권720+")
-                                .bold()
-                                .padding(.horizontal)
-                            NavigationLink(destination: PensionDrawLotView()) {
-                                pensionDrawLot
-                            }
-                            NavigationLink(destination: PensionStatView()) {
-                                pensionStat
-                            }
-                            
-                            Text("MY 메뉴")
-                                .bold()
-                                .padding(.horizontal)
-                            NavigationLink(destination: SettingView()) {
-                                setting
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    .buttonStyle(.plain)
-                }
-                .navigationTitle("전체 메뉴")
-                .navigationBarTitleDisplayMode(.large)
+                MenuView()
+                    .padding(.bottom)
             }
             
             if lottoData.isEnded {
@@ -61,64 +29,36 @@ struct ContentView: View {
             if pensionData.isEnded {
                 PensionTicket(show: $pensionData.isEnded)
             }
+            
+            if isFetching {
+                FetchingView()
+            }
         }
+        .task { fetchData() }
         .environmentObject(lottoData)
         .environmentObject(pensionData)
     }
     
-    private var lottoDrawLot: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.4), radius: 5)
-            .overlay {
-                Text("로또 번호 추첨")
+    private func fetchData() {
+        Task {
+            var result = await lottoData.getLastestData(context: moc)
+            if let resultMessage = result {
+                errorTitle = "로또 오류"
+                errorMessage = resultMessage
+                isFetching.toggle()
+                return
             }
-    }
-    
-    private var lottoStat: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.4), radius: 5)
-            .overlay {
-                Text("로또 통계")
+            
+            result = await pensionData.getLastestData(context: moc)
+            if let resultMessage = result {
+                errorTitle = "연금복권 오류"
+                errorMessage = resultMessage
+                isFetching.toggle()
+                return
             }
-    }
-    
-    private var pensionDrawLot: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.4), radius: 5)
-            .overlay {
-                Text("연금복권 번호 추첨")
-            }
-    }
-    
-    private var pensionStat: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.4), radius: 5)
-            .overlay {
-                Text("연금복권 통계")
-            }
-    }
-    
-    private var setting: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.4), radius: 5)
-            .overlay {
-                Text("설정")
-            }
+            
+            isFetching.toggle()
+        }
     }
 }
 

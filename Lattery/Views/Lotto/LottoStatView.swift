@@ -56,40 +56,37 @@ struct LottoStatView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    fetchLastestLottoData()
+//                    fetchLastestLottoData()
                 } label: {
                     Label("발바닥", systemImage: isFetching ? "pawprint" : "pawprint.fill")
                 }
             }
         }
-        .task {
-            fetchLastestLottoData()
-        }
     }
     
-    private func fetchLastestLottoData() {
-        isFetching.toggle()
-        var keepGoing: Bool = true
-        
-        Task {
-            while (keepGoing) {
-                do {
-                    let lotto = try await data.fetchData(lastestLotto + 1)
-                    if let _ = lotto.toEntity(context: moc) {
-                        lastestLotto += 1
-                    } else {
-                        keepGoing = false
-                    }
-                } catch {
-                    print(error)
-                    keepGoing = false
-                }
-            }
-            
-            PersistenceController.shared.save()
-            isFetching.toggle()
-        }
-    }
+//    private func fetchLastestLottoData() {
+//        isFetching.toggle()
+//        var keepGoing: Bool = true
+//
+//        Task {
+//            while (keepGoing) {
+//                do {
+//                    let lotto = try await data.fetchData(lastestLotto + 1)
+//                    if let _ = lotto.toEntity(context: moc) {
+//                        lastestLotto += 1
+//                    } else {
+//                        keepGoing = false
+//                    }
+//                } catch {
+//                    print(error)
+//                    keepGoing = false
+//                }
+//            }
+//
+//            PersistenceController.shared.save()
+//            isFetching.toggle()
+//        }
+//    }
 }
 
 //struct LottoStatView_Previews: PreviewProvider {

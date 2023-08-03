@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class PensionData: ObservableObject {
     @Published var pensionGroup: PensionGroup = .allGroup
@@ -20,6 +21,7 @@ class PensionData: ObservableObject {
     @Published var selectedNumbersForEach = [[Int16]]()
     @Published var isEnded: Bool = false
     
+    // MARK: - 초기함수, 리셋
     init() {
         totallyReset()
     }
@@ -58,6 +60,7 @@ class PensionData: ObservableObject {
         numberGroupsForEach = newNumbers
     }
     
+    // MARK: - 번호 추첨
     func drawLot() {
         if pensionGroup == .allGroup {
             drawLotForAll()
@@ -108,16 +111,111 @@ class PensionData: ObservableObject {
         numberGroupsForEach = numbers
     }
     
+    // MARK: - 추첨 고정 번호
+//    func addSelectedNumbers() {
+//        
+//    }
+//    
+//    func deleteSelectedNumber() {
+//        
+//    }
+    
+    // MARK: - 연금 복권 최신 정보
+    private func getLastest() -> Lastest? {
+        if let savedData = UserDefaults.standard.object(forKey: lastestPensionKey) as? Data {
+            let decoder = JSONDecoder()
+            if let savedObject = try? decoder.decode(Lastest.self, from: savedData) {
+                return savedObject
+            } else {
+                return nil
+            }
+        } else {
+            return Lastest(id: lastestPensionKey, round: 0)
+        }
+    }
+    
+    private func setLastest(round: Int, date: Date) -> Bool {
+        let lastest = Lastest(id: lastestPensionKey, round: round, date: date)
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(lastest) {
+            UserDefaults.standard.setValue(encoded, forKey: lastestPensionKey)
+        } else {
+            return false
+        }
+        return true
+    }
+    
+    // MARK: - 연금복권 번호 가져오기
     func fetchData(_ round: Int) async throws -> Pension {
         guard let url = URL(string: "https://dhlottery.co.kr/common.do?method=get720Number&drwNo=\(round)") else { throw FetchError.badURL }
         
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
         guard let httpResponse = response as? HTTPURLResponse, (200..<300) ~= httpResponse.statusCode else { throw FetchError.badRequest }
-//        print("\(url) Returned: \(String(data: data, encoding: .utf8) ?? "--")")
+        //        print("\(url) Returned: \(String(data: data, encoding: .utf8) ?? "--")")
         
         guard let pension: Pension = try? JSONDecoder().decode(Pension.self, from: data) else { throw FetchError.badJSON }
+        guard pension.rows2.filter({ $0.rank == "1" }).count > 0 else { throw FetchError.badResponse }
         
         return pension
+    }
+    
+    private func save(pension: Pension, context: NSManagedObjectContext) -> Date? {
+        guard let winData = pension.rows2.filter({ $0.rank == "1" }).first else { return nil }
+        guard let round = Int16(winData.round) else { return nil }
+        let bonusData = pension.rows1.first
+        
+        let pensionE = PensionEntity(context: context)
+        pensionE.round = round
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        // 매주 목요일 19:05 발표
+        pensionE.date = formatter.date(from: winData.pensionDrawDate)?.addingTimeInterval(60 * 60 * 19 + 60 * 5)
+        pensionE.winClass = Int16(winData.rankClass) ?? 0
+        pensionE.winNumbers = winData.rankNo
+        pensionE.bonusNumbers = bonusData?.rankNo
+        return pensionE.date
+    }
+    
+    func getLastestData(context: NSManagedObjectContext) async -> String? {
+        guard let lastest = getLastest() else { return LastestError.userDefaultsError.rawValue }
+        print("pension lastest: \(lastest)")
+        var success = true
+        var resultMessage: String? = nil
+        var round: Int = lastest.round
+        var date: Date?
+        while (success) {
+            round += 1
+            do {
+                let pension = try await fetchData(round)
+                date = save(pension: pension, context: context)
+            } catch FetchError.badURL {
+                success = false
+                resultMessage = LastestError.requestError.rawValue
+            } catch FetchError.badRequest {
+                success = false
+                resultMessage = LastestError.requestError.rawValue
+            } catch FetchError.badJSON {
+                success = false
+                resultMessage = LastestError.serverError.rawValue
+            } catch FetchError.badResponse {
+                success = false
+                resultMessage = nil // 최신 데이터라 가정
+            } catch {
+                success = false
+                resultMessage = LastestError.unknownError.rawValue
+            }
+        }
+        
+        print("pension round: \(round-1)")
+        print("pension date: \(date)")
+        if lastest.round < round - 1 {
+            // CoreData에 데이터 저장
+            PersistenceController.shared.save()
+            // Lastest에 셋팅
+            let _ = setLastest(round: round - 1, date: date!)
+        }
+        
+        return resultMessage
     }
 }
 
