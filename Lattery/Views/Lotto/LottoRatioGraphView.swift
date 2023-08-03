@@ -37,22 +37,15 @@ struct LottoRatioGraphView: View {
                 }
                 
                 VStack {
-                    RatioBarGraph(data: sortedData(1), axis: .horizontal)
-                        .frame(height: geo.size.height / 12)
-                    RatioBarGraph(data: sortedData(2), axis: .horizontal)
-                        .frame(height: geo.size.height / 12)
-                    RatioBarGraph(data: sortedData(3), axis: .horizontal)
-                        .frame(height: geo.size.height / 12)
-                    RatioBarGraph(data: sortedData(4), axis: .horizontal)
-                        .frame(height: geo.size.height / 12)
-                    RatioBarGraph(data: sortedData(5), axis: .horizontal)
-                        .frame(height: geo.size.height / 12)
-                    RatioBarGraph(data: sortedData(6), axis: .horizontal)
-                        .frame(height: geo.size.height / 12)
+                    RatioBarGraph(data: sortedData(1), axis: .horizontal, titleSpace: 40)
+                    RatioBarGraph(data: sortedData(2), axis: .horizontal, titleSpace: 40)
+                    RatioBarGraph(data: sortedData(3), axis: .horizontal, titleSpace: 40)
+                    RatioBarGraph(data: sortedData(4), axis: .horizontal, titleSpace: 40)
+                    RatioBarGraph(data: sortedData(5), axis: .horizontal, titleSpace: 40)
+                    RatioBarGraph(data: sortedData(6), axis: .horizontal, titleSpace: 40)
                     Image(systemName: "plus")
-                        .padding(.leading, 40)
-                    RatioBarGraph(data: sortedData(7), axis: .horizontal)
-                        .frame(height: geo.size.height / 12)
+                        .padding(.leading, 30)
+                    RatioBarGraph(data: sortedData(7), axis: .horizontal, titleSpace: 40)
                 }
             }
             .font(.system(size: geo.size.width / 26))

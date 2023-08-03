@@ -10,6 +10,7 @@ import SwiftUI
 struct RatioBarGraph: View {
     let data: [Bar]
     var axis: Axis = .vertical
+    var titleSpace: CGFloat = 13
     private var sorted: [Bar] {
         data.sorted { $0.order < $1.order }
     }
@@ -20,16 +21,16 @@ struct RatioBarGraph: View {
     var body: some View {
         GeometryReader { geo in
             if axis == .vertical {
-                let height = geo.size.height - 13
+                let height = round((geo.size.height - titleSpace) / 10) * 10
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(Array(sorted.reversed().enumerated()), id:\.offset) { (index, bar) in
-                        let value = round(bar.value / total * 100)
-                        if value > 0 {
+                        let percent = bar.value / total * 100
+                        if percent > 0 {
                             RoundedRectangle(cornerRadius: 3)
                                 .foregroundColor(bar.color)
-                                .frame(maxHeight: index + 1 == data.count ? .infinity : value / 100 * height)
+                                .frame(height: percent / 100 * height)
                                 .overlay {
-                                    Text(String(format: "%.0f", value))
+                                    Text(String(format: "%.0f", percent))
                                         .font(.system(size: 10))
                                 }
                         }
@@ -39,20 +40,20 @@ struct RatioBarGraph: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             } else {
-                let width = geo.size.width - 13
+                let width = round((geo.size.width - titleSpace) / 10) * 10
                 HStack(alignment: .top, spacing: 0) {
                     Text(sorted.first?.name ?? "")
                         .frame(maxHeight: .infinity, alignment: .center)
                         .frame(maxWidth: 50, alignment: .leading)
                     
                     ForEach(Array(sorted.enumerated()), id:\.offset) { (index, bar) in
-                        let value = round(bar.value / total * 100)
-                        if value > 0 {
+                        let percent = bar.value / total * 100
+                        if percent > 0 {
                             RoundedRectangle(cornerRadius: 3)
                                 .foregroundColor(bar.color)
-                                .frame(maxWidth: index + 1 == data.count ? .infinity : value / 100 * width)
+                                .frame(width: percent / 100 * width)
                                 .overlay {
-                                    Text(String(format: "%.0f", value))
+                                    Text(String(format: "%.0f", percent))
                                         .font(.system(size: 10))
                                 }
                         }
