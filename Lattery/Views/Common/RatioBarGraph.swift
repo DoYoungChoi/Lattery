@@ -20,18 +20,17 @@ struct RatioBarGraph: View {
     var body: some View {
         GeometryReader { geo in
             if axis == .vertical {
+                let height = geo.size.height - 13
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(sorted.reversed()) { bar in
+                    ForEach(Array(sorted.reversed().enumerated()), id:\.offset) { (index, bar) in
                         let value = round(bar.value / total * 100)
                         if value > 0 {
                             RoundedRectangle(cornerRadius: 3)
                                 .foregroundColor(bar.color)
-                                .frame(width: .infinity,
-                                       height: value / 100 * (geo.size.height - 13))
+                                .frame(maxHeight: index + 1 == data.count ? .infinity : value / 100 * height)
                                 .overlay {
                                     Text(String(format: "%.0f", value))
                                         .font(.system(size: 10))
-                                        .frame(width: .infinity, alignment: .center)
                                 }
                         }
                     }
@@ -40,22 +39,21 @@ struct RatioBarGraph: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             } else {
+                let width = geo.size.width - 13
                 HStack(alignment: .top, spacing: 0) {
                     Text(sorted.first?.name ?? "")
                         .frame(maxHeight: .infinity, alignment: .center)
                         .frame(maxWidth: 50, alignment: .leading)
                     
-                    ForEach(sorted) { bar in
+                    ForEach(Array(sorted.enumerated()), id:\.offset) { (index, bar) in
                         let value = round(bar.value / total * 100)
                         if value > 0 {
                             RoundedRectangle(cornerRadius: 3)
                                 .foregroundColor(bar.color)
-                                .frame(width: value / 100 * (geo.size.width - 50),
-                                       height: .infinity)
+                                .frame(maxWidth: index + 1 == data.count ? .infinity : value / 100 * width)
                                 .overlay {
                                     Text(String(format: "%.0f", value))
                                         .font(.system(size: 10))
-                                        .frame(height: .infinity, alignment: .center)
                                 }
                         }
                     }

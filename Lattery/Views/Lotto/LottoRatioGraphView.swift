@@ -56,7 +56,6 @@ struct LottoRatioGraphView: View {
                 }
             }
             .font(.system(size: geo.size.width / 26))
-            .padding(.horizontal)
         }
     }
     

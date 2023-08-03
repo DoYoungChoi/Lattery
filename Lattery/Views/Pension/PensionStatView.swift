@@ -7,68 +7,47 @@
 
 import SwiftUI
 
-let lastestPensionKey: String = "Pension"
-
 struct PensionStatView: View {
     @EnvironmentObject var data: PensionData
     @State private var isFetching: Bool = false
     @State private var pensions: [Pension] = []
-//    @AppStorage(lastestPensionKey) private var lastestPension: Int = 0
-    
-    var body: some View {
-        ZStack {
-            ScrollView {
-                LazyVStack {
-                    ForEach(pensions) { pension in
-                        HStack {
-                            ForEach(pension.rows2, id:\.rank) { row in
-                                if row.rank == "1" {
-                                    Text("\(row.round)회")
-                                    Text("\(row.pensionDrawDate)")
-                                    Text("\(row.rankClass)조")
-                                    Text("\(row.rankNo)")
-                                }
-                            }
-                            
-//                            ForEach(pension.row1, id:\.rank) { row in
-//                                Text("보너스: \(row.rankNo)")
-//                            }
-                        }
-                    }
-                }
-            }
-            
-            if isFetching {
-                LoadingView()
-            }
-        }
-        .task {
-            fetchLastestPensionData()
-        }
+    @State private var page: Page = .detail
+    private enum Page: String, CaseIterable, Identifiable {
+        case detail = "회차정보"
+        case percent = "자리별비율"
+        var id: String { rawValue }
     }
     
-    private func fetchLastestPensionData() {
-        isFetching.toggle()
-        var keepGoing: Bool = true
-        var lastestPension = 0
-        
-        Task {
-            while (keepGoing) {
-                do {
-                    let pension = try await data.fetchData(lastestPension + 1)
-                        lastestPension += 1
-                    pensions.append(pension)
-                    
-                    if lastestPension == 10 {
-                        keepGoing = false
-                    }
-                } catch {
-                    print(error)
-                    keepGoing = false
+    var body: some View {
+        VStack {
+            PensionResultBoard()
+            
+            Picker("페이지", selection: $page) {
+                ForEach(Page.allCases) { page in
+                    Text(page.rawValue)
+                        .tag(page)
                 }
             }
+            .pickerStyle(.segmented)
             
-            isFetching.toggle()
+            if page == .detail {
+                PensionResultList()
+            } else if page == .percent {
+                PensionRatioGraphView()
+            }
+            
+            Spacer()
+        }
+        .padding()
+        .navigationTitle("연금복권 통계")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                } label: {
+                    Label("발바닥", systemImage: isFetching ? "pawprint" : "pawprint.fill")
+                }
+            }
         }
     }
 }

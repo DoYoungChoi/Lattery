@@ -11,7 +11,6 @@ struct LottoStatView: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var data: LottoData
     @State private var isFetching: Bool = false
-    @AppStorage(lastestLottoKey) private var lastestLotto: Int = 0
     @State private var page: Page = .detail
     private enum Page: String, CaseIterable, Identifiable {
         case detail = "회차정보"
@@ -21,36 +20,31 @@ struct LottoStatView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack {
-                // 최신 로또 당첨 결과
-                LottoResultBoard()
-                    .redacted(reason: isFetching ? .placeholder : [])
-                
-                // 통계 페이지
-                Picker("페이지", selection: $page) {
-                    ForEach(Page.allCases) { page in
-                        Text(page.rawValue)
-                            .tag(page)
-                    }
+        VStack {
+            // 최신 로또 당첨 결과
+            LottoResultBoard()
+                .redacted(reason: isFetching ? .placeholder : [])
+            
+            // 통계 페이지
+            Picker("페이지", selection: $page) {
+                ForEach(Page.allCases) { page in
+                    Text(page.rawValue)
+                        .tag(page)
                 }
-                .pickerStyle(.segmented)
-                
-                if page == .detail {
-                    LottoResultList()
-                } else if page == .total {
-                    LottoCountGraphView()
-                } else if page == .colorPersent {
-                    LottoRatioGraphView()
-                }
-                
-                Spacer()
+            }
+            .pickerStyle(.segmented)
+            
+            if page == .detail {
+                LottoResultList()
+            } else if page == .total {
+                LottoCountGraphView()
+            } else if page == .colorPersent {
+                LottoRatioGraphView()
             }
             
-            if isFetching {
-                LoadingView()
-            }
+            Spacer()
         }
+        .padding()
         .navigationTitle("로또 통계")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

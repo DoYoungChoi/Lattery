@@ -55,10 +55,10 @@ struct PensionResultBoard: View {
                         }
                     }
                 }
-                .padding()
+                .padding(10)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.white.opacity(0.5))
+                        .fill(.background.opacity(0.5))
                 }
                 
                 VStack {
@@ -77,10 +77,10 @@ struct PensionResultBoard: View {
                         }
                     }
                 }
-                .padding()
+                .padding(10)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.white.opacity(0.5))
+                        .fill(.background.opacity(0.5))
                 }
             }
         }
@@ -89,7 +89,6 @@ struct PensionResultBoard: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(.thinMaterial)
         }
-        .padding()
     }
 }
 

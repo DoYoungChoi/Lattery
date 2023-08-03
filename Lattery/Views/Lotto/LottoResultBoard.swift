@@ -52,7 +52,7 @@ struct LottoResultBoard: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .background {
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.white.opacity(0.5))
+                            .fill(.background.opacity(0.5))
                     }
                     
                     HStack {
@@ -64,7 +64,7 @@ struct LottoResultBoard: View {
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.white.opacity(0.5))
+                            .fill(.background.opacity(0.5))
                     }
                     
                     HStack {
@@ -76,7 +76,7 @@ struct LottoResultBoard: View {
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.white.opacity(0.5))
+                            .fill(.background.opacity(0.5))
                     }
                 }
                 .padding()
@@ -103,7 +103,7 @@ struct LottoResultBoard: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                             .background {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(.white.opacity(0.5))
+                                    .fill(.background.opacity(0.5))
                             }
                     }
                     .padding()
@@ -115,7 +115,6 @@ struct LottoResultBoard: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(.thinMaterial)
         }
-        .padding()
     }
 }
 

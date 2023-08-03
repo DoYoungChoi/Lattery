@@ -33,10 +33,6 @@ struct LottoResultList: View {
             }
         }
         .listStyle(.inset)
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(.white.opacity(0.5))
-        }
     }
 }
 
