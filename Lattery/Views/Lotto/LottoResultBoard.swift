@@ -30,7 +30,7 @@ struct LottoResultBoard: View {
         VStack {
             if let lastestLotto = lottos.first {
                 VStack {
-                    Text(verbatim: "\(lastestLotto.round)회 당첨결과🎊")
+                    Text(verbatim: "\(lastestLotto.round)회 당첨결과")
                         .font(.title)
                         .bold()
                     
@@ -93,7 +93,7 @@ struct LottoResultBoard: View {
                     .frame(maxHeight: .infinity, alignment: .topTrailing)
                     
                     VStack {
-                        Text(verbatim: "로또 당첨 결과🎊")
+                        Text(verbatim: "로또 당첨 결과")
                             .font(.title)
                             .bold()
                         
@@ -113,7 +113,7 @@ struct LottoResultBoard: View {
         }
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.thinMaterial)
+                .fill(Color.backgroundGray)
         }
     }
 }

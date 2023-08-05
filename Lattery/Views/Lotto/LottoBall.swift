@@ -11,18 +11,20 @@ struct LottoBall: View {
     var number: Int16? = nil
     var isSelected: Bool = false
     private var color: Color {
-        guard let number = number, number > 0 else { return .latteLightGray }
+        guard let number = number, number > 0 else { return .customGray }
         
         if number <= 10 {
-            return .latteYellow
+            return .customYellow
         } else if number <= 20 {
-            return .latteBlue
+            return .customBlue
         } else if number <= 30 {
-            return .latteRed
+            return .customRed
         } else if number <= 40 {
-            return .latteGray
+            return .customDarkGray
+        } else if number <= 45 {
+            return .customGreen
         } else {
-            return .latteGreen
+            return .customGray
         }
     }
     
@@ -68,7 +70,7 @@ struct LottoBall_Previews: PreviewProvider {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.thinMaterial)
+                .fill(Color.backgroundGray)
         }
     }
 }

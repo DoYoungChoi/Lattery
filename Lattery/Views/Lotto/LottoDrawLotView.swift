@@ -26,7 +26,7 @@ struct LottoDrawLotView: View {
             }
         }
         .padding()
-        .navigationTitle("⭐️로또 번호 추첨⭐️")
+        .navigationTitle("로또번호 추첨")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem {

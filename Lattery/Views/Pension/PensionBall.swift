@@ -12,22 +12,22 @@ struct PensionBall: View {
     var unit: Int
     var isFixed: Bool = false
     private var color: Color {
-        guard unit > 0 && unit < 7 else { return .latteLightGray }
+        guard unit > 0 && unit < 7 else { return .customGray }
         
         if unit == 1 {
-            return .latteRed
+            return .customRed
         } else if unit == 2 {
-            return .latteOrange
+            return .customOrange
         } else if unit == 3 {
-            return .latteYellow
+            return .customYellow
         } else if unit == 4 {
-            return .latteLightBlue
+            return .customLightBlue
         } else if unit == 5 {
-            return .lattePurple
+            return .customPurple
         } else if unit == 6 {
-            return .latteGray
+            return .customDarkGray
         } else {
-            return .latteLightGray
+            return .customGray
         }
     }
    

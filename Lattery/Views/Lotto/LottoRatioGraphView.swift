@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LottoRatioGraphView: View {
     @FetchRequest(sortDescriptors: []) var lottos: FetchedResults<LottoEntity>
-    let colorSet: [Color] = [.latteYellow, .latteBlue, .latteRed, .latteGray, .latteGreen]
+    let colorSet: [Color] = [.customYellow, .customBlue, .customRed, .customDarkGray, .customGreen]
     
     var body: some View {
         GeometryReader { geo in
@@ -27,7 +27,7 @@ struct LottoRatioGraphView: View {
                 .padding(8)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(.thinMaterial)
+                        .fill(Color.backgroundGray)
                 }
             
                 HStack {

@@ -58,7 +58,7 @@ struct PensionDrawLotView: View {
             DrawLotButton(isRunning: $isRunning, isEnded: $data.isEnded, action: data.drawLot)
         }
         .padding()
-        .navigationTitle("⭐️연금720 번호 추첨⭐️")
+        .navigationTitle("연금720번호 추첨")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem {
@@ -91,7 +91,7 @@ struct PensionDrawLotView: View {
             }
         } label: {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.thinMaterial)
+                .fill(Color.backgroundGray)
                 .overlay {
                     Image(systemName: "plus")
                         .frame(maxWidth: .infinity, alignment: .center)

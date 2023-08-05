@@ -31,7 +31,7 @@ struct PensionResultBoard: View {
                     Text("\(lastestPension.round)회")
                         .bold()
                         .foregroundColor(.red)
-                    Text("당첨결과🎊")
+                    Text("당첨결과")
                 }
                 .font(.title)
                 
@@ -87,7 +87,7 @@ struct PensionResultBoard: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.thinMaterial)
+                .fill(Color.backgroundGray)
         }
     }
 }

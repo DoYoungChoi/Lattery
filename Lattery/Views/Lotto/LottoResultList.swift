@@ -18,17 +18,7 @@ struct LottoResultList: View {
                 NavigationLink {
                     LottoResultDetail(lotto: lotto)
                 } label: {
-                    HStack {
-                        Text(verbatim: "\(lotto.round)회")
-                        LottoBall(number: lotto.no1)
-                        LottoBall(number: lotto.no2)
-                        LottoBall(number: lotto.no3)
-                        LottoBall(number: lotto.no4)
-                        LottoBall(number: lotto.no5)
-                        LottoBall(number: lotto.no6)
-                        Image(systemName: "plus")
-                        LottoBall(number: lotto.noBonus)
-                    }
+                    LottoResultRow(lotto: lotto)
                 }
             }
         }

@@ -15,19 +15,14 @@ struct DrawLotButton: View {
     @State private var showPawPicker: Bool = false
     @State private var paw: Paw = .pink
     private enum Paw: String, Identifiable, CaseIterable {
-        case pink = "Pink"
-        case black = "Black"
-        case spotted = "Spotted"
+        case pink = "삥꾸발바닥"
+        case black = "까망발바닥"
         
         var id: String { rawValue }
-        var description: String {
+        var color: Color {
             switch (self) {
-                case .pink:
-                    return "삥꾸발바닥"
-                case .black:
-                    return "까망발바닥"
-                case .spotted:
-                    return "점박이발바닥"
+                case .pink: return .customPink
+                case .black: return .customDarkGray
             }
         }
     }
@@ -46,7 +41,7 @@ struct DrawLotButton: View {
                 if showPawPicker {
                     Picker("발바닥 타입", selection: $paw) {
                         ForEach(Paw.allCases) { type in
-                            Text(type.description)
+                            Text(type.id)
                                 .font(.subheadline)
                                 .tag(type)
                         }
@@ -60,7 +55,7 @@ struct DrawLotButton: View {
                 Button {
                     withAnimation { showPawPicker.toggle() }
                 } label: {
-                    Image(systemName: showPawPicker ? "pawprint" : "pawprint.fill")
+                    Image(systemName: "pawprint.fill")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 25)
@@ -68,23 +63,10 @@ struct DrawLotButton: View {
                 .padding(.top, 3)
             }
             
-            Button {
-            } label: {
-                Circle()
-                    .foregroundColor(.latteIvory)
-                    .shadow(color: .latteBrown, radius: 8, y: 8)
-                    .overlay {
-                        Image("\(paw.id)Paw")
-                            .resizable()
-                            .scaledToFit()
-                            .shadow(color: .latteBrown, radius: 3, y: 3)
-                            .padding(.bottom)
-                            .aspectRatio(0.8, contentMode: .fit)
-                    }
-            }
-            .opacity(isRunning ? 0.5 : 1)
-            .simultaneousGesture(longPressGesture)
-            .disabled(isRunning)
+            PawButton(color: paw.color)
+                .opacity(isRunning ? 0.5 : 1)
+                .simultaneousGesture(longPressGesture)
+                .disabled(isRunning)
         }
         .onDisappear {
             invalidateTimer()

@@ -38,7 +38,7 @@ struct LottoNumberBoard: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                        .foregroundColor(.latteGray)
+                        .foregroundColor(.backgroundGray)
                     
                     HStack {
                         ForEach(selectedNumbers.sorted(), id: \.self) { number in
@@ -60,8 +60,8 @@ struct LottoNumberBoard: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(.latteRed)
-                        .shadow(color: .latteRed, radius: isFavorite ? 5 : 0)
+                        .foregroundColor(.customRed)
+                        .shadow(color: .customRed, radius: isFavorite ? 5 : 0)
                 }
             }
             
@@ -92,15 +92,15 @@ struct LottoNumberBoard: View {
                     } label: {
                         Text("\(number)")
                             .font(.system(size: 20))
-                            .foregroundColor(selectedNumbers.contains(Int16(number)) ? .white : .lattePink)
+                            .foregroundColor(selectedNumbers.contains(Int16(number)) ? .white : .customPink)
                             .frame(width: 50, height: 50, alignment: .center)
                             .background {
                                 RoundedRectangle(cornerRadius: 5)
-                                    .fill(selectedNumbers.contains(Int16(number)) ? Color.lattePink : Color.clear)
+                                    .fill(selectedNumbers.contains(Int16(number)) ? Color.customPink : Color.clear)
                             }
                             .overlay {
                                 RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.lattePink)
+                                    .stroke(Color.customPink)
                             }
                     }
                     .buttonStyle(.plain)
@@ -120,7 +120,7 @@ struct LottoNumberBoard: View {
                         .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
                         .background {
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.lattePink)
+                                .fill(Color.customPink)
                         }
                 }
                 
@@ -134,7 +134,7 @@ struct LottoNumberBoard: View {
                         .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
                         .background {
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.lattePink)
+                                .fill(Color.customPink)
                         }
                 }
             }

@@ -24,7 +24,7 @@ struct PensionBallRow: View {
         .frame(maxWidth: .infinity, alignment: .center)
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.thinMaterial)
+                .fill(Color.backgroundGray)
         }
     }
 }

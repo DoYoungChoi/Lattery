@@ -29,11 +29,7 @@ struct Bar: Identifiable {
     
     static var samplesForRatio: [Bar] {
         var tempBars = [Bar]()
-        let colors = [Color.latteYellow,
-                      Color.latteBlue,
-                      Color.latteRed,
-                      Color.latteGray,
-                      Color.latteGreen]
+        let colors: [Color] = [.customYellow, .customBlue, .customRed, .customDarkGray, .customGreen]
         
         for (i, color) in colors.enumerated() {
             let rand = Double.random(in: 20..<300)

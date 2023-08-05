@@ -38,19 +38,19 @@ struct PensionTicket: View {
                             .resizable()
                             .scaledToFit()
                         //                            .frame(width: 30, height: 30)
-                            .foregroundColor(.latteRed)
-                            .shadow(color: .latteRed, radius: isSaved ? 5 : 0)
+                            .foregroundColor(.customRed)
+                            .shadow(color: .customRed, radius: isSaved ? 5 : 0)
                     }
                 }
                 .frame(height: 30)
                 
                 Text("발행일: \(now.toDateTimeString)")
                     .kerning(1.5)
-                    .foregroundColor(.latteGray)
+                    .foregroundColor(.customGray)
                     .padding(.vertical, verticalPadding)
                 Text("추첨일: \(now.nextThursday.toDateStringSlash)")
                     .kerning(1.5)
-                    .foregroundColor(.latteGray)
+                    .foregroundColor(.customGray)
                 
                 Divider()
                     .padding(.vertical, verticalPadding)

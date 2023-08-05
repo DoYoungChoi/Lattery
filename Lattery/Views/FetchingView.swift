@@ -20,15 +20,15 @@ struct FetchingView: View {
             
             VStack {
                 HStack {
-                    bouncingBall(color: .latteYellow)
+                    bouncingBall(color: .customYellow)
                         .offset(y: index == 0 ? -30 : 0)
-                    bouncingBall(color: .latteBlue)
+                    bouncingBall(color: .customBlue)
                         .offset(y: index == 1 ? -30 : 0)
-                    bouncingBall(color: .latteRed)
+                    bouncingBall(color: .customRed)
                         .offset(y: index == 2 ? -30 : 0)
-                    bouncingBall(color: .latteGray)
+                    bouncingBall(color: .customDarkGray)
                         .offset(y: index == 3 ? -30 : 0)
-                    bouncingBall(color: .latteGreen)
+                    bouncingBall(color: .customGreen)
                         .offset(y: index == 4 ? -30 : 0)
                 }
                 

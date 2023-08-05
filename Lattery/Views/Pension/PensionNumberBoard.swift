@@ -43,7 +43,7 @@ struct PensionNumberBoard: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                                .foregroundColor(.latteGray)
+                                .foregroundColor(.backgroundGray)
                             Text("\(number != -1 ? String(number) : "")\(j == 0 ? "\(data.pensionGroup == .allGroup ? "*" : "")조" : "")")
                         }
                         .opacity(selectedIndex == index ? 1 : 0.5)
@@ -69,7 +69,7 @@ struct PensionNumberBoard: View {
                     withAnimation { addRow() }
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.thinMaterial)
+                        .fill(Color.backgroundGray)
                         .overlay {
                             Image(systemName: "plus")
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -98,13 +98,13 @@ struct PensionNumberBoard: View {
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.lattePink)
+                                    .stroke(Color.customPink)
                                 Text("\(number)")
                                     .font(.title2)
                                     .bold()
-                                    .foregroundColor(.lattePink)
+                                    .foregroundColor(.customPink)
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.lattePink)
+                                    .fill(Color.customPink)
                                     .opacity(0.1)
                             }
                             .opacity(col == 0 && (number > 5 || number == 0) ? 0.5 : 1)
@@ -129,7 +129,7 @@ struct PensionNumberBoard: View {
                         .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
                         .background {
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.lattePink)
+                                .fill(Color.customPink)
                         }
                 }
                 
@@ -143,7 +143,7 @@ struct PensionNumberBoard: View {
                         .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
                         .background {
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.lattePink)
+                                .fill(Color.customPink)
                         }
                 }
             }

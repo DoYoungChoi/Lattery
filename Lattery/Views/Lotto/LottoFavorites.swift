@@ -45,7 +45,7 @@ struct LottoFavorites: View {
         .frame(height: 50)
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.thinMaterial)
+                .fill(Color.backgroundGray)
         }
     }
 }

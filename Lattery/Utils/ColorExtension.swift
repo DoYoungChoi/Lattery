@@ -23,17 +23,51 @@ extension Color {
 }
 
 extension Color {
-    static let latteRed = Color(hex: "#fd4b4b")
-    static let latteOrange = Color(hex: "#ff8e4e")
-    static let latteYellow = Color(hex: "#ffd633")
-    static let latteLightBlue = Color(hex: "#3dbcff")
-    static let latteGreen = Color(hex: "#71da71")
-    static let latteBlue = Color(hex: "#809fff")
-    static let lattePink = Color(hex: "#feb2b2")
-    static let lattePurple = Color(hex: "#8d70da")
-    static let latteLightGray = Color(hex: "#c4c4c4")
-    static let latteGray = Color(hex: "#737373")
+    static let backgroundGray = Color("BackgroundGray")
+    
+    static let customRed = Color("Red")
+    static let customOrange = Color("Orange")
+    static let customYellow = Color("Yellow")
+    static let customGreen = Color("Green")
+    static let customLightBlue = Color("LightBlue")
+    static let customBlue = Color("Blue")
+    static let customPurple = Color("Purple")
+    static let customPink = Color("Pink")
+    static let customGray = Color("Gray")
+    static let customDarkGray = Color("DarkGray")
+    static let pawBlack = Color("PawBlack")
+//    static let latteRed = Color(hex: "#fd4b4b")
+//    static let latteOrange = Color(hex: "#ff8e4e")
+//    static let latteYellow = Color(hex: "#ffd633")
+//    static let latteGreen = Color(hex: "#71da71")
+//    static let latteLightBlue = Color(hex: "#3dbcff")
+//    static let latteBlue = Color(hex: "#809fff")
+//    static let lattePurple = Color(hex: "#8d70da")
+//    static let lattePink = Color(hex: "#feb2b2")
+//    static let latteLightGray = Color(hex: "#F4F4F4")
+//    static let latteGray = Color(hex: "#C4C4C4")
+//    static let latteDarkGray = Color(hex: "#737373")
     
     static let latteIvory = Color("LatteIvory")
     static let latteBrown = Color("LatteBrown")
+}
+
+public struct ColorBlended: ViewModifier {
+  fileprivate var color: Color
+  
+  public func body(content: Content) -> some View {
+    VStack {
+      ZStack {
+        content
+        color.blendMode(.sourceAtop)
+      }
+      .drawingGroup(opaque: false)
+    }
+  }
+}
+
+extension View {
+  public func blending(color: Color) -> some View {
+    modifier(ColorBlended(color: color))
+  }
 }

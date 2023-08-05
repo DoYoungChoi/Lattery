@@ -9,8 +9,8 @@ import SwiftUI
 
 struct PensionRatioGraphView: View {
     @FetchRequest(sortDescriptors: []) var pensions: FetchedResults<PensionEntity>
-    let colorSet: [Color] = [.latteLightGray, .latteRed, .latteOrange, .latteYellow, .latteGreen,
-                             .latteLightBlue, .latteBlue, .lattePurple, .latteIvory, .lattePink]
+    let colorSet: [Color] = [.customGray, .customRed, .customOrange, .customYellow, .customGreen,
+                             .customLightBlue, .customBlue, .customPurple, .customPink, .customDarkGray]
     
     var body: some View {
         GeometryReader { geo in
@@ -27,7 +27,7 @@ struct PensionRatioGraphView: View {
                 .padding(8)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(.thinMaterial)
+                        .fill(Color.backgroundGray)
                 }
             
                 HStack {
