@@ -19,7 +19,7 @@ struct LottoRatioGraphView: View {
                         let startNumber = 10 * index + 1
                         HStack(spacing: 1) {
                             Image(systemName: "square.fill")
-                                .foregroundColor(color)
+                                .foregroundColor(color.opacity(0.7))
                             Text("\(startNumber)~\(startNumber > 40 ? 45 : startNumber + 9)")
                         }
                     }
@@ -66,7 +66,7 @@ struct LottoRatioGraphView: View {
         for (index, color) in colorSet.enumerated() {
             let bar = Bar(name: nth == 7 ? "보너스" : "\(nth)번째",
                           value: Double(data.filter { $0 > 10 * index && $0 < 10 * index + 11 }.count),
-                          color: color,
+                          color: color.opacity(0.7),
                           order: index)
             info.append(bar)
         }

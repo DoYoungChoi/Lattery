@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         ZStack {
-            Color.primary.opacity(0.5)
+            Color.customGray
             
             VStack(spacing: 10) {
                 ProgressView()

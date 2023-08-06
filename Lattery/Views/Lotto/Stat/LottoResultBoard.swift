@@ -10,7 +10,6 @@ import CoreData
 
 struct LottoResultBoard: View {
     @FetchRequest var lottos: FetchedResults<LottoEntity>
-    @State private var isAnimating: Bool = false
     
     init() {
         // Core Data 처리
@@ -21,22 +20,22 @@ struct LottoResultBoard: View {
 
         request.fetchLimit = 1
         _lottos = FetchRequest(fetchRequest: request)
-        
-        // 혹시 상황에 isAnimation 시작
-        isAnimating.toggle()
     }
     
     var body: some View {
         VStack {
             if let lastestLotto = lottos.first {
                 VStack {
-                    Text(verbatim: "\(lastestLotto.round)회 당첨결과")
-                        .font(.title)
-                        .bold()
+                    HStack {
+                        Text(verbatim: "\(lastestLotto.round)회")
+                            .bold()
+                        Text("당첨결과")
+                    }
+                    .font(.title)
                     
                     Text("(\(lastestLotto.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨)")
                         .font(.callout)
-                        .foregroundColor(.primary.opacity(0.7))
+                        .foregroundColor(.customGray)
                     
                     HStack {
                         LottoBall(number: lastestLotto.no1)
@@ -87,8 +86,6 @@ struct LottoResultBoard: View {
                         Spacer()
                         Image(systemName: "arrowshape.backward.fill")
                             .rotationEffect(Angle(degrees: 90))
-                            .offset(x: -3, y: isAnimating ? 15 : 5)
-                            .animation(.default.repeatForever().speed(1), value: isAnimating)
                     }
                     .frame(maxHeight: .infinity, alignment: .topTrailing)
                     

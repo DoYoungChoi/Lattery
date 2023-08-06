@@ -15,12 +15,12 @@ struct LottoTicketRow: View {
         HStack {
             Text("\(group.rawValue)")
                 .bold()
-                .frame(width: 30)
+                .frame(width: 20)
             
             ForEach(data.numberGroups[group] ?? [], id:\.self) { number in
                 Spacer()
                 Text("\(String(format: "%02d", number))")
-                    .frame(width: 40)
+                    .frame(width: 30)
             }
         }
     }

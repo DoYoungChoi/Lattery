@@ -15,14 +15,16 @@ struct PensionResultRow: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(verbatim: "\(pension.round)회")
-                .bold()
             HStack {
-                PensionBall(number: pension.winClass, unit: 0)
-                Text("조")
-                ForEach(Array(winNumber.enumerated()), id:\.offset) { (index, char) in
-                    PensionBall(number: Int16(String(char)), unit: index+1)
-                }
+                Rectangle()
+                    .frame(width: 5)
+                    .foregroundColor(.backgroundGray)
+                
+                Text(verbatim: "\(pension.round)회")
+                    .bold()
+                Text("(\(pension.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨)")
+                    .foregroundColor(.customGray)
+                    .lineLimit(1)
             }
         }
     }

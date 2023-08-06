@@ -52,7 +52,7 @@ extension MenuView {
             .fill(.background)
             .frame(minHeight: textSize * 3, maxHeight: 150)
             .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.2), radius: 5)
+            .shadow(color: .customGray, radius: 5)
             .overlay {
                 Text("로또 번호 추첨")
             }
@@ -63,9 +63,9 @@ extension MenuView {
             .fill(.background)
             .frame(minHeight: textSize * 3, maxHeight: 150)
             .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.2), radius: 5)
+            .shadow(color: .customGray, radius: 5)
             .overlay {
-                Text("로또 통계")
+                Text("로또 정보")
             }
     }
     
@@ -74,7 +74,7 @@ extension MenuView {
             .fill(.background)
             .frame(minHeight: textSize * 3, maxHeight: 150)
             .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.2), radius: 5)
+            .shadow(color: .customGray, radius: 5)
             .overlay {
                 Text("연금복권 번호 추첨")
             }
@@ -85,7 +85,7 @@ extension MenuView {
             .fill(.background)
             .frame(minHeight: textSize * 3, maxHeight: 150)
             .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.2), radius: 5)
+            .shadow(color: .customGray, radius: 5)
             .overlay {
                 Text("연금복권 통계")
             }
@@ -96,7 +96,7 @@ extension MenuView {
             .fill(.background)
             .frame(minHeight: textSize * 3, maxHeight: 150)
             .padding(.horizontal)
-            .shadow(color: .primary.opacity(0.2), radius: 5)
+            .shadow(color: .customGray, radius: 5)
             .overlay {
                 Text("설정")
             }

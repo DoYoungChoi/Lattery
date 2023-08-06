@@ -28,7 +28,8 @@ struct LottoFavorites: View {
                     }
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(numbers == selectedNumbers ? Color.primary : backgroundColor)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(numbers == selectedNumbers ? Color.customPink : backgroundColor)
                     }
                     .padding([.leading, .vertical], 1)
                     .onTapGesture {

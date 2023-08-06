@@ -37,17 +37,9 @@ struct DrawLotButton: View {
         VStack {
             Spacer()
             
-            HStack(alignment: .top) {
+            HStack {
                 if showPawPicker {
-                    Picker("발바닥 타입", selection: $paw) {
-                        ForEach(Paw.allCases) { type in
-                            Text(type.id)
-                                .font(.subheadline)
-                                .tag(type)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.bottom)
+                    PawPicker(selection: $paw)
                 }
                 
                 Spacer()
@@ -59,6 +51,7 @@ struct DrawLotButton: View {
                         .resizable()
                         .scaledToFit()
                         .frame(height: 25)
+                        .foregroundColor(.customDarkGray)
                 }
                 .padding(.top, 3)
             }
@@ -68,8 +61,34 @@ struct DrawLotButton: View {
                 .simultaneousGesture(longPressGesture)
                 .disabled(isRunning)
         }
+        .aspectRatio(CGSize(width: 1, height: 1.1), contentMode: .fit)
         .onDisappear {
             invalidateTimer()
+        }
+    }
+    
+    private struct PawPicker: View {
+        @Binding var selection: Paw
+        
+        var body: some View {
+            HStack {
+                ForEach(Paw.allCases) { type in
+                    VStack(spacing: 0) {
+                        Text(type.id)
+                            .padding(.vertical, 3)
+                        
+                        Rectangle()
+                            .frame(height: 3)
+                            .foregroundColor(.customPink)
+                            .opacity(selection == type ? 1 : 0)
+                    }
+                    .background(.background)
+                    .opacity(selection == type ? 1 : 0.3)
+                    .onTapGesture {
+                        withAnimation { selection = type }
+                    }
+                }
+            }
         }
     }
     

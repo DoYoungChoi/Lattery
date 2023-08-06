@@ -30,14 +30,13 @@ struct PensionResultBoard: View {
                 HStack {
                     Text("\(lastestPension.round)회")
                         .bold()
-                        .foregroundColor(.red)
                     Text("당첨결과")
                 }
                 .font(.title)
                 
                 Text("(\(lastestPension.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨)")
                     .font(.callout)
-                    .foregroundColor(.primary.opacity(0.7))
+                    .foregroundColor(.customGray)
                 
                 VStack {
                     HStack {

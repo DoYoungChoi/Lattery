@@ -9,33 +9,16 @@ import SwiftUI
 
 struct PensionDrawLotView: View {
     @EnvironmentObject var data: PensionData
+    @State private var pensionGroup: PensionGroup = .allGroup
     @State private var showNumberBoard: Bool = false
     @State private var isRunning: Bool = false
     
     var body: some View {
         VStack {
             // MARK: - '모든 조' 또는 '조 선택'
-            HStack {
-                ForEach(PensionGroup.allCases) { pensionGroup in
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(Color.latteIvory)
-                        .frame(height: 40, alignment: .center)
-                        .overlay {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.latteBrown)
-                                    .opacity(data.pensionGroup == pensionGroup ? 1 : 0)
-                                Text(pensionGroup.rawValue)
-                            }
-                        }
-                        .opacity(data.pensionGroup == pensionGroup ? 1 : 0.3)
-                        .onTapGesture {
-                            withAnimation {
-                                data.pensionGroup = pensionGroup
-                                data.reset()
-                            }
-                        }
-                }
+            PensionGroupPicker(selection: $pensionGroup) {
+                data.pensionGroup = pensionGroup
+                data.reset()
             }
             
             // MARK: - 숫자 조합
@@ -46,7 +29,8 @@ struct PensionDrawLotView: View {
                 }
             } else {
                 ForEach(data.numberGroupsForEach, id: \.self) { numbers in
-                    PensionBallRow(group: numbers)
+                    PensionBallRow(group: numbers,
+                                   showRemove: data.groupCount > 1)
                 }
                 
                 if data.numberGroupsForEach.count < 5 {
@@ -55,9 +39,10 @@ struct PensionDrawLotView: View {
             }
             
             Spacer()
+            
             DrawLotButton(isRunning: $isRunning, isEnded: $data.isEnded, action: data.drawLot)
         }
-        .padding()
+        .padding(.horizontal)
         .navigationTitle("연금720번호 추첨")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -98,6 +83,35 @@ struct PensionDrawLotView: View {
                 }
         }
         .frame(height: 30)
+    }
+    
+    private struct PensionGroupPicker: View {
+        @Binding var selection: PensionGroup
+        var action: () -> ()
+        
+        var body: some View {
+            HStack {
+                ForEach(PensionGroup.allCases) { group in
+                    VStack(spacing: 0) {
+                        Text(group.id)
+                            .padding(.vertical, 3)
+                        
+                        Rectangle()
+                            .frame(height: 3)
+                            .foregroundColor(.customPink)
+                            .opacity(selection == group ? 1 : 0)
+                    }
+                    .background(.background)
+                    .opacity(selection == group ? 1 : 0.3)
+                    .onTapGesture {
+                        withAnimation {
+                            selection = group
+                            action()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

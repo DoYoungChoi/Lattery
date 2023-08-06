@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PensionBallRow: View {
-    @EnvironmentObject var data: PensionData
     var group: [Int16]
+    var showRemove: Bool = false
     
     var body: some View {
         HStack {
@@ -17,6 +17,16 @@ struct PensionBallRow: View {
                 PensionBall(number: number, unit: index)
                 if index == 0 {
                     Text("조")
+                        .font(.system(size: 20))
+                }
+            }
+            
+            if showRemove {
+                Button {
+                    withAnimation { }
+                } label: {
+                    Image(systemName: "minus")
+                        .foregroundColor(.customGray)
                 }
             }
         }

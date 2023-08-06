@@ -221,7 +221,7 @@ class PensionData: ObservableObject {
 
 enum PensionGroup: String, Identifiable, CaseIterable {
     case allGroup = "모든조"
-    case eachGroup = "조선택"
+    case eachGroup = "조추첨"
     
     var id: String { self.rawValue }
 }

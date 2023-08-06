@@ -12,34 +12,24 @@ struct PensionStatView: View {
     @State private var isFetching: Bool = false
     @State private var pensions: [Pension] = []
     @State private var page: Page = .detail
-    private enum Page: String, CaseIterable, Identifiable {
-        case detail = "회차정보"
-        case percent = "자리별비율"
-        var id: String { rawValue }
-    }
-    
+
     var body: some View {
         VStack {
             PensionResultBoard()
             
-            Picker("페이지", selection: $page) {
-                ForEach(Page.allCases) { page in
-                    Text(page.rawValue)
-                        .tag(page)
-                }
-            }
-            .pickerStyle(.segmented)
+            PagePicker(selection: $page)
             
             if page == .detail {
                 PensionResultList()
-            } else if page == .percent {
+                    .padding(.leading, -15)
+            } else if page == .stat {
                 PensionRatioGraphView()
             }
             
             Spacer()
         }
-        .padding()
-        .navigationTitle("연금복권 통계")
+        .padding(.horizontal)
+        .navigationTitle("연금복권 정보")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

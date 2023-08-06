@@ -19,7 +19,7 @@ struct PensionRatioGraphView: View {
                     ForEach(Array(colorSet.enumerated()), id: \.offset) { (index, color) in
                         HStack(spacing: 1) {
                             Image(systemName: "square.fill")
-                                .foregroundColor(color)
+                                .foregroundColor(color.opacity(0.7))
                             Text("\(index)")
                         }
                     }
@@ -83,7 +83,7 @@ struct PensionRatioGraphView: View {
         for (index, color) in colorSet.enumerated() {
             let bar = Bar(name: name,
                           value: Double(data.filter({ $0 == index }).count),
-                          color: color,
+                          color: color.opacity(0.7),
                           order: index)
             info.append(bar)
         }

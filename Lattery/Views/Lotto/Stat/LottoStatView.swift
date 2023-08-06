@@ -12,12 +12,6 @@ struct LottoStatView: View {
     @EnvironmentObject var data: LottoData
     @State private var isFetching: Bool = false
     @State private var page: Page = .detail
-    private enum Page: String, CaseIterable, Identifiable {
-        case detail = "회차정보"
-        case total = "총횟수"
-        case colorPersent = "차지율"
-        var id: String { rawValue }
-    }
     
     var body: some View {
         VStack {
@@ -25,34 +19,26 @@ struct LottoStatView: View {
             LottoResultBoard()
                 .redacted(reason: isFetching ? .placeholder : [])
             
-            // 통계 페이지
-            Picker("페이지", selection: $page) {
-                ForEach(Page.allCases) { page in
-                    Text(page.rawValue)
-                        .tag(page)
-                }
-            }
-            .pickerStyle(.segmented)
-            
+            PagePicker(selection: $page)
+                
             if page == .detail {
                 LottoResultList()
-            } else if page == .total {
-                LottoCountGraphView()
-            } else if page == .colorPersent {
+                    .padding(.leading, -15)
+            } else if page == .stat {
                 LottoRatioGraphView()
             }
             
             Spacer()
         }
-        .padding()
-        .navigationTitle("로또 통계")
+        .padding(.horizontal)
+        .navigationTitle("로또 정보")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
 //                    fetchLastestLottoData()
                 } label: {
-                    Label("발바닥", systemImage: isFetching ? "pawprint" : "pawprint.fill")
+                    Image(systemName: "pawprint.fill")
                 }
             }
         }

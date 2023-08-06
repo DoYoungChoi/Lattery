@@ -25,7 +25,7 @@ struct LottoDrawLotView: View {
                 DrawLotButton(isRunning: $isRunning, isEnded: $data.isEnded, action: data.drawLot)
             }
         }
-        .padding()
+        .padding(.horizontal)
         .navigationTitle("로또번호 추첨")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

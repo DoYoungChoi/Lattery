@@ -38,7 +38,7 @@ struct LottoNumberBoard: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                        .foregroundColor(.backgroundGray)
+                        .foregroundColor(.customGray)
                     
                     HStack {
                         ForEach(selectedNumbers.sorted(), id: \.self) { number in

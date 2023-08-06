@@ -19,7 +19,7 @@ struct PensionTicketRow: View {
                         .frame(width: 40)
                 } else {
                     Text("\(String(number))")
-                        .frame(width: 40)
+                        .frame(width: 30)
                 }
             }
         }

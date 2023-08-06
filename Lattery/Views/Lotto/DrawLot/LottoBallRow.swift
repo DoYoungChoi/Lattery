@@ -17,7 +17,7 @@ struct LottoBallRow: View {
             Text(group.rawValue)
                 .bold()
                 .font(.title3)
-                .padding(.horizontal)
+                .padding(.horizontal, 10)
             
             if let numbers = data.numberGroups[group] {
                 ForEach(numbers, id:\.self) { number in
@@ -34,11 +34,11 @@ struct LottoBallRow: View {
                     .resizable()
                     .scaledToFit()
                     .frame(maxHeight: 20)
+                    .foregroundColor(.customGray)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 10)
         }
-        .padding(.vertical, 10)
-        .frame(maxWidth: .infinity, alignment: .center)
+        .padding(10)
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.backgroundGray)
