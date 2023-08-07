@@ -9,114 +9,67 @@ import SwiftUI
 import CoreData
 
 struct LottoResultBoard: View {
-    @FetchRequest var lottos: FetchedResults<LottoEntity>
-    
-    init() {
-        // Core Data 처리
-        let request: NSFetchRequest<LottoEntity> = LottoEntity.fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \LottoEntity.round, ascending: false)
-        ]
-
-        request.fetchLimit = 1
-        _lottos = FetchRequest(fetchRequest: request)
-    }
+    var lotto: LottoEntity
     
     var body: some View {
-        VStack {
-            if let lastestLotto = lottos.first {
-                VStack {
-                    HStack {
-                        Text(verbatim: "\(lastestLotto.round)회")
-                            .bold()
-                        Text("당첨결과")
-                    }
-                    .font(.title)
-                    
-                    Text("(\(lastestLotto.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨)")
-                        .font(.callout)
-                        .foregroundColor(.customGray)
-                    
-                    HStack {
-                        LottoBall(number: lastestLotto.no1)
-                        LottoBall(number: lastestLotto.no2)
-                        LottoBall(number: lastestLotto.no3)
-                        LottoBall(number: lastestLotto.no4)
-                        LottoBall(number: lastestLotto.no5)
-                        LottoBall(number: lastestLotto.no6)
-                        Image(systemName: "plus")
-                        LottoBall(number: lastestLotto.noBonus)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(.background.opacity(0.5))
-                    }
-                    
-                    HStack {
-                        Image(systemName: "person.2")
-//                        Text("당첨자수")
-                        Spacer()
-                        Text("\(lastestLotto.winnerCount)명")
-                    }
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(.background.opacity(0.5))
-                    }
-                    
-                    HStack {
-                        Image(systemName: "banknote")
-//                        Text("1등 상금")
-                        Spacer()
-                        Text("\(lastestLotto.winnerReward)원")
-                    }
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(.background.opacity(0.5))
-                    }
-                }
-                .padding()
-            } else {
-                ZStack {
-                    // 업데이트 화살표
-                    HStack {
-                        Spacer()
-                        Image(systemName: "arrowshape.backward.fill")
-                            .rotationEffect(Angle(degrees: 90))
-                    }
-                    .frame(maxHeight: .infinity, alignment: .topTrailing)
-                    
-                    VStack {
-                        Text(verbatim: "로또 당첨 결과")
-                            .font(.title)
-                            .bold()
-                        
-                        Text("❝최신 데이터 받아오기❞를\n 다시 시도하세요.")
-                            .bold()
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(.background.opacity(0.5))
-                            }
-                    }
-                    .padding()
-                }
-                .frame(maxHeight: 200)
+        VStack(alignment: .leading) {
+            Text(verbatim: "\(lotto.round)회 당첨결과")
+                .font(.largeTitle)
+            
+            Text("\(lotto.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨")
+                .font(.title3)
+                .foregroundColor(.customGray)
+            
+            HStack {
+                LottoBall(number: lotto.no1)
+                LottoBall(number: lotto.no2)
+                LottoBall(number: lotto.no3)
+                LottoBall(number: lotto.no4)
+                LottoBall(number: lotto.no5)
+                LottoBall(number: lotto.no6)
+                Image(systemName: "plus")
+                LottoBall(number: lotto.noBonus)
             }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .center)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
+            
+            HStack {
+                Image(systemName: "person.2")
+                Text("당첨자수")
+                Spacer()
+                Text("\(lotto.winnerCount)명")
+            }
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
+            
+            HStack {
+                Image(systemName: "banknote")
+                Text("1등 상금")
+                Spacer()
+                Text("\(lotto.winnerReward)원")
+            }
+            .padding()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
+            
+            HStack {
+                Text("총 판매금액: ")
+                Text("\(lotto.totalSalesAmount)원")
+                    .bold()
+            }
+            .font(.caption)
+            .foregroundColor(.customGray)
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.backgroundGray)
-        }
-    }
-}
-
-struct LottoResultBoard_Previews: PreviewProvider {
-    static var previews: some View {
-        LottoResultBoard()
     }
 }
