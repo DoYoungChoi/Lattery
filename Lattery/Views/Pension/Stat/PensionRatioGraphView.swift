@@ -56,8 +56,8 @@ struct PensionRatioGraphView: View {
         return Int16(numberUnit) ?? -1
     }
     
-    private func sortedData(_ nth: Int) -> [Bar] {
-        var info = [Bar]()
+    private func sortedData(_ nth: Int) -> [GraphData] {
+        var info = [GraphData]()
         let data: [Int16] = nth == 0 ? pensions.map { $0.winClass }
                             : nth == 1 ? pensions.map { getWin(number: $0.winNumbers, at: 0) }
                             : nth == 2 ? pensions.map { getWin(number: $0.winNumbers, at: 1) }
@@ -81,7 +81,7 @@ struct PensionRatioGraphView: View {
         }
         
         for (index, color) in colorSet.enumerated() {
-            let bar = Bar(name: name,
+            let bar = GraphData(name: name,
                           value: Double(data.filter({ $0 == index }).count),
                           color: color.opacity(0.7),
                           order: index)

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RatioBarGraph: View {
-    let data: [Bar]
+    let data: [GraphData]
     var axis: Axis = .vertical
     var titleSpace: CGFloat = 13
-    private var sorted: [Bar] {
+    private var sorted: [GraphData] {
         data.sorted { $0.order < $1.order }
     }
     private var total: Double {
@@ -66,7 +66,7 @@ struct RatioBarGraph: View {
 
 struct RatioBarGraph_Previews: PreviewProvider {
     static var previews: some View {
-        RatioBarGraph(data: Bar.samplesForRatio)
-        RatioBarGraph(data: Bar.samplesForRatio, axis: .horizontal)
+        RatioBarGraph(data: GraphData.samplesForRatio)
+        RatioBarGraph(data: GraphData.samplesForRatio, axis: .horizontal)
     }
 }

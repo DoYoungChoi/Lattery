@@ -15,23 +15,19 @@ struct LottoStatView: View {
     
     var body: some View {
         VStack {
-            // 최신 로또 당첨 결과
-            LottoResultBoard()
-                .redacted(reason: isFetching ? .placeholder : [])
-            
             PagePicker(selection: $page)
                 
             if page == .detail {
                 LottoResultList()
                     .padding(.leading, -15)
             } else if page == .stat {
-                LottoRatioGraphView()
+                LottoStatMenuView()
             }
             
             Spacer()
         }
         .padding(.horizontal)
-        .navigationTitle("로또 정보")
+        .navigationTitle("로또 통계")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

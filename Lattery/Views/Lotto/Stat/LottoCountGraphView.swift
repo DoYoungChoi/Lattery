@@ -15,26 +15,33 @@ struct LottoCountGraphView: View {
         case sorted = "당첨횟수순"
         var id: String { rawValue }
     }
-    @State private var data: [Bar] = []
-    private var sortedData: [Bar] {
+    @State private var data: [GraphData] = []
+    private var sortedData: [GraphData] {
         data.sorted { $0.value > $1.value }
     }
     
     var body: some View {
         VStack {
-            Picker("", selection: $statMode) {
-                ForEach(Mode.allCases) { mode in
-                    Text(mode.id)
-                        .tag(mode)
+            HStack(alignment: .firstTextBaseline) {
+                Text(verbatim: "총 \(lottos.count)회")
+                
+                Spacer()
+                
+                Picker("", selection: $statMode) {
+                    ForEach(Mode.allCases) { mode in
+                        Text(mode.id)
+                            .tag(mode)
+                    }
                 }
+                .pickerStyle(.menu)
             }
-            .pickerStyle(.menu)
             
-            BarGraph(data: statMode == .ordered ? data : sortedData)
+            BarGraph(data: statMode == .ordered ? data : sortedData,
+                     axis: .horizontal)
         }
         .onAppear {
             for i in 1...45 {
-                data.append(Bar(name: String(i), value: count(Int16(i))))
+                data.append(GraphData(name: String(i), value: count(Int16(i))))
             }
         }
     }
