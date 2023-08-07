@@ -15,6 +15,7 @@ struct Lotto: Codable, Identifiable {
     var drwNoDate: String? // 로또 발표 날짜 yyyy-MM-dd
     var firstWinamnt: Int64? // 1등 당첨금
     var firstPrzwnerCo: Int? // 1등 당첨자 수
+    var totSellamnt: Int64? // 총 판매금액
     
     var drwtNo1: Int?
     var drwtNo2: Int?

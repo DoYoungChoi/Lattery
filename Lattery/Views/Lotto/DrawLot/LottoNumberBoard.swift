@@ -15,6 +15,7 @@ struct LottoNumberBoard: View {
     private var isFavorite: Bool {
         data.favorites.contains(selectedNumbers)
     }
+    var forStat: Bool = false
     
     var body: some View {
         VStack {
@@ -25,7 +26,7 @@ struct LottoNumberBoard: View {
                 }
                 Spacer()
                 Button("저장") {
-                    data.addSelectedNumbers(selectedNumbers)
+                    save()
                     presentationMode.wrappedValue.dismiss()
                 }
             }
@@ -125,7 +126,7 @@ struct LottoNumberBoard: View {
                 }
                 
                 Button {
-                    data.addSelectedNumbers(selectedNumbers)
+                    save()
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("저장")
@@ -141,9 +142,21 @@ struct LottoNumberBoard: View {
         }
         .padding()
         .onAppear {
-            guard let group = data.selectedGroup else { return }
-            guard let selected = data.selectedNumbers[group] else { return }
-            selectedNumbers = Set(selected.sorted())
+            if !forStat {
+                guard let group = data.selectedGroup else { return }
+                guard let selected = data.selectedNumbers[group] else { return }
+                selectedNumbers = Set(selected.sorted())
+            } else {
+                selectedNumbers = data.numberCombination
+            }
+        }
+    }
+    
+    private func save() {
+        if forStat {
+            data.numberCombination = selectedNumbers
+        } else {
+            data.addSelectedNumbers(selectedNumbers)
         }
     }
 }

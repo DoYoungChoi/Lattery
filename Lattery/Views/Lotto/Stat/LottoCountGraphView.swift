@@ -25,6 +25,7 @@ struct LottoCountGraphView: View {
         VStack {
             HStack(alignment: .firstTextBaseline) {
                 Text(verbatim: "총 \(lottos.count)회")
+                    .bold()
                 Spacer()
                 
                 VStack(alignment: .trailing) {

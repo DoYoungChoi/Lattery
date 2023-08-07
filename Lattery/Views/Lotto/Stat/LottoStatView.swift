@@ -27,17 +27,8 @@ struct LottoStatView: View {
             Spacer()
         }
         .padding(.horizontal)
-        .navigationTitle("로또 통계")
+        .navigationTitle("로또 정보")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-//                    fetchLastestLottoData()
-                } label: {
-                    Image(systemName: "pawprint.fill")
-                }
-            }
-        }
     }
     
 //    private func fetchLastestLottoData() {

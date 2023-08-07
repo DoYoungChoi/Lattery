@@ -15,6 +15,7 @@ class LottoData: ObservableObject {
     @Published var selectedNumbers = [LottoGroup: Set<Int16>]()
     @Published var favorites = [Set<Int16>]()
     @Published var isEnded: Bool = false
+    @Published var numberCombination = Set<Int16>()
     
     // MARK: - 초기함수, 리셋
     init() {
@@ -157,6 +158,7 @@ class LottoData: ObservableObject {
         lottoE.date = formatter.date(from: lotto.drwNoDate ?? "")?.addingTimeInterval(60 * 60 * 20 + 60 * 35)
         lottoE.winnerCount = Int16(lotto.firstPrzwnerCo ?? 0)
         lottoE.winnerReward = lotto.firstWinamnt ?? 0
+        lottoE.totalSalesAmount = lotto.totSellamnt ?? 0
         lottoE.no1 = Int16(lotto.drwtNo1 ?? 0)
         lottoE.no2 = Int16(lotto.drwtNo2 ?? 0)
         lottoE.no3 = Int16(lotto.drwtNo3 ?? 0)
@@ -197,8 +199,6 @@ class LottoData: ObservableObject {
             }
         }
         
-        print("lotto round: \(round-1)")
-        print("lotto date: \(date)")
         if lastest.round < round - 1 {
             // CoreData에 데이터 저장
             PersistenceController.shared.save()

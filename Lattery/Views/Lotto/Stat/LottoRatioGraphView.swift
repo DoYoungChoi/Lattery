@@ -23,6 +23,7 @@ struct LottoRatioGraphView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text(verbatim: "총 \(lottos.count)회")
+                        .bold()
                     Spacer()
                     Button {
                         includeBonus.toggle()

@@ -206,8 +206,6 @@ class PensionData: ObservableObject {
             }
         }
         
-        print("pension round: \(round-1)")
-        print("pension date: \(date)")
         if lastest.round < round - 1 {
             // CoreData에 데이터 저장
             PersistenceController.shared.save()

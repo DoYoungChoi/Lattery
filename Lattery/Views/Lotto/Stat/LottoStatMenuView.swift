@@ -11,8 +11,8 @@ struct LottoStatMenuView: View {
     @State private var statType: StatType = .count
     private enum StatType: String, Identifiable, CaseIterable {
         case count = "출현 횟수"
-        case coappear = "번호 조합"
         case color = "색상 통계"
+        case combination = "번호 조합"
         var id: String { self.rawValue }
     }
     
@@ -44,10 +44,10 @@ struct LottoStatMenuView: View {
             
             if statType == .count {
                 LottoCountGraphView()
-            } else if statType == .coappear {
-                
             } else if statType == .color {
                 LottoRatioGraphView()
+            } else if statType == .combination {
+                LottoCombinationView()
             }
             
             Spacer()
