@@ -10,12 +10,13 @@
 		D8174BD42A5C311100FC76FC /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */; };
 		D87A8E3B2A7E244F002BA412 /* PawButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E3A2A7E244F002BA412 /* PawButton.swift */; };
 		D87A8E3E2A7E4345002BA412 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D87A8E3D2A7E4345002BA412 /* Colors.xcassets */; };
-		D87A8E462A7FAB03002BA412 /* PagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E452A7FAB03002BA412 /* PagePicker.swift */; };
+		D87A8E462A7FAB03002BA412 /* InfoPagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E452A7FAB03002BA412 /* InfoPagePicker.swift */; };
 		D87A8E482A7FF2FD002BA412 /* LottoStatMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E472A7FF2FD002BA412 /* LottoStatMenuView.swift */; };
 		D87A8E4A2A80779A002BA412 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E492A80779A002BA412 /* PieChart.swift */; };
 		D87A8E4C2A809F69002BA412 /* LottoCombinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E4B2A809F69002BA412 /* LottoCombinationView.swift */; };
 		D87A8E4E2A80C487002BA412 /* LottoResultBallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E4D2A80C487002BA412 /* LottoResultBallRow.swift */; };
-		D87A8E502A80D4FB002BA412 /* LottoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E4F2A80D4FB002BA412 /* LottoInfoView.swift */; };
+		D87A8E502A80D4FB002BA412 /* LottoWinInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E4F2A80D4FB002BA412 /* LottoWinInfoView.swift */; };
+		D87A8E532A80E772002BA412 /* ResultCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E522A80E772002BA412 /* ResultCheckView.swift */; };
 		D87CA2142A7633860008FA9C /* LottoTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2132A7633860008FA9C /* LottoTicket.swift */; };
 		D87CA2162A76489B0008FA9C /* LottoTicketRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2152A76489B0008FA9C /* LottoTicketRow.swift */; };
 		D87CA2182A775A420008FA9C /* PensionBallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2172A775A420008FA9C /* PensionBallRow.swift */; };
@@ -45,7 +46,7 @@
 		D8C4EE5E2A53F1FC0092BCA6 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8C4EE5D2A53F1FC0092BCA6 /* Launch Screen.storyboard */; };
 		D8C4EE702A5434A40092BCA6 /* GangwonEduPower.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8C4EE6F2A5434A40092BCA6 /* GangwonEduPower.ttf */; };
 		D8C4EE722A5441D30092BCA6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE712A5441D30092BCA6 /* BackgroundView.swift */; };
-		D8C4EE792A5545C30092BCA6 /* LottoStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE782A5545C30092BCA6 /* LottoStatView.swift */; };
+		D8C4EE792A5545C30092BCA6 /* LottoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE782A5545C30092BCA6 /* LottoInfoView.swift */; };
 		D8C4EE7B2A5545D90092BCA6 /* PensionDrawLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE7A2A5545D90092BCA6 /* PensionDrawLotView.swift */; };
 		D8C4EE7D2A5545E40092BCA6 /* PensionStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE7C2A5545E40092BCA6 /* PensionStatView.swift */; };
 		D8C4EE7F2A5545ED0092BCA6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */; };
@@ -74,12 +75,13 @@
 		D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
 		D87A8E3A2A7E244F002BA412 /* PawButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawButton.swift; sourceTree = "<group>"; };
 		D87A8E3D2A7E4345002BA412 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		D87A8E452A7FAB03002BA412 /* PagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePicker.swift; sourceTree = "<group>"; };
+		D87A8E452A7FAB03002BA412 /* InfoPagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPagePicker.swift; sourceTree = "<group>"; };
 		D87A8E472A7FF2FD002BA412 /* LottoStatMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoStatMenuView.swift; sourceTree = "<group>"; };
 		D87A8E492A80779A002BA412 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		D87A8E4B2A809F69002BA412 /* LottoCombinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoCombinationView.swift; sourceTree = "<group>"; };
 		D87A8E4D2A80C487002BA412 /* LottoResultBallRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoResultBallRow.swift; sourceTree = "<group>"; };
-		D87A8E4F2A80D4FB002BA412 /* LottoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoInfoView.swift; sourceTree = "<group>"; };
+		D87A8E4F2A80D4FB002BA412 /* LottoWinInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoWinInfoView.swift; sourceTree = "<group>"; };
+		D87A8E522A80E772002BA412 /* ResultCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCheckView.swift; sourceTree = "<group>"; };
 		D87CA2132A7633860008FA9C /* LottoTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoTicket.swift; sourceTree = "<group>"; };
 		D87CA2152A76489B0008FA9C /* LottoTicketRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoTicketRow.swift; sourceTree = "<group>"; };
 		D87CA2172A775A420008FA9C /* PensionBallRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionBallRow.swift; sourceTree = "<group>"; };
@@ -112,7 +114,7 @@
 		D8C4EE6A2A5431240092BCA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D8C4EE6F2A5434A40092BCA6 /* GangwonEduPower.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GangwonEduPower.ttf; sourceTree = "<group>"; };
 		D8C4EE712A5441D30092BCA6 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
-		D8C4EE782A5545C30092BCA6 /* LottoStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoStatView.swift; sourceTree = "<group>"; };
+		D8C4EE782A5545C30092BCA6 /* LottoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoInfoView.swift; sourceTree = "<group>"; };
 		D8C4EE7A2A5545D90092BCA6 /* PensionDrawLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionDrawLotView.swift; sourceTree = "<group>"; };
 		D8C4EE7C2A5545E40092BCA6 /* PensionStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionStatView.swift; sourceTree = "<group>"; };
 		D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -165,13 +167,13 @@
 		D87A8E422A7FA826002BA412 /* Stat */ = {
 			isa = PBXGroup;
 			children = (
-				D8C4EE782A5545C30092BCA6 /* LottoStatView.swift */,
+				D8C4EE782A5545C30092BCA6 /* LottoInfoView.swift */,
 				D8D659152A5806CE003F2516 /* LottoResultList.swift */,
 				D87CA2352A7BD6360008FA9C /* LottoResultRow.swift */,
 				D87A8E4D2A80C487002BA412 /* LottoResultBallRow.swift */,
 				D8D6591D2A5A61B2003F2516 /* LottoResultDetail.swift */,
 				D8D659192A594D26003F2516 /* LottoResultBoard.swift */,
-				D87A8E4F2A80D4FB002BA412 /* LottoInfoView.swift */,
+				D87A8E4F2A80D4FB002BA412 /* LottoWinInfoView.swift */,
 				D87A8E472A7FF2FD002BA412 /* LottoStatMenuView.swift */,
 				D8D6591F2A5BAEFD003F2516 /* LottoCountGraphView.swift */,
 				D8F87BD32A5DB7A700940E3B /* LottoRatioGraphView.swift */,
@@ -204,6 +206,15 @@
 				D87CA22F2A7BAA410008FA9C /* PensionRatioGraphView.swift */,
 			);
 			path = Stat;
+			sourceTree = "<group>";
+		};
+		D87A8E512A80E767002BA412 /* MyMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D87A8E522A80E772002BA412 /* ResultCheckView.swift */,
+				D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */,
+			);
+			path = MyMenu;
 			sourceTree = "<group>";
 		};
 		D8AB9BAC2A526B5400E5883C = {
@@ -267,7 +278,7 @@
 				D87CA2252A7929B10008FA9C /* FetchingView.swift */,
 				D8C4EE762A5545930092BCA6 /* Lotto */,
 				D8C4EE772A5545A20092BCA6 /* Pension */,
-				D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */,
+				D87A8E512A80E767002BA412 /* MyMenu */,
 				D8F87BD22A5DB66A00940E3B /* Common */,
 			);
 			path = Views;
@@ -325,15 +336,15 @@
 			isa = PBXGroup;
 			children = (
 				D8C4EE712A5441D30092BCA6 /* BackgroundView.swift */,
-				D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */,
 				D8D6590F2A568830003F2516 /* LoadingView.swift */,
 				D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */,
 				D8919DC92A5BE999008591F1 /* BarGraph.swift */,
 				D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */,
 				D87A8E492A80779A002BA412 /* PieChart.swift */,
+				D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */,
 				D8F87BE52A63AAF500940E3B /* RefreshButton.swift */,
 				D87A8E3A2A7E244F002BA412 /* PawButton.swift */,
-				D87A8E452A7FAB03002BA412 /* PagePicker.swift */,
+				D87A8E452A7FAB03002BA412 /* InfoPagePicker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -424,7 +435,7 @@
 				D8C4EE722A5441D30092BCA6 /* BackgroundView.swift in Sources */,
 				D87A8E3B2A7E244F002BA412 /* PawButton.swift in Sources */,
 				D87A8E4E2A80C487002BA412 /* LottoResultBallRow.swift in Sources */,
-				D87A8E462A7FAB03002BA412 /* PagePicker.swift in Sources */,
+				D87A8E462A7FAB03002BA412 /* InfoPagePicker.swift in Sources */,
 				D87CA2162A76489B0008FA9C /* LottoTicketRow.swift in Sources */,
 				D87CA2382A7BD6A80008FA9C /* PensionResultRow.swift in Sources */,
 				D87CA2242A791F7A0008FA9C /* MenuView.swift in Sources */,
@@ -442,7 +453,7 @@
 				D8D6591A2A594D26003F2516 /* LottoResultBoard.swift in Sources */,
 				D8C4EE7B2A5545D90092BCA6 /* PensionDrawLotView.swift in Sources */,
 				D8AB9BCA2A52705F00E5883C /* LottoData.swift in Sources */,
-				D87A8E502A80D4FB002BA412 /* LottoInfoView.swift in Sources */,
+				D87A8E502A80D4FB002BA412 /* LottoWinInfoView.swift in Sources */,
 				D8AB9BD42A52B68B00E5883C /* ColorExtension.swift in Sources */,
 				D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */,
 				D87CA21C2A77EF380008FA9C /* PensionTicketRow.swift in Sources */,
@@ -452,6 +463,7 @@
 				D8F87BD82A5E95DF00940E3B /* LottoBallRow.swift in Sources */,
 				D8F87BD42A5DB7A700940E3B /* LottoRatioGraphView.swift in Sources */,
 				D8C4EE7F2A5545ED0092BCA6 /* SettingView.swift in Sources */,
+				D87A8E532A80E772002BA412 /* ResultCheckView.swift in Sources */,
 				D8F87BE22A62750900940E3B /* Pension.swift in Sources */,
 				D8AB9BD22A52ADD500E5883C /* LottoBall.swift in Sources */,
 				D8D659222A5BB42C003F2516 /* PersistenceController.swift in Sources */,
@@ -459,7 +471,7 @@
 				D87CA22A2A7A3AD20008FA9C /* CustomErrors.swift in Sources */,
 				D87CA2302A7BAA410008FA9C /* PensionRatioGraphView.swift in Sources */,
 				D87CA2362A7BD6360008FA9C /* LottoResultRow.swift in Sources */,
-				D8C4EE792A5545C30092BCA6 /* LottoStatView.swift in Sources */,
+				D8C4EE792A5545C30092BCA6 /* LottoInfoView.swift in Sources */,
 				D87CA21E2A77F4E90008FA9C /* PensionNumberBoard.swift in Sources */,
 				D87A8E4A2A80779A002BA412 /* PieChart.swift in Sources */,
 				D8D659162A5806CE003F2516 /* LottoResultList.swift in Sources */,

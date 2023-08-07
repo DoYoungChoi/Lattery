@@ -14,7 +14,7 @@ struct LottoResultDetail: View {
         VStack {
             LottoResultBoard(lotto: lotto)
             Spacer()
-            LottoInfoView()
+            LottoWinInfoView()
             Spacer()
         }
         .padding(.horizontal)

@@ -32,9 +32,15 @@ struct LottoBall: View {
         if let number = number, Range(1...45).contains(number) {
             ZStack {
                 Circle()
-                    .foregroundColor(color)
+                    .foregroundColor(color.opacity(0.7))
                     .aspectRatio(1, contentMode: .fit)
-                    .shadow(color: color, radius: isSelected ? 10 : 0)
+                    .overlay {
+                        Circle()
+                            .stroke(lineWidth: 3)
+                            .foregroundColor(color)
+                            .opacity(isSelected ? 1 : 0)
+                            .shadow(color: color, radius: isSelected ? 5 : 0)
+                    }
                 
                 Text("\(number)")
                     .foregroundColor(.white)

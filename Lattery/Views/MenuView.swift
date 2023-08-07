@@ -12,91 +12,100 @@ struct MenuView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
+            // MARK: - 로또 6/45
             Text("로또 6/45")
                 .bold()
-                .padding(.horizontal)
-            NavigationLink(destination: LottoDrawLotView()) {
-                lottoDrawLot
-            }
-            NavigationLink(destination: LottoStatView()) {
-                lottoStat
+            HStack {
+                NavigationLink(destination: LottoDrawLotView()) {
+                    lottoDrawLot
+                }
+                NavigationLink(destination: LottoInfoView()) {
+                    lottoStat
+                }
             }
             
+            // MARK: - 연금복권720+
             Text("연금복권720+")
                 .bold()
-                .padding(.horizontal)
-            NavigationLink(destination: PensionDrawLotView()) {
-                pensionDrawLot
-            }
-            NavigationLink(destination: PensionStatView()) {
-                pensionStat
+            HStack {
+                NavigationLink(destination: PensionDrawLotView()) {
+                    pensionDrawLot
+                }
+                NavigationLink(destination: PensionStatView()) {
+                    pensionStat
+                }
             }
             
-            Text("MY 메뉴")
+            // MARK: - My Menu
+            Text("MY MENU")
                 .bold()
-                .padding(.horizontal)
-            NavigationLink(destination: SettingView()) {
-                setting
+            HStack {
+                NavigationLink(destination: ResultCheckView()) {
+                    resultCheck
+                }
+                NavigationLink(destination: SettingView()) {
+                    setting
+                }
             }
         }
+        .padding(.horizontal)
         .animation(nil)
         .buttonStyle(.plain)
-        .navigationTitle("전체 메뉴")
+        .navigationTitle("MENU")
         .navigationBarTitleDisplayMode(.large)
     }
 }
     
 extension MenuView {
     private var lottoDrawLot: some View {
-        RoundedRectangle(cornerRadius: 10)
+        RoundedRectangle(cornerRadius: 20)
             .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .customGray, radius: 5)
+            .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("로또 번호 추첨")
+                Text("로또번호 추첨")
             }
     }
     
     private var lottoStat: some View {
-        RoundedRectangle(cornerRadius: 10)
+        RoundedRectangle(cornerRadius: 20)
             .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .customGray, radius: 5)
+            .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
                 Text("로또 정보")
             }
     }
     
     private var pensionDrawLot: some View {
-        RoundedRectangle(cornerRadius: 10)
+        RoundedRectangle(cornerRadius: 20)
             .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .customGray, radius: 5)
+            .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("연금복권 번호 추첨")
+                Text("연금복권번호 추첨")
             }
     }
     
     private var pensionStat: some View {
-        RoundedRectangle(cornerRadius: 10)
+        RoundedRectangle(cornerRadius: 20)
             .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .customGray, radius: 5)
+            .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("연금복권 통계")
+                Text("연금복권 정보")
+            }
+    }
+    
+    private var resultCheck: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .fill(.background)
+            .shadow(color: .customGray.opacity(0.7), radius: 5)
+            .overlay {
+                Text("당첨결과 확인")
             }
     }
     
     private var setting: some View {
-        RoundedRectangle(cornerRadius: 10)
+        RoundedRectangle(cornerRadius: 20)
             .fill(.background)
-            .frame(minHeight: textSize * 3, maxHeight: 150)
-            .padding(.horizontal)
-            .shadow(color: .customGray, radius: 5)
+            .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
                 Text("설정")
             }

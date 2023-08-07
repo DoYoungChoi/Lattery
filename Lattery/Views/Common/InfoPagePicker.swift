@@ -1,5 +1,5 @@
 //
-//  PagePicker.swift
+//  InfoPagePicker.swift
 //  Lattery
 //
 //  Created by dodor on 2023/08/06.
@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-enum Page: String, CaseIterable, Identifiable {
+enum InfoPage: String, CaseIterable, Identifiable {
     case detail = "지난회차정보"
     case stat = "통계"
     var id: String { rawValue }
 }
 
-struct PagePicker: View {
-    @Binding var selection: Page
+struct InfoPagePicker: View {
+    @Binding var selection: InfoPage
     
     var body: some View {
         HStack {
-            ForEach(Page.allCases) { page in
+            ForEach(InfoPage.allCases) { page in
                 VStack(spacing: 0) {
                     Text(page.id)
                         .padding(.vertical, 10)
@@ -40,8 +40,8 @@ struct PagePicker: View {
     }
 }
 
-struct PagePicker_Previews: PreviewProvider {
+struct InfoPagePicker_Previews: PreviewProvider {
     static var previews: some View {
-        PagePicker(selection: .constant(.detail))
+        InfoPagePicker(selection: .constant(.detail))
     }
 }

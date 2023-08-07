@@ -11,13 +11,13 @@ struct PensionStatView: View {
     @EnvironmentObject var data: PensionData
     @State private var isFetching: Bool = false
     @State private var pensions: [Pension] = []
-    @State private var page: Page = .detail
+    @State private var page: InfoPage = .detail
 
     var body: some View {
         VStack {
             PensionResultBoard()
             
-            PagePicker(selection: $page)
+            InfoPagePicker(selection: $page)
             
             if page == .detail {
                 PensionResultList()

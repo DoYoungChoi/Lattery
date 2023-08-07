@@ -44,11 +44,12 @@ struct LottoRatioGraphView: View {
                             Image(systemName: "square.fill")
                                 .foregroundColor(color.opacity(0.7))
                             Text("\(startNumber)~\(startNumber > 40 ? 45 : startNumber + 9)")
+                                .font(.system(size: 13))
                         }
                     }
                 }
                 .padding(8)
-                .font(.system(size: 15))
+                .font(.system(size: 13))
                 .frame(maxWidth: .infinity, alignment: .center)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
