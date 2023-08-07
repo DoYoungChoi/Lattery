@@ -19,42 +19,61 @@ struct LottoCountGraphView: View {
     private var sortedData: [GraphData] {
         data.sorted { $0.value > $1.value }
     }
+    @State private var includeBonus: Bool = false
     
     var body: some View {
         VStack {
             HStack(alignment: .firstTextBaseline) {
                 Text(verbatim: "총 \(lottos.count)회")
-                
                 Spacer()
                 
-                Picker("", selection: $statMode) {
-                    ForEach(Mode.allCases) { mode in
-                        Text(mode.id)
-                            .tag(mode)
+                VStack(alignment: .trailing) {
+                    Button {
+                        includeBonus.toggle()
+                    } label: {
+                        Label {
+                            Text("보너스 포함")
+                        } icon: {
+                            Image(systemName: includeBonus ? "checkmark.square.fill" : "checkmark.square")
+                                .foregroundColor(.customPink)
+                        }
                     }
+                    
+                    Picker("", selection: $statMode) {
+                        ForEach(Mode.allCases) { mode in
+                            Text(mode.id)
+                                .tag(mode)
+                        }
+                    }
+                    .pickerStyle(.menu)
                 }
-                .pickerStyle(.menu)
             }
             
             BarGraph(data: statMode == .ordered ? data : sortedData,
                      axis: .horizontal)
         }
-        .onAppear {
-            for i in 1...45 {
-                data.append(GraphData(name: String(i), value: count(Int16(i))))
-            }
+        .onAppear(perform: setData)
+        .onChange(of: includeBonus) { _ in
+            setData()
+        }
+    }
+    
+    private func setData() {
+        data = []
+        for i in 1...45 {
+            data.append(GraphData(name: String(i), value: count(Int16(i))))
         }
     }
     
     private func count(_ number: Int16) -> Double {
-        return Double(lottos.map { [$0.no1, $0.no2, $0.no3, $0.no4, $0.no5, $0.no6] }.filter { $0.contains(number) }.count)
+        let numbers = lottos.map {
+            var numbers = [$0.no1, $0.no2, $0.no3, $0.no4, $0.no5, $0.no6]
+            if includeBonus { numbers.append($0.noBonus) }
+            return numbers
+        }
+        
+        return Double(numbers.filter({ $0.contains(number) }).count)
     }
-    
-//    private func percent(_ number: Int16) -> Double {
-//        if lottos.count == 0 { return 0.0 }
-//        let count = lottos.map { [$0.no1, $0.no2, $0.no3, $0.no4, $0.no5, $0.no6] }.filter { $0.contains(number) }.count
-//        return Double(count) / Double(lottos.count) * 100
-//    }
 }
 
 //struct LottoCountGraphView_Previews: PreviewProvider {
