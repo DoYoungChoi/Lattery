@@ -70,19 +70,19 @@ struct LottoWinInfoView: View {
                     }
                 } else {
                     Text("등위")
-                        .foregroundColor(.customGray)
+                        .foregroundColor(.accentColor)
                         .bold()
                         .frame(width: 70)
                     Divider()
                     Text("당첨확률")
-                        .foregroundColor(.customGray)
+                        .foregroundColor(.accentColor)
                         .bold()
                         .frame(width: 130)
                     Divider()
                     HStack {
                         Spacer()
                         Text("당첨조건")
-                            .foregroundColor(.customGray)
+                            .foregroundColor(.accentColor)
                             .bold()
                         Spacer()
                     }

@@ -10,12 +10,15 @@ import SwiftUI
 struct PensionNumberBoard: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var data: PensionData
+    var forStat: Bool = false
+    let columnLayout = Array(repeating: GridItem(), count: 3)
     @State private var selectedNumbers: [[Int16]] = [Array(repeating: -1, count: 7)]
     @State private var selectedIndex: Int = 0
     private var repeatCount: Int {
-        data.pensionGroup == .allGroup ? 1 : data.groupCount
+        data.pensionGroup == .allGroup || forStat ? 1 : data.groupCount
     }
-    let columnLayout = Array(repeating: GridItem(), count: 3)
+    let colorSet: [Color] = [.customGray, .customRed, .customOrange, .customYellow,
+                             .customLightBlue, .customPurple, .customDarkGray]
     
     var body: some View {
         VStack {
@@ -43,12 +46,13 @@ struct PensionNumberBoard: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                                .foregroundColor(.customGray)
-                            Text("\(number != -1 ? String(number) : "")\(j == 0 ? "\(data.pensionGroup == .allGroup ? "*" : "")조" : "")")
+                                .foregroundColor(selectedIndex == index ? colorSet[j] : .customGray)
+                            Text("\(number != -1 ? String(number) : "")\(j == 0 ? "\(data.pensionGroup == .allGroup && !forStat ? "*" : "")조" : "")")
                         }
+                        .background(.background)
                         .opacity(selectedIndex == index ? 1 : 0.5)
                         .onTapGesture {
-                            if data.pensionGroup == .allGroup && j == 0 { return }
+                            if data.pensionGroup == .allGroup && !forStat && j == 0 { return }
                             selectedIndex = index
                         }
                     }
@@ -82,10 +86,10 @@ struct PensionNumberBoard: View {
             
             // MARK: - 번호판
             LazyVGrid(columns: columnLayout) {
-                ForEach([1,2,3,4,5,6,7,8,9,-1,0], id:\.self) { number in
+                ForEach([1,2,3,4,5,6,7,8,9,-2,0,-1], id:\.self) { number in
                     let col = selectedIndex % 10
                     
-                    if number > -1 {
+                    if number > -2 {
                         Button {
                             let row = selectedIndex / 10
                             selectedNumbers[row][col] = Int16(number)
@@ -99,10 +103,18 @@ struct PensionNumberBoard: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.customPink)
-                                Text("\(number)")
-                                    .font(.title2)
-                                    .bold()
-                                    .foregroundColor(.customPink)
+                                
+                                if number < 0 {
+                                    Image(systemName: "delete.left")
+                                        .font(.title2)
+                                        .foregroundColor(.customPink)
+                                } else {
+                                    Text("\(number)")
+                                        .font(.title2)
+                                        .bold()
+                                        .foregroundColor(.customPink)
+                                }
+                                
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color.customPink)
                                     .opacity(0.1)
@@ -151,20 +163,24 @@ struct PensionNumberBoard: View {
         .padding()
         .onAppear {
             customInit()
-            existSelectedNumbers()
+            getOriginSelectedNumbers()
         }
     }
     
     private func customInit() {
         selectedNumbers = [Array(repeating: -1, count: 7)]
-        selectedIndex = data.pensionGroup == .allGroup ? 1 : 0
+        selectedIndex = data.pensionGroup == .allGroup && !forStat ? 1 : 0
     }
     
-    private func existSelectedNumbers() {
-        if data.pensionGroup == .allGroup && data.selectedNumbersForAll.count > 0 {
-            selectedNumbers = [[-1] + data.selectedNumbersForAll]
-        } else if data.pensionGroup == .eachGroup && data.selectedNumbersForEach.count > 0 {
-            selectedNumbers = data.selectedNumbersForEach
+    private func getOriginSelectedNumbers() {
+        if forStat {
+            selectedNumbers = [data.numberCombination]
+        } else {
+            if data.pensionGroup == .allGroup && data.selectedNumbersForAll.count > 0 {
+                selectedNumbers = [[-1] + data.selectedNumbersForAll]
+            } else if data.pensionGroup == .eachGroup && data.selectedNumbersForEach.count > 0 {
+                selectedNumbers = data.selectedNumbersForEach
+            }
         }
     }
     
@@ -178,23 +194,11 @@ struct PensionNumberBoard: View {
     }
     
     private func save() {
-        if data.pensionGroup == .allGroup {
-            var replaceNumbers = [Int16]()
-            if selectedNumbers[0].filter({ $0 != -1 }).count > 0 {
-                replaceNumbers = Array(selectedNumbers[0].suffix(from: 1))
-            }
-            data.selectedNumbersForAll = replaceNumbers
+        if forStat {
+            data.numberCombination = selectedNumbers[0]
         } else {
-            var replaceNumbers = [[Int16]]()
-            for numbers in selectedNumbers {
-                if numbers.filter({ $0 != -1 }).count > 0 {
-                    replaceNumbers.append(numbers)
-                }
-            }
-            data.selectedNumbersForEach = replaceNumbers
+            data.addSelectedNumbers(selectedNumbers)
         }
-        
-        data.reset()
     }
 }
 

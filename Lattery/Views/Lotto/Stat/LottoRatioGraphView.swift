@@ -17,6 +17,30 @@ struct LottoRatioGraphView: View {
         case position = "위치별 통계"
         var id: String { self.rawValue }
     }
+    private var totalData: [GraphData] {
+        var info = [GraphData]()
+        let values: [Int] = lottos.reduce([0,0,0,0,0]) { (sum, entity) in
+            var numbers = [entity.no1, entity.no2, entity.no3, entity.no4, entity.no5, entity.no6]
+            if includeBonus { numbers.append(entity.noBonus) }
+            
+            return [
+                sum[0] + numbers.filter({ $0 > 0 && $0 < 11 }).count,
+                sum[1] + numbers.filter({ $0 > 10 && $0 < 21 }).count,
+                sum[2] + numbers.filter({ $0 > 20 && $0 < 31 }).count,
+                sum[3] + numbers.filter({ $0 > 30 && $0 < 41 }).count,
+                sum[4] + numbers.filter({ $0 > 40 && $0 < 45 }).count
+            ]
+        }
+        
+        for (index, color) in colorSet.enumerated() {
+            let range: String = index == 4 ? "41~45" : "\(String(format: "%.0f", index * 10 + 1))~\(index * 10 + 10)"
+            let data = GraphData(name: range,
+                                 value: Double(values[index]),
+                                 color: color.opacity(0.7))
+            info.append(data)
+        }
+        return info
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -60,8 +84,8 @@ struct LottoRatioGraphView: View {
                 
                 HStack {
                     Spacer()
-                    Text("단위: [ % ]")
-                        .foregroundColor(.customGray)
+                    Text("[ 단위: % ]")
+                        .foregroundColor(.accentColor)
                 }
                 
                 if selection == .total {
@@ -111,31 +135,6 @@ struct LottoRatioGraphView: View {
                 }
             }
         }
-    }
-    
-    private var totalData: [GraphData] {
-        var info = [GraphData]()
-        let values: [Int] = lottos.reduce([0,0,0,0,0]) { (sum, entity) in
-            var numbers = [entity.no1, entity.no2, entity.no3, entity.no4, entity.no5, entity.no6]
-            if includeBonus { numbers.append(entity.noBonus) }
-            
-            return [
-                sum[0] + numbers.filter({ $0 > 0 && $0 < 11 }).count,
-                sum[1] + numbers.filter({ $0 > 10 && $0 < 21 }).count,
-                sum[2] + numbers.filter({ $0 > 20 && $0 < 31 }).count,
-                sum[3] + numbers.filter({ $0 > 30 && $0 < 41 }).count,
-                sum[4] + numbers.filter({ $0 > 40 && $0 < 45 }).count
-            ]
-        }
-        
-        for (index, color) in colorSet.enumerated() {
-            let range: String = index == 4 ? "41~45" : "\(String(format: "%.0f", index * 10 + 1))~\(index * 10 + 10)"
-            let data = GraphData(name: range,
-                                 value: Double(values[index]),
-                                 color: color.opacity(0.7))
-            info.append(data)
-        }
-        return info
     }
     
     private func sortedData(_ nth: Int) -> [GraphData] {

@@ -36,7 +36,7 @@ struct PensionResultBoard: View {
                 
                 Text("(\(lastestPension.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨)")
                     .font(.callout)
-                    .foregroundColor(.customGray)
+                    .foregroundColor(.accentColor)
                 
                 VStack {
                     HStack {

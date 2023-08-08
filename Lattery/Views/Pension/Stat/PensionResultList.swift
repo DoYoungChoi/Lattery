@@ -11,9 +11,19 @@ struct PensionResultList: View {
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.round, order: .reverse)
     ]) var pensions: FetchedResults<PensionEntity>
+    @State private var ascending: Bool = false // descending
     
     var body: some View {
         List {
+            HStack {
+                Rectangle()
+                    .frame(width: 5)
+                    .foregroundColor(.backgroundGray)
+                
+                Toggle("회차 오름차순", isOn: $ascending)
+                    .tint(.customPink)
+            }
+            
             ForEach(pensions) { pension in
                 NavigationLink {
                     PensionResultDetail(pension: pension)
@@ -23,6 +33,10 @@ struct PensionResultList: View {
             }
         }
         .listStyle(.inset)
+        .onChange(of: ascending) { newValue in
+            let order: SortOrder = newValue ? .forward : .reverse
+            pensions.sortDescriptors = [SortDescriptor(\.round, order: order)]
+        }
     }
 }
 

@@ -10,12 +10,12 @@ import SwiftUI
 struct LottoNumberBoard: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var data: LottoData
+    var forStat: Bool = false
     let columnLayout = Array(repeating: GridItem(), count: 6)
     @State private var selectedNumbers: Set<Int16> = []
     private var isFavorite: Bool {
         data.favorites.contains(selectedNumbers)
     }
-    var forStat: Bool = false
     
     var body: some View {
         VStack {
@@ -57,11 +57,10 @@ struct LottoNumberBoard: View {
                         data.addFavorites(selectedNumbers)
                     }
                 } label: {
-                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                    Image(isFavorite ? "heart_fill" : "heart")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.customRed)
+                        .frame(width: 24, height: 24)
                         .shadow(color: .customRed, radius: isFavorite ? 5 : 0)
                 }
             }

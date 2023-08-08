@@ -9,9 +9,6 @@ import SwiftUI
 
 struct PensionResultRow: View {
     var pension: PensionEntity
-    private var winNumber: String {
-        pension.winNumbers ?? ""
-    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,9 +19,11 @@ struct PensionResultRow: View {
                 
                 Text(verbatim: "\(pension.round)회")
                     .bold()
+                    .padding(.vertical, 5)
                 Text("(\(pension.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨)")
                     .foregroundColor(.customGray)
                     .lineLimit(1)
+                    .padding(.vertical, 5)
             }
         }
     }

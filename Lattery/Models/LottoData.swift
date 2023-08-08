@@ -29,6 +29,7 @@ class LottoData: ObservableObject {
             selectedGroup = nil
             selectedNumbers = [LottoGroup: Set<Int16>]()
         }
+        numberCombination = Set<Int16>()
     }
     
     func reset() {

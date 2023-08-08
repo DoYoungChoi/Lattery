@@ -31,7 +31,7 @@ struct MenuView: View {
                 NavigationLink(destination: PensionDrawLotView()) {
                     pensionDrawLot
                 }
-                NavigationLink(destination: PensionStatView()) {
+                NavigationLink(destination: PensionInfoView()) {
                     pensionStat
                 }
             }
@@ -62,7 +62,13 @@ extension MenuView {
             .fill(.background)
             .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("로또번호 추첨")
+                VStack {
+                    Image("lotto_ball")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                    Text("로또번호 추첨")
+                }
             }
     }
     
@@ -71,7 +77,13 @@ extension MenuView {
             .fill(.background)
             .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("로또 정보")
+                VStack {
+                    Image("bar_chart")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                    Text("로또 정보")
+                }
             }
     }
     
@@ -80,7 +92,13 @@ extension MenuView {
             .fill(.background)
             .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("연금복권번호 추첨")
+                VStack {
+                    Image("lottery_box")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                    Text("연금복권번호 추첨")
+                }
             }
     }
     
@@ -89,7 +107,13 @@ extension MenuView {
             .fill(.background)
             .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("연금복권 정보")
+                VStack {
+                    Image("pie_chart")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                    Text("연금복권 정보")
+                }
             }
     }
     
@@ -98,7 +122,13 @@ extension MenuView {
             .fill(.background)
             .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("당첨결과 확인")
+                VStack {
+                    Image("trophy")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                    Text("당첨결과 확인")
+                }
             }
     }
     
@@ -107,7 +137,13 @@ extension MenuView {
             .fill(.background)
             .shadow(color: .customGray.opacity(0.7), radius: 5)
             .overlay {
-                Text("설정")
+                VStack {
+                    Image("gear")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                    Text("설정")
+                }
             }
     }
 }

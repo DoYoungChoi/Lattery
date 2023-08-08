@@ -18,7 +18,7 @@ struct LottoResultBoard: View {
             
             Text("\(lotto.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨")
                 .font(.title3)
-                .foregroundColor(.customGray)
+                .foregroundColor(.accentColor)
             
             HStack {
                 LottoBall(number: lotto.no1)
@@ -67,7 +67,7 @@ struct LottoResultBoard: View {
                     .bold()
             }
             .font(.caption)
-            .foregroundColor(.customGray)
+            .foregroundColor(.accentColor)
             .padding(.horizontal)
             .frame(maxWidth: .infinity, alignment: .trailing)
         }

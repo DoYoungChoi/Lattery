@@ -1,17 +1,16 @@
 //
-//  LottoStatMenuView.swift
+//  PensionStatMenuView.swift
 //  Lattery
 //
-//  Created by dodor on 2023/08/07.
+//  Created by dodor on 2023/08/08.
 //
 
 import SwiftUI
 
-struct LottoStatMenuView: View {
+struct PensionStatMenuView: View {
     @State private var statType: StatType = .count
     private enum StatType: String, Identifiable, CaseIterable {
         case count = "출현 횟수"
-        case color = "색상 통계"
         case combination = "번호 조합"
         var id: String { self.rawValue }
     }
@@ -43,11 +42,9 @@ struct LottoStatMenuView: View {
             }
             
             if statType == .count {
-                LottoCountGraphView()
-            } else if statType == .color {
-                LottoRatioGraphView()
+                PensionRatioGraphView()
             } else if statType == .combination {
-                LottoCombinationView()
+                PensionCombinationView()
             }
             
             Spacer()
@@ -55,8 +52,8 @@ struct LottoStatMenuView: View {
     }
 }
 
-struct LottoStatMenuView_Previews: PreviewProvider {
+struct PensionStatMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        LottoStatMenuView()
+        PensionStatMenuView()
     }
 }

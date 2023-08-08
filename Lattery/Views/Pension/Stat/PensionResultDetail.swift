@@ -19,12 +19,13 @@ struct PensionResultDetail: View {
     var body: some View {
         VStack(alignment: .leading) {
             // MARK: - 당첨일
-            HStack {
-                Spacer()
-                Text("\(pension.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨")
-                    .foregroundColor(.customGray)
-            }
+            Text(verbatim: "\(pension.round)회 당첨결과")
+                .font(.largeTitle)
             
+            Text("\(pension.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨")
+                .font(.title3)
+                .foregroundColor(.accentColor)
+
             ScrollView(showsIndicators: false) {
                 // 1등 정보
                 winner1st
@@ -54,12 +55,10 @@ struct PensionResultDetail: View {
             Spacer()
         }
         .padding(.horizontal)
-        .navigationTitle("\(pension.round)회")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var winner1st: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("1등")
                     .bold()
@@ -81,14 +80,18 @@ struct PensionResultDetail: View {
                     PensionBall(number: Int16(String(char)), unit: index+1)
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
             
             Divider()
         }
     }
     
     private var winner2nd: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("2등")
                     .bold()
@@ -108,14 +111,18 @@ struct PensionResultDetail: View {
                     PensionBall(number: Int16(String(char)), unit: index+1)
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
             
             Divider()
         }
     }
     
     private var winner3rd: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("3등")
                     .bold()
@@ -131,14 +138,18 @@ struct PensionResultDetail: View {
                     }
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
             
             Divider()
         }
     }
     
     private var winner4th: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("4등")
                 Spacer()
@@ -153,14 +164,18 @@ struct PensionResultDetail: View {
                     }
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
             
             Divider()
         }
     }
     
     private var winner5th: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("5등")
                 Spacer()
@@ -175,14 +190,18 @@ struct PensionResultDetail: View {
                     }
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
             
             Divider()
         }
     }
     
     private var winner6th: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("6등")
                 Spacer()
@@ -197,14 +216,18 @@ struct PensionResultDetail: View {
                     }
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
             
             Divider()
         }
     }
     
     private var winner7th: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("7등")
                 Spacer()
@@ -219,14 +242,18 @@ struct PensionResultDetail: View {
                     }
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
             
             Divider()
         }
     }
     
     private var winnerBonus: some View {
-        VStack {
+        VStack(spacing: 5) {
             HStack(spacing: 0) {
                 Text("보너스")
                     .bold()
@@ -247,7 +274,11 @@ struct PensionResultDetail: View {
                     PensionBall(number: Int16(String(char)), unit: index+1)
                 }
             }
-            .padding(.trailing, 6)
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.backgroundGray.opacity(0.9))
+            }
         }
     }
     

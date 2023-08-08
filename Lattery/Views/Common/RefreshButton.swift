@@ -19,7 +19,7 @@ struct RefreshButton: View {
             }
             isPressed.toggle()
         } label: {
-            Label("재시작", systemImage: "arrow.counterclockwise")
+            Label("재시작", image: "refresh")
                 .rotationEffect(Angle(degrees: isPressed ? 0 : 360))
         }
     }

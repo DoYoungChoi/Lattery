@@ -26,6 +26,7 @@ struct PensionTicket: View {
                     Image("LatteryLogo")
                         .resizable()
                         .scaledToFit()
+                        .frame(height: 30)
                     Text("연금복권720+")
                         .bold()
                         .padding(.leading, 2)
@@ -35,23 +36,22 @@ struct PensionTicket: View {
                     Button {
                         isSaved.toggle()
                     } label: {
-                        Image(systemName: isSaved ? "heart.fill" : "heart")
+                        Image(isSaved ? "heart_fill" : "heart")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(.customRed)
+                            .frame(width: 24, height: 24)
                             .shadow(color: .customRed, radius: isSaved ? 5 : 0)
                     }
                 }
-                .frame(height: 30)
                 
                 Text("발행일: \(now.toDateTimeString)")
                     .kerning(1.5)
-                    .foregroundColor(.customGray)
+                    .foregroundColor(.accentColor)
                     .padding(.vertical, verticalPadding)
                     .font(.callout)
                 Text("추첨일: \(now.nextThursday.toDateStringSlash)")
                     .kerning(1.5)
-                    .foregroundColor(.customGray)
+                    .foregroundColor(.accentColor)
                     .font(.callout)
                 
                 Divider()

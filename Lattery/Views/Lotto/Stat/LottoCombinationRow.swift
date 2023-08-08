@@ -1,5 +1,5 @@
 //
-//  LottoResultBallRow.swift
+//  LottoCombinationRow.swift
 //  Lattery
 //
 //  Created by dodor on 2023/08/07.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LottoResultBallRow: View {
+struct LottoCombinationRow: View {
     var lotto: LottoEntity
     var selected: Set<Int16>
     var includeBonus: Bool
@@ -20,9 +20,13 @@ struct LottoResultBallRow: View {
                     .foregroundColor(.backgroundGray)
                 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(verbatim: "\(lotto.round)회")
-                        .font(.caption)
-                        .bold()
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(verbatim: "\(lotto.round)회")
+                            .bold()
+                        Text("(\(lotto.date?.toDateStringKor ?? "yyyy년 MM월 dd일") 추첨)")
+                            .foregroundColor(.accentColor)
+                    }
+                    .font(.caption)
                     
                     HStack {
                         LottoBall(number: lotto.no1, isSelected: selected.contains(lotto.no1))

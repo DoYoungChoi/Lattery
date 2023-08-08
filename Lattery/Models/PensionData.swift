@@ -20,6 +20,7 @@ class PensionData: ObservableObject {
     @Published var selectedGroup: Int = 1
     @Published var selectedNumbersForEach = [[Int16]]()
     @Published var isEnded: Bool = false
+    @Published var numberCombination = [Int16]()
     
     // MARK: - 초기함수, 리셋
     init() {
@@ -33,6 +34,7 @@ class PensionData: ObservableObject {
         numberGroupsForEach = [Array(repeating: -1, count: 7)]
         selectedGroup = 1
         selectedNumbersForEach = []
+        numberCombination = Array(repeating: -1, count: 7)
     }
     
     func reset() {
@@ -112,10 +114,44 @@ class PensionData: ObservableObject {
     }
     
     // MARK: - 추첨 고정 번호
-//    func addSelectedNumbers() {
-//        
-//    }
-//    
+    func changePensionGroup(to pensionGroup: PensionGroup) {
+        self.pensionGroup = pensionGroup
+        reset()
+    }
+    
+    func addSelectedNumberGroup() {
+        groupCount += 1
+        reset()
+    }
+    
+    func removeSelectedNumberGroup() {
+        groupCount -= 1
+        if selectedNumbersForEach.count > groupCount {
+            selectedNumbersForEach = Array(selectedNumbersForEach[0..<groupCount])
+        }
+        reset()
+    }
+    
+    func addSelectedNumbers(_ numbers: [[Int16]]) {
+        if pensionGroup == .allGroup {
+            var replaceNumbers = [Int16]()
+            if numbers[0].filter({ $0 != -1 }).count > 0 {
+                replaceNumbers = Array(numbers[0].suffix(from: 1))
+            }
+            selectedNumbersForAll = replaceNumbers
+        } else {
+            var replaceNumbers = [[Int16]]()
+            for nums in numbers {
+                if nums.filter({ $0 != -1 }).count > 0 {
+                    replaceNumbers.append(nums)
+                }
+            }
+            selectedNumbersForEach = replaceNumbers
+        }
+        
+        reset()
+    }
+    
 //    func deleteSelectedNumber() {
 //        
 //    }

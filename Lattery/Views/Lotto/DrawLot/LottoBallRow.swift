@@ -30,11 +30,11 @@ struct LottoBallRow: View {
                 data.selectedGroup = group
                 showNumberBoard.toggle()
             } label: {
-                Image(systemName: "rectangle.and.pencil.and.ellipsis")
+                Image("check_pencil")
                     .resizable()
                     .scaledToFit()
                     .frame(maxHeight: 20)
-                    .foregroundColor(.customGray)
+                    .foregroundColor(.accentColor)
             }
             .padding(.horizontal, 10)
         }

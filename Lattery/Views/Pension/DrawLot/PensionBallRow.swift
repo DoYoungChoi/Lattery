@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PensionBallRow: View {
     var group: [Int16]
-    var showRemove: Bool = false
+    var removeAction: (() -> ())? = nil
     
     var body: some View {
         HStack {
@@ -20,21 +20,24 @@ struct PensionBallRow: View {
                         .font(.system(size: 20))
                 }
             }
-            
-            if showRemove {
-                Button {
-                    withAnimation { }
-                } label: {
-                    Image(systemName: "minus")
-                        .foregroundColor(.customGray)
-                }
-            }
         }
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity, alignment: .center)
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.backgroundGray)
+                .overlay {
+                    if let action = removeAction {
+                        Button {
+                            withAnimation { action() }
+                        } label: {
+                            Image(systemName: "minus")
+                                .foregroundColor(.accentColor)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(.trailing, 10)
+                        }
+                    }
+                }
         }
     }
 }

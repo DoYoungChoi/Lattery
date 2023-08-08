@@ -37,7 +37,7 @@ struct PieChart: View {
         var endAngle: Angle
         var color: Color
         
-        var id = UUID()
+        var id: String { self.name }
     }
     @State private var displayed: PieSliceData?
     
@@ -47,8 +47,9 @@ struct PieChart: View {
                 ZStack{
                     ForEach(slices) { slice in
                         PieSlice(slice: slice)
+                            .scaleEffect(displayed?.id == slice.id ? 1.05 : 1)
                             .onTapGesture {
-                                displayed = slice
+                                withAnimation { displayed = slice }
                             }
                     }
                     .frame(width: geo.size.width, height: geo.size.width)
@@ -68,7 +69,7 @@ struct PieChart: View {
                                     .bold()
                             }
                             
-                            Text("\(String(format: "%.0f", displayed.value / 100 * total))회 [\(String(format: "%.0f", displayed.value))%]")
+                            Text("\(String(format: "%.0f", displayed.value / 100 * total)) [\(String(format: "%.0f", displayed.value))%]")
                                 .foregroundColor(.customGray)
                                 .bold()
                         }

@@ -17,8 +17,7 @@ struct PensionDrawLotView: View {
         VStack {
             // MARK: - '모든 조' 또는 '조 선택'
             PensionGroupPicker(selection: $pensionGroup) {
-                data.pensionGroup = pensionGroup
-                data.reset()
+                data.changePensionGroup(to: pensionGroup)
             }
             
             // MARK: - 숫자 조합
@@ -28,9 +27,9 @@ struct PensionDrawLotView: View {
                     PensionBallRow(group: [group] + data.numberGroupForAll)
                 }
             } else {
-                ForEach(data.numberGroupsForEach, id: \.self) { numbers in
+                ForEach(Array(data.numberGroupsForEach.enumerated()), id: \.offset) { (index, numbers) in
                     PensionBallRow(group: numbers,
-                                   showRemove: data.groupCount > 1)
+                                   removeAction: data.groupCount > 1 && index == data.groupCount - 1 ? data.removeSelectedNumberGroup : nil)
                 }
                 
                 if data.numberGroupsForEach.count < 5 {
@@ -54,10 +53,7 @@ struct PensionDrawLotView: View {
                 Button {
                     showNumberBoard.toggle()
                 } label: {
-                    Image(systemName: "rectangle.and.pencil.and.ellipsis")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxHeight: 20)
+                    Image("check_pencil")
                 }
             }
         }
@@ -65,15 +61,15 @@ struct PensionDrawLotView: View {
         .sheet(isPresented: $showNumberBoard) {
             PensionNumberBoard()
         }
-        .onAppear(perform: data.reset)
+        .onAppear {
+            pensionGroup = data.pensionGroup
+            data.reset()
+        }
     }
     
     private var addButton: some View {
         Button {
-            withAnimation {
-                data.groupCount += 1
-                data.reset()
-            }
+            withAnimation { data.addSelectedNumberGroup() } 
         } label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.backgroundGray)

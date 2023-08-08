@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PensionStatView: View {
+struct PensionInfoView: View {
     @EnvironmentObject var data: PensionData
     @State private var isFetching: Bool = false
     @State private var pensions: [Pension] = []
@@ -15,15 +15,13 @@ struct PensionStatView: View {
 
     var body: some View {
         VStack {
-            PensionResultBoard()
-            
             InfoPagePicker(selection: $page)
             
             if page == .detail {
                 PensionResultList()
                     .padding(.leading, -15)
             } else if page == .stat {
-                PensionRatioGraphView()
+                PensionStatMenuView()
             }
             
             Spacer()
@@ -31,19 +29,11 @@ struct PensionStatView: View {
         .padding(.horizontal)
         .navigationTitle("연금복권 정보")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                } label: {
-                    Label("발바닥", systemImage: isFetching ? "pawprint" : "pawprint.fill")
-                }
-            }
-        }
     }
 }
 
 struct PensionStatView_Previews: PreviewProvider {
     static var previews: some View {
-        PensionStatView()
+        PensionInfoView()
     }
 }

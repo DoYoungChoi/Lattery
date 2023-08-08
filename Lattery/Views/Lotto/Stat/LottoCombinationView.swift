@@ -77,9 +77,13 @@ struct LottoCombinationView: View {
                 }
                 
                 ForEach(filteredLottos) { lotto in
-                    LottoResultBallRow(lotto: lotto,
-                                       selected: data.numberCombination,
-                                       includeBonus: includeBonus)
+                    NavigationLink {
+                        LottoResultDetail(lotto: lotto)
+                    } label: {
+                        LottoCombinationRow(lotto: lotto,
+                                           selected: data.numberCombination,
+                                           includeBonus: includeBonus)
+                    }
                 }
             }
             .padding(.leading, -15)
@@ -91,8 +95,6 @@ struct LottoCombinationView: View {
         .onChange(of: ascending) { newValue in
             let order: SortOrder = newValue ? .forward : .reverse
             lottos.sortDescriptors = [SortDescriptor(\.round, order: order)]
-        }
-        .onChange(of: data.numberCombination) { newValue in
         }
     }
 }
