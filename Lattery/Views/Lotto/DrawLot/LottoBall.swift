@@ -39,7 +39,7 @@ struct LottoBall: View {
                             .stroke(lineWidth: 3)
                             .foregroundColor(color)
                             .opacity(isSelected ? 1 : 0)
-                            .shadow(color: color, radius: isSelected ? 5 : 0)
+                            .shadow(color: color, radius: isSelected ? 10 : 0)
                     }
                 
                 Text("\(number)")

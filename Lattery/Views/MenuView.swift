@@ -15,7 +15,7 @@ struct MenuView: View {
             // MARK: - 로또 6/45
             Text("로또 6/45")
                 .bold()
-            HStack {
+            HStack(spacing: 15) {
                 NavigationLink(destination: LottoDrawLotView()) {
                     lottoDrawLot
                 }
@@ -23,11 +23,12 @@ struct MenuView: View {
                     lottoStat
                 }
             }
+            .frame(maxHeight: 150)
             
             // MARK: - 연금복권720+
             Text("연금복권720+")
                 .bold()
-            HStack {
+            HStack(spacing: 15) {
                 NavigationLink(destination: PensionDrawLotView()) {
                     pensionDrawLot
                 }
@@ -35,11 +36,12 @@ struct MenuView: View {
                     pensionStat
                 }
             }
+            .frame(maxHeight: 150)
             
             // MARK: - My Menu
-            Text("MY MENU")
+            Text("My메뉴")
                 .bold()
-            HStack {
+            HStack(spacing: 15) {
                 NavigationLink(destination: ResultCheckView()) {
                     resultCheck
                 }
@@ -47,6 +49,9 @@ struct MenuView: View {
                     setting
                 }
             }
+            .frame(maxHeight: 150)
+            
+            Spacer()
         }
         .padding(.horizontal)
         .animation(nil)

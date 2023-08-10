@@ -29,6 +29,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var toDateTimeKor: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier:"ko_KR")
+        formatter.dateFormat = "yy년MM월dd일 HH시mm분 (EEE)"
+        return formatter.string(from: self)
+    }
+    
     var nextSatureday: Date {
         let calendar = Calendar(identifier: .gregorian)
         let dayOfWeek = calendar.component(.weekday, from: self)

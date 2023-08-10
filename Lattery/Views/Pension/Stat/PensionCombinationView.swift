@@ -100,7 +100,12 @@ struct PensionCombinationView: View {
             .listStyle(.inset)
         }
         .sheet(isPresented: $showNumberBoard) {
-            PensionNumberBoard(forStat: true)
+            if #available(iOS 16.0, *) {
+                PensionNumberBoard(forStat: true)
+                    .presentationDetents([.height(480)])
+            } else {
+                PensionNumberBoard(forStat: true)
+            }
         }
         .onChange(of: ascending) { newValue in
             let order: SortOrder = newValue ? .forward : .reverse

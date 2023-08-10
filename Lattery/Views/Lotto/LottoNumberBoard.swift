@@ -30,7 +30,6 @@ struct LottoNumberBoard: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
-            .padding(.horizontal, 9)
             
             Spacer()
             
@@ -70,7 +69,7 @@ struct LottoNumberBoard: View {
             // MARK: - 나의 즐겨찾기 번호
             VStack(alignment: .leading, spacing: 0) {
                 Text("나의 즐겨찾기 번호")
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 3)
                 LottoFavorites(selectedNumbers: $selectedNumbers)
             }
             
@@ -90,17 +89,18 @@ struct LottoNumberBoard: View {
                             }
                         }
                     } label: {
-                        Text("\(number)")
-                            .font(.system(size: 20))
-                            .foregroundColor(selectedNumbers.contains(Int16(number)) ? .white : .customPink)
-                            .frame(width: 50, height: 50, alignment: .center)
-                            .background {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(selectedNumbers.contains(Int16(number)) ? Color.customPink : Color.clear)
-                            }
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(selectedNumbers.contains(Int16(number)) ? Color.customPink : Color.clear)
+                            .aspectRatio(1, contentMode: .fit)
                             .overlay {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.customPink)
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.customPink)
+                                        .aspectRatio(1, contentMode: .fit)
+                                    Text("\(number)")
+                                        .font(.title3)
+                                        .foregroundColor(selectedNumbers.contains(Int16(number)) ? .white : .customPink)
+                                }
                             }
                     }
                     .buttonStyle(.plain)
@@ -114,13 +114,13 @@ struct LottoNumberBoard: View {
                 Button {
                     selectedNumbers = []
                 } label: {
-                    Text("초기화")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.customPink)
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.customPink)
+                        .frame(minHeight: 30, maxHeight: 50)
+                        .overlay {
+                            Text("초기화")
+                                .font(.title3)
+                                .foregroundColor(.white)
                         }
                 }
                 
@@ -128,18 +128,18 @@ struct LottoNumberBoard: View {
                     save()
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Text("저장")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.customPink)
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.customPink)
+                        .frame(minHeight: 30, maxHeight: 50)
+                        .overlay {
+                            Text("저장")
+                                .font(.title3)
+                                .foregroundColor(.white)
                         }
                 }
             }
         }
-        .padding()
+        .padding(.horizontal)
         .onAppear {
             if !forStat {
                 guard let group = data.selectedGroup else { return }

@@ -34,7 +34,6 @@ struct PensionNumberBoard: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
-            .padding(.horizontal, 9)
             
             Spacer()
             
@@ -65,7 +64,7 @@ struct PensionNumberBoard: View {
                         }
                     }
                 }
-                .frame(height: 45)
+                .frame(maxHeight: 40)
             }
             
             if repeatCount > 1 && selectedNumbers.count < repeatCount {
@@ -119,29 +118,30 @@ struct PensionNumberBoard: View {
                                     .fill(Color.customPink)
                                     .opacity(0.1)
                             }
+                            .aspectRatio(1, contentMode: .fit)
+                            .frame(maxHeight: 70)
                             .opacity(col == 0 && (number > 5 || number == 0) ? 0.5 : 1)
                         }
-                        .frame(width: 80, height: 80)
                         .disabled(col == 0 && (number > 5 || number == 0))
                     } else {
                         Spacer()
                     }
                 }
             }
-            .frame(width: 260, height: 340)
+            .frame(width: 220)
             
             // MARK: - 저장, 초기화 버튼
             HStack {
                 Button {
                     customInit()
                 } label: {
-                    Text("초기화")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.customPink)
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.customPink)
+                        .frame(minHeight: 30, maxHeight: 50)
+                        .overlay {
+                            Text("초기화")
+                                .font(.title3)
+                                .foregroundColor(.white)
                         }
                 }
                 
@@ -149,13 +149,13 @@ struct PensionNumberBoard: View {
                     save()
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Text("저장")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.customPink)
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.customPink)
+                        .frame(minHeight: 30, maxHeight: 50)
+                        .overlay {
+                            Text("저장")
+                                .font(.title3)
+                                .foregroundColor(.white)
                         }
                 }
             }
@@ -185,7 +185,9 @@ struct PensionNumberBoard: View {
     }
     
     private func addRow() {
-        selectedNumbers += [Array(repeating: -1, count: 7)]
+        if selectedNumbers.count < 5 {
+            selectedNumbers += [Array(repeating: -1, count: 7)]
+        }
     }
     
     private func removeRow(at row: Int) {

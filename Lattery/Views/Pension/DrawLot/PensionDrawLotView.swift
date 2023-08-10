@@ -12,7 +12,7 @@ struct PensionDrawLotView: View {
     @State private var pensionGroup: PensionGroup = .allGroup
     @State private var showNumberBoard: Bool = false
     @State private var isRunning: Bool = false
-    
+
     var body: some View {
         VStack {
             // MARK: - '모든 조' 또는 '조 선택'
@@ -59,7 +59,12 @@ struct PensionDrawLotView: View {
         }
         .disabled(isRunning)
         .sheet(isPresented: $showNumberBoard) {
-            PensionNumberBoard()
+            if #available(iOS 16.0, *) {
+                PensionNumberBoard()
+                    .presentationDetents(data.pensionGroup == .allGroup ? [.height(480)] : Set(stride(from: 0.8, through: 1.0, by: 0.2).map { PresentationDetent.fraction($0) }))
+            } else {
+                PensionNumberBoard()
+            }
         }
         .onAppear {
             pensionGroup = data.pensionGroup
