@@ -10,7 +10,7 @@ import SwiftUI
 struct PensionBall: View {
     var number: Int16? = nil
     var unit: Int
-    var isFixed: Bool = false
+    var isSelected: Bool = false
     private var color: Color {
         guard unit > 0 && unit < 7 else { return .customGray }
         
@@ -40,7 +40,7 @@ struct PensionBall: View {
                 Circle()
                     .stroke(lineWidth: 1)
                     .frame(width: 25, height: 25)
-                    .opacity(isFixed ? 1 : 0.7)
+                    .opacity(isSelected ? 1 : 0.7)
                 
                 Text("\(number)")
                     .bold()
@@ -51,7 +51,7 @@ struct PensionBall: View {
             .frame(width: 30, height: 30)
             .background {
                 Circle()
-                    .fill(isFixed ? color.opacity(0.4) : Color(uiColor: .systemBackground))
+                    .fill(isSelected ? color.opacity(0.4) : Color(uiColor: .systemBackground))
             }
         } else {
             Circle()

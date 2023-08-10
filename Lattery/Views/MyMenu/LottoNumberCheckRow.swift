@@ -35,6 +35,8 @@ struct LottoNumberCheckRow: View {
             Spacer()
             Text(rank)
                 .bold()
+                .multilineTextAlignment(.center)
+            
             Spacer()
             HStack {
                 ForEach(numbers, id:\.self) { number in

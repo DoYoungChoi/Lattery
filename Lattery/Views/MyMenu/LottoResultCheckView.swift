@@ -13,7 +13,7 @@ struct LottoResultCheckView: View {
         SortDescriptor(\.round, order: .reverse)
     ]) var lottos: FetchedResults<LottoEntity>
     @FetchRequest(sortDescriptors: [
-        SortDescriptor(\.date, order: .forward)
+        SortDescriptor(\.date, order: .reverse)
     ]) var saves: FetchedResults<LottoResult>
     @State private var selectedLotto: LottoEntity?
     @State private var selectedSave: LottoResult?
@@ -23,7 +23,7 @@ struct LottoResultCheckView: View {
             // MARK: - 로또 발표 시간 안내
             HStack {
                 Image(systemName: "speaker.wave.2")
-                Text("매주 토요일 저녁 8시 30분 발표")
+                Text("매주 토요일 오후 8시 30분경 발표")
                 Spacer()
             }
             .foregroundColor(.customGray)
@@ -109,7 +109,7 @@ struct LottoResultCheckView: View {
                     }
                     .padding(.top, 5)
                     
-                    Text("당첨결과 확인할 로또 회차를 선택하세요.\n로또 당첨 데이터가 없거나 최신 데이터에 문제가 있는 경우 'My메뉴'>'설정'으로 이동하여 네트워크 상에서 '로또 데이터 가져오기'를 실행하거나 앱을 껐다 다시 실행하세요.\n그 외 문제 발생 시 개발자에게 문의하세요.")
+                    Text("당첨결과 확인할 로또 회차를 선택하세요.\n당첨 데이터가 없거나 최신 데이터에 문제가 있는 경우 'My메뉴'>'설정'으로 이동하여 네트워크 상에서 '로또 데이터 가져오기'를 실행하거나 앱을 껐다 다시 실행하세요.\n그 외 문제 발생 시 개발자에게 문의하세요.")
                         .lineSpacing(8)
                         .font(.callout)
                         .padding(5)
@@ -139,7 +139,7 @@ struct LottoResultCheckView: View {
                     }
                     .pickerStyle(.menu)
                 } else {
-                    Text("저장한 추첨 번호 데이터가 없습니다.")
+                    Text("저장한 추첨번호가 없습니다.")
                         .foregroundColor(.accentColor)
                         .padding(.vertical, 10)
                     Spacer()

@@ -76,6 +76,8 @@
 		D8FDC8CA2A83462E00238C38 /* PensionResultCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8C92A83462E00238C38 /* PensionResultCheckView.swift */; };
 		D8FDC8CC2A83796100238C38 /* LottoNumberCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8CB2A83796100238C38 /* LottoNumberCheckView.swift */; };
 		D8FDC8CE2A84AE5600238C38 /* LottoNumberCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8CD2A84AE5600238C38 /* LottoNumberCheckRow.swift */; };
+		D8FDC8D02A84E59500238C38 /* PensionNumberCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8CF2A84E59500238C38 /* PensionNumberCheckView.swift */; };
+		D8FDC8D22A84E62400238C38 /* PensionNumberCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8D12A84E62400238C38 /* PensionNumberCheckRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +153,8 @@
 		D8FDC8C92A83462E00238C38 /* PensionResultCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionResultCheckView.swift; sourceTree = "<group>"; };
 		D8FDC8CB2A83796100238C38 /* LottoNumberCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoNumberCheckView.swift; sourceTree = "<group>"; };
 		D8FDC8CD2A84AE5600238C38 /* LottoNumberCheckRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoNumberCheckRow.swift; sourceTree = "<group>"; };
+		D8FDC8CF2A84E59500238C38 /* PensionNumberCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionNumberCheckView.swift; sourceTree = "<group>"; };
+		D8FDC8D12A84E62400238C38 /* PensionNumberCheckRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionNumberCheckRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +235,8 @@
 				D8FDC8CB2A83796100238C38 /* LottoNumberCheckView.swift */,
 				D8FDC8CD2A84AE5600238C38 /* LottoNumberCheckRow.swift */,
 				D8FDC8C92A83462E00238C38 /* PensionResultCheckView.swift */,
+				D8FDC8CF2A84E59500238C38 /* PensionNumberCheckView.swift */,
+				D8FDC8D12A84E62400238C38 /* PensionNumberCheckRow.swift */,
 				D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */,
 			);
 			path = MyMenu;
@@ -448,6 +454,7 @@
 				D87CA22E2A7BAA0F0008FA9C /* PensionResultList.swift in Sources */,
 				D8AB9BC82A526E5800E5883C /* LottoDrawLotView.swift in Sources */,
 				D87CA2142A7633860008FA9C /* LottoTicket.swift in Sources */,
+				D8FDC8D22A84E62400238C38 /* PensionNumberCheckRow.swift in Sources */,
 				D8FDC8CE2A84AE5600238C38 /* LottoNumberCheckRow.swift in Sources */,
 				D87A8E482A7FF2FD002BA412 /* LottoStatMenuView.swift in Sources */,
 				D87CA22C2A7BA05E0008FA9C /* PensionResultBoard.swift in Sources */,
@@ -506,6 +513,7 @@
 				D8C4EE7D2A5545E40092BCA6 /* PensionInfoView.swift in Sources */,
 				D8D6591E2A5A61B2003F2516 /* LottoResultDetail.swift in Sources */,
 				D87CA21A2A77ED240008FA9C /* PensionTicket.swift in Sources */,
+				D8FDC8D02A84E59500238C38 /* PensionNumberCheckView.swift in Sources */,
 				D8D659202A5BAEFD003F2516 /* LottoCountGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -38,12 +38,12 @@ struct PensionCombinationRow: View {
                         Spacer()
                         PensionBall(number: pension.winClass,
                                     unit: 0,
-                                    isFixed: String(selected[0]) == String(pension.winClass))
+                                    isSelected: String(selected[0]) == String(pension.winClass))
                         Text("조")
                         ForEach(Array(winNumbers.enumerated()), id:\.offset) { (index, number) in
                             PensionBall(number: Int16(String(number)) ?? -1,
                                         unit: index + 1,
-                                        isFixed: String(selected[index+1]) == String(number))
+                                        isSelected: String(selected[index+1]) == String(number))
                         }
                     }
                     
@@ -55,7 +55,7 @@ struct PensionCombinationRow: View {
                             ForEach(Array(bonusNumbers.enumerated()), id:\.offset) { (index, number) in
                                 PensionBall(number: Int16(String(number)) ?? -1,
                                             unit: index + 1,
-                                            isFixed: String(selected[index+1]) == String(number))
+                                            isSelected: String(selected[index+1]) == String(number))
                             }
                         }
                     }

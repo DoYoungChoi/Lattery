@@ -63,6 +63,9 @@ struct OffsetObservingScrollView<Content: View>: View {
             )
         }
         .coordinateSpace(name: coordinateSpaceName)
+//        .onChange(of: offset) { newValue in
+//            print(newValue)
+//        }
     }
 }
 

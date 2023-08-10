@@ -71,14 +71,18 @@ struct LottoTicket: View {
                     }
                     show.toggle()
                 } label: {
-                    Text("확인")
+                    Rectangle()
+                        .fill(.background)
+                        .overlay {
+                            Text("확인")
+                        }
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(maxWidth: .infinity, maxHeight: 30, alignment: .center)
             }
             .padding(25)
             .background {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(Color(uiColor: .systemBackground))
+                    .fill(.background)
             }
             .frame(maxWidth: 400)
             .padding()
