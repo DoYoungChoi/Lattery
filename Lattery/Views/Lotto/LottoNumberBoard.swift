@@ -11,6 +11,7 @@ struct LottoNumberBoard: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var data: LottoData
     var forStat: Bool = false
+    var forFavorite: Bool = false
     let columnLayout = Array(repeating: GridItem(), count: 6)
     @State private var selectedNumbers: Set<Int16> = []
     private var isFavorite: Bool {
@@ -48,32 +49,36 @@ struct LottoNumberBoard: View {
                 }
                 .frame(height: 43)
                 
-                Button {
-                    if selectedNumbers.count < 1 { return }
-                    if isFavorite {
-                        data.deleteFavorites(selectedNumbers)
-                    } else {
-                        data.addFavorites(selectedNumbers)
+                if !forFavorite {
+                    Button {
+                        if selectedNumbers.count < 1 { return }
+                        if isFavorite {
+                            data.deleteFavorites(selectedNumbers)
+                        } else {
+                            data.addFavorites(selectedNumbers)
+                        }
+                    } label: {
+                        Image(isFavorite ? "heart_fill" : "heart")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .shadow(color: .customRed, radius: isFavorite ? 5 : 0)
                     }
-                } label: {
-                    Image(isFavorite ? "heart_fill" : "heart")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                        .shadow(color: .customRed, radius: isFavorite ? 5 : 0)
                 }
             }
             
             Spacer()
             
-            // MARK: - 나의 즐겨찾기 번호
-            VStack(alignment: .leading, spacing: 0) {
-                Text("나의 즐겨찾기 번호")
-                    .padding(.bottom, 3)
-                LottoFavorites(selectedNumbers: $selectedNumbers)
+            if !forFavorite {
+                // MARK: - 나의 즐겨찾기 번호
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("나의 즐겨찾기 번호")
+                        .padding(.bottom, 3)
+                    LottoFavorites(selectedNumbers: $selectedNumbers)
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
             
             // MARK: - 번호판
             LazyVGrid(columns: columnLayout) {
@@ -141,12 +146,14 @@ struct LottoNumberBoard: View {
         }
         .padding(.horizontal)
         .onAppear {
-            if !forStat {
+            if forStat {
+                selectedNumbers = data.numberCombination
+            } else if forFavorite {
+                selectedNumbers = []
+            } else {
                 guard let group = data.selectedGroup else { return }
                 guard let selected = data.selectedNumbers[group] else { return }
                 selectedNumbers = Set(selected.sorted())
-            } else {
-                selectedNumbers = data.numberCombination
             }
         }
     }
@@ -154,6 +161,8 @@ struct LottoNumberBoard: View {
     private func save() {
         if forStat {
             data.numberCombination = selectedNumbers
+        } else if forFavorite {
+            data.addFavorites(selectedNumbers)
         } else {
             data.addSelectedNumbers(selectedNumbers)
         }

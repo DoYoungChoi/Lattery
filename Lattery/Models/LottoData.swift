@@ -83,6 +83,10 @@ class LottoData: ObservableObject {
         }
     }
     
+    func saveArrangement() {
+        setFavorites()
+    }
+    
     // For UserDefaults (type from [String] to [Set<Int16>]
     // ["1,2,3", "3,4,5"]
     private func getFavorites() {
@@ -104,7 +108,6 @@ class LottoData: ObservableObject {
         var favoritesToUD: [String] = []
         for favorite in self.favorites {
             let numbers = favorite.map { String($0) }.joined(separator: ",")
-            print(numbers)
             favoritesToUD.append(numbers)
         }
         UserDefaults.standard.set(favoritesToUD, forKey: favoritesLottoKey)
@@ -172,7 +175,6 @@ class LottoData: ObservableObject {
     
     func getLastestData(context: NSManagedObjectContext) async -> String? {
         guard let lastest = getLastest() else { return LastestError.userDefaultsError.rawValue }
-        print("lotto lastes: \(lastest)")
         var success = true
         var resultMessage: String? = nil
         var round: Int = lastest.round
@@ -182,6 +184,10 @@ class LottoData: ObservableObject {
             do {
                 let lotto = try await fetchData(round)
                 date = save(lotto: lotto, context: context)
+                if date == nil {
+                    success = false
+                    resultMessage = LastestError.coreDataError.rawValue
+                }
             } catch FetchError.badURL {
                 success = false
                 resultMessage = LastestError.requestError.rawValue
@@ -204,10 +210,75 @@ class LottoData: ObservableObject {
             // CoreData에 데이터 저장
             PersistenceController.shared.save()
             // Lastest에 셋팅
-            let _ = setLastest(round: round - 1, date: date!)
+            _ = setLastest(round: round - 1, date: date ?? Date.now)
         }
         
         return resultMessage
+    }
+    
+    func fetchAllData(context: NSManagedObjectContext) async -> String? {
+        // 기존의 저장된 CoreData를 모두 지운다
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = LottoEntity.fetchRequest()
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        _ = try? context.execute(batchDeleteRequest)
+        
+        // 1회부터 fetch 시작
+        var success = true
+        var resultMessage: String? = nil
+        var round: Int = 1
+        var date: Date?
+        while (success) {
+            round += 1
+            do {
+                let lotto = try await fetchData(round)
+                date = save(lotto: lotto, context: context)
+                if date == nil {
+                    success = false
+                    resultMessage = LastestError.coreDataError.rawValue
+                }
+            } catch FetchError.badURL {
+                success = false
+                resultMessage = LastestError.requestError.rawValue
+            } catch FetchError.badRequest {
+                success = false
+                resultMessage = LastestError.requestError.rawValue
+            } catch FetchError.badJSON {
+                success = false
+                resultMessage = LastestError.serverError.rawValue
+            } catch FetchError.badResponse {
+                success = false
+                resultMessage = nil // 최신 데이터라 가정
+            } catch {
+                success = false
+                resultMessage = LastestError.unknownError.rawValue
+            }
+        }
+        
+        // CoreData에 데이터 저장
+        PersistenceController.shared.save()
+        // Lastest에 셋팅
+        _ = setLastest(round: round - 1, date: date ?? Date.now)
+        
+        return resultMessage
+    }
+    
+    // MARK: - 로또 추첨번호
+    func saveLottoResult(_ context: NSManagedObjectContext) {
+        let result = LottoResult(context: context)
+        result.date = Date.now
+        result.lotteryDate = result.date?.nextSatureday.toDateStringSlash
+        result.aGroup = numberGroups[LottoGroup.a]?.map { String($0) }.joined(separator: ",")
+        result.bGroup = numberGroups[LottoGroup.b]?.map { String($0) }.joined(separator: ",")
+        result.cGroup = numberGroups[LottoGroup.c]?.map { String($0) }.joined(separator: ",")
+        result.dGroup = numberGroups[LottoGroup.d]?.map { String($0) }.joined(separator: ",")
+        result.eGroup = numberGroups[LottoGroup.e]?.map { String($0) }.joined(separator: ",")
+        
+        PersistenceController.shared.save()
+    }
+    
+    func deleteLottoResult(_ lotto: LottoResult, context: NSManagedObjectContext) {
+        context.delete(lotto)
+        PersistenceController.shared.save()
     }
 }
 

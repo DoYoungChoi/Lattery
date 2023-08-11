@@ -214,7 +214,6 @@ class PensionData: ObservableObject {
     
     func getLastestData(context: NSManagedObjectContext) async -> String? {
         guard let lastest = getLastest() else { return LastestError.userDefaultsError.rawValue }
-        print("pension lastest: \(lastest)")
         var success = true
         var resultMessage: String? = nil
         var round: Int = lastest.round
@@ -224,6 +223,10 @@ class PensionData: ObservableObject {
             do {
                 let pension = try await fetchData(round)
                 date = save(pension: pension, context: context)
+                if date == nil {
+                    success = false
+                    resultMessage = LastestError.coreDataError.rawValue
+                }
             } catch FetchError.badURL {
                 success = false
                 resultMessage = LastestError.requestError.rawValue
@@ -246,10 +249,83 @@ class PensionData: ObservableObject {
             // CoreData에 데이터 저장
             PersistenceController.shared.save()
             // Lastest에 셋팅
-            let _ = setLastest(round: round - 1, date: date!)
+            _ = setLastest(round: round - 1, date: date ?? Date.now)
         }
         
         return resultMessage
+    }
+    
+    func fetchAllData(context: NSManagedObjectContext) async -> String? {
+        // 기존의 저장된 CoreData를 모두 지운다
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = PensionEntity.fetchRequest()
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        _ = try? context.execute(batchDeleteRequest)
+        
+        // 1회부터 fetch 시작
+        var round: Int = 1
+        var success = true
+        var date: Date?
+        var resultMessage: String? = nil
+        while (success) {
+            round += 1
+            do {
+                let pension = try await fetchData(round)
+                date = save(pension: pension, context: context)
+                if date == nil {
+                    success = false
+                    resultMessage = LastestError.coreDataError.rawValue
+                }
+            } catch FetchError.badURL {
+                success = false
+                resultMessage = LastestError.requestError.rawValue
+            } catch FetchError.badRequest {
+                success = false
+                resultMessage = LastestError.requestError.rawValue
+            } catch FetchError.badJSON {
+                success = false
+                resultMessage = LastestError.serverError.rawValue
+            } catch FetchError.badResponse {
+                success = false
+                resultMessage = nil // 최신 데이터라 가정
+            } catch {
+                success = false
+                resultMessage = LastestError.unknownError.rawValue
+            }
+        }
+        
+        // CoreData에 데이터 저장
+        PersistenceController.shared.save()
+        // Lastest에 셋팅
+        _ = setLastest(round: round - 1, date: date ?? Date.now)
+        
+        return resultMessage
+    }
+    
+    func savePensionResult(_ context: NSManagedObjectContext) {
+        let result = PensionResult(context: context)
+        result.date = Date.now
+        result.lotteryDate = result.date?.nextThursday.toDateStringSlash
+        if pensionGroup == .allGroup {
+            result.numbers1 = "1\(numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers2 = "2\(numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers3 = "3\(numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers4 = "4\(numberGroupForAll.map { String($0) }.joined(separator: ""))"
+            result.numbers5 = "5\(numberGroupForAll.map { String($0) }.joined(separator: ""))"
+        } else {
+            let count = numberGroupsForEach.count
+            if count > 0 { result.numbers1 = numberGroupsForEach[0].map { String($0) }.joined(separator: "") }
+            if count > 1 { result.numbers2 = numberGroupsForEach[1].map { String($0) }.joined(separator: "") }
+            if count > 2 { result.numbers3 = numberGroupsForEach[2].map { String($0) }.joined(separator: "") }
+            if count > 3 { result.numbers4 = numberGroupsForEach[3].map { String($0) }.joined(separator: "") }
+            if count > 4 { result.numbers5 = numberGroupsForEach[4].map { String($0) }.joined(separator: "") }
+        }
+        
+        PersistenceController.shared.save()
+    }
+    
+    func deletePensionResult(_ pension: PensionResult, context: NSManagedObjectContext) {
+        context.delete(pension)
+        PersistenceController.shared.save()
     }
 }
 

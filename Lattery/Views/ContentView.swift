@@ -11,7 +11,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @StateObject private var lottoData = LottoData()
     @StateObject private var pensionData = PensionData()
-    @State private var isFetching: Bool = true
+    @StateObject private var viewModel = GeneralViewModel()
     @State private var errorTitle: String? = nil
     @State private var errorMessage: String? = nil
     
@@ -30,22 +30,24 @@ struct ContentView: View {
                 PensionTicket(show: $pensionData.isEnded)
             }
             
-            if isFetching {
-                FetchingView()
+            if viewModel.isLoading {
+                LoadingView()
             }
         }
         .task { fetchData() }
         .environmentObject(lottoData)
         .environmentObject(pensionData)
+        .environmentObject(viewModel)
     }
     
     private func fetchData() {
+        viewModel.isLoading = true
         Task {
             var result = await lottoData.getLastestData(context: moc)
             if let resultMessage = result {
                 errorTitle = "로또 오류"
                 errorMessage = resultMessage
-                isFetching.toggle()
+                viewModel.isLoading = false
                 return
             }
             
@@ -53,11 +55,11 @@ struct ContentView: View {
             if let resultMessage = result {
                 errorTitle = "연금복권 오류"
                 errorMessage = resultMessage
-                isFetching.toggle()
+                viewModel.isLoading = false
                 return
             }
             
-            isFetching.toggle()
+            viewModel.isLoading = false
         }
     }
 }

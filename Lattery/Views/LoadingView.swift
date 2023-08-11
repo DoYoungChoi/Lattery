@@ -1,5 +1,5 @@
 //
-//  FetchingView.swift
+//  LoadingView.swift
 //  Lattery
 //
 //  Created by dodor on 2023/08/01.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FetchingView: View {
+struct LoadingView: View {
     @State private var index: Int = 0
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
@@ -16,7 +16,7 @@ struct FetchingView: View {
             Color(uiColor: .systemBackground)
             
             BackgroundView()
-                .opacity(0.3)
+                .opacity(0.5)
             
             VStack {
                 HStack {
@@ -56,8 +56,8 @@ struct FetchingView: View {
     }
 }
 
-struct FetchingView_Previews: PreviewProvider {
+struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        FetchingView()
+        LoadingView()
     }
 }

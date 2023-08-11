@@ -23,7 +23,7 @@ struct MenuView: View {
                     lottoStat
                 }
             }
-            .frame(maxHeight: 150)
+            .frame(minHeight: 120)
             
             // MARK: - 연금복권720+
             Text("연금복권720+")
@@ -36,7 +36,7 @@ struct MenuView: View {
                     pensionStat
                 }
             }
-            .frame(maxHeight: 150)
+            .frame(minHeight: 120)
             
             // MARK: - My Menu
             Text("My메뉴")
@@ -49,7 +49,7 @@ struct MenuView: View {
                     setting
                 }
             }
-            .frame(maxHeight: 150)
+            .frame(minHeight: 120)
             
             Spacer()
         }

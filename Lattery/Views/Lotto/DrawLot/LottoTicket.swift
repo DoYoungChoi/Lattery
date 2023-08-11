@@ -90,16 +90,7 @@ struct LottoTicket: View {
     }
     
     private func saveLottoResult() {
-        let result = LottoResult(context: moc)
-        result.date = now
-        result.lotteryDate = now.nextSatureday.toDateStringSlash
-        result.aGroup = data.numberGroups[LottoGroup.a]?.map { String($0) }.joined(separator: ",")
-        result.bGroup = data.numberGroups[LottoGroup.b]?.map { String($0) }.joined(separator: ",")
-        result.cGroup = data.numberGroups[LottoGroup.c]?.map { String($0) }.joined(separator: ",")
-        result.dGroup = data.numberGroups[LottoGroup.d]?.map { String($0) }.joined(separator: ",")
-        result.eGroup = data.numberGroups[LottoGroup.e]?.map { String($0) }.joined(separator: ",")
-        
-        PersistenceController.shared.save()
+        data.saveLottoResult(moc)
     }
 }
 
