@@ -19,7 +19,7 @@ struct LottoNumberBoard: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 7) {
             // MARK: - 상단 버튼
             HStack {
                 Button("취소") {
@@ -31,6 +31,7 @@ struct LottoNumberBoard: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
+            .padding(.top)
             
             Spacer()
             
@@ -67,8 +68,6 @@ struct LottoNumberBoard: View {
                 }
             }
             
-            Spacer()
-            
             if !forFavorite {
                 // MARK: - 나의 즐겨찾기 번호
                 VStack(alignment: .leading, spacing: 0) {
@@ -76,43 +75,49 @@ struct LottoNumberBoard: View {
                         .padding(.bottom, 3)
                     LottoFavorites(selectedNumbers: $selectedNumbers)
                 }
-                
+            } else {
                 Spacer()
             }
             
             // MARK: - 번호판
-            LazyVGrid(columns: columnLayout) {
-                ForEach(1...45, id: \.self) { number in
-                    Button {
-                        withAnimation {
-                            if selectedNumbers.contains(Int16(number)) {
-                                selectedNumbers.remove(Int16(number))
-                            } else {
-                                if selectedNumbers.count < 6 {
-                                    selectedNumbers.insert(Int16(number))
+            ForEach(0..<8, id:\.self) { row in
+                HStack {
+                    ForEach(0..<6, id:\.self) { col in
+                        let number = row * 6 + col + 1
+                        if number < 46 {
+                            Button {
+                                withAnimation {
+                                    if selectedNumbers.contains(Int16(number)) {
+                                        selectedNumbers.remove(Int16(number))
+                                    } else {
+                                        if selectedNumbers.count < 6 {
+                                            selectedNumbers.insert(Int16(number))
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                    } label: {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(selectedNumbers.contains(Int16(number)) ? Color.customPink : Color.clear)
-                            .aspectRatio(1, contentMode: .fit)
-                            .overlay {
+                            } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5)
+                                        .fill(selectedNumbers.contains(Int16(number)) ? Color.customPink : Color.clear)
+                                    
+                                    RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.customPink)
-                                        .aspectRatio(1, contentMode: .fit)
+                                    
                                     Text("\(number)")
                                         .font(.title3)
                                         .foregroundColor(selectedNumbers.contains(Int16(number)) ? .white : .customPink)
+                                        .padding(10)
                                 }
                             }
+                            .buttonStyle(.plain)
+                        } else {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.clear)
+                        }
                     }
-                    .buttonStyle(.plain)
                 }
+                .frame(maxHeight: 50)
             }
-            
-            Spacer()
             
             // MARK: - 저장, 초기화 버튼
             HStack {
@@ -144,7 +149,7 @@ struct LottoNumberBoard: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .padding([.horizontal, .bottom])
         .onAppear {
             if forStat {
                 selectedNumbers = data.numberCombination
@@ -171,7 +176,7 @@ struct LottoNumberBoard: View {
 
 struct LottoNumberBoard_Previews: PreviewProvider {
     static var previews: some View {
-        LottoNumberBoard()
+        LottoNumberBoard(forFavorite: false)
             .environmentObject(LottoData())
     }
 }
