@@ -81,6 +81,7 @@
 		D8FDC8DA2A860DFD00238C38 /* LottoFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8D92A860DFD00238C38 /* LottoFavoritesView.swift */; };
 		D8FDC8DE2A860E3800238C38 /* SavedPensionNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8DD2A860E3800238C38 /* SavedPensionNumberView.swift */; };
 		D8FDC8E02A8613DC00238C38 /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC8DF2A8613DC00238C38 /* GeneralViewModel.swift */; };
+		D8FDC9022A8A5C5300238C38 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,6 +162,7 @@
 		D8FDC8D92A860DFD00238C38 /* LottoFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoFavoritesView.swift; sourceTree = "<group>"; };
 		D8FDC8DD2A860E3800238C38 /* SavedPensionNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPensionNumberView.swift; sourceTree = "<group>"; };
 		D8FDC8DF2A8613DC00238C38 /* GeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
+		D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +320,7 @@
 				D87CA2332A7BC9160008FA9C /* StringExtension.swift */,
 				D87CA2272A7944360008FA9C /* UserDefaults.swift */,
 				D87CA2292A7A3AD20008FA9C /* CustomErrors.swift */,
+				D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */,
 				D87CA2282A7944360008FA9C /* UserDefaults.swift in Sources */,
 				D87A8E4C2A809F69002BA412 /* LottoCombinationView.swift in Sources */,
+				D8FDC9022A8A5C5300238C38 /* NotificationManager.swift in Sources */,
 				D8F87BE82A6404A500940E3B /* PensionBall.swift in Sources */,
 				D8D6591A2A594D26003F2516 /* LottoResultBoard.swift in Sources */,
 				D8FDC8CA2A83462E00238C38 /* PensionResultCheckView.swift in Sources */,

@@ -12,15 +12,14 @@ struct SettingView: View {
     @EnvironmentObject var lottoData: LottoData
     @EnvironmentObject var pensionData: PensionData
     @EnvironmentObject var viewModel: GeneralViewModel
-    @State private var alertLotto: Bool = true
-    @State private var alertPension: Bool = true
+    @EnvironmentObject var notiManager: NotificationManager
     
     var body: some View {
         List {
             // MARK: - 알림
             Section(header: Text("알림")) {
-                Toggle("로또 알림 허용", isOn: $alertLotto)
-                Toggle("연금복권 알림 허용", isOn: $alertPension)
+                Toggle("로또방송 알림 받기", isOn: $notiManager.lottoNotiOn)
+                Toggle("연금복권방송 알림 받기", isOn: $notiManager.pensionNotiOn)
             }
             .tint(.customPink)
             
@@ -46,6 +45,9 @@ struct SettingView: View {
                 }
                 NavigationLink("저장한 연금복권 추첨번호", destination: SavedPensionNumberView())
             }
+        }
+        .onAppear {
+            notiManager.requestNotiAuthorization()
         }
         .navigationTitle("설정")
         .navigationBarTitleDisplayMode(.large)

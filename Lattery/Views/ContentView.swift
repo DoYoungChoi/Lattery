@@ -12,6 +12,7 @@ struct ContentView: View {
     @StateObject private var lottoData = LottoData()
     @StateObject private var pensionData = PensionData()
     @StateObject private var viewModel = GeneralViewModel()
+    @StateObject private var notiManager = NotificationManager()
     @State private var errorTitle: String? = nil
     @State private var errorMessage: String? = nil
     
@@ -34,10 +35,14 @@ struct ContentView: View {
                 LoadingView()
             }
         }
-        .task { fetchData() }
+        .onAppear {
+            notiManager.requestNotiAuthorization()
+        }
+//        .task { fetchData() }
         .environmentObject(lottoData)
         .environmentObject(pensionData)
         .environmentObject(viewModel)
+        .environmentObject(notiManager)
     }
     
     private func fetchData() {

@@ -58,7 +58,7 @@ struct LottoFavoritesView: View {
                         editMode = isEditing ? .active : .inactive
                     }
                 } label: {
-                    Image(systemName: isEditing ? "pencil.circle" : "pencil")
+                    Image(systemName: isEditing ? "list.bullet.circle.fill" : "list.bullet.circle")
                 }
             }
         }

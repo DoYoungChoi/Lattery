@@ -10,9 +10,11 @@ import Foundation
 // MARK: - LOTTO
 let lastestLottoKey: String = "Lotto"
 let favoritesLottoKey: String = "LottoFavorites"
+let lottoNotiKey: String = "LottoNoti"
 
 // MARK: - Pension720
 let lastestPensionKey: String = "Pension"
+let pensionNotiKey: String = "PensionNoti"
 
 // MARK: - Structure
 struct Lastest: Identifiable, Codable {
