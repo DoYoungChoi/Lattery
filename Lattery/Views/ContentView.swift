@@ -38,7 +38,7 @@ struct ContentView: View {
         .onAppear {
             notiManager.requestNotiAuthorization()
         }
-//        .task { fetchData() }
+        .task { fetchData() }
         .environmentObject(lottoData)
         .environmentObject(pensionData)
         .environmentObject(viewModel)
