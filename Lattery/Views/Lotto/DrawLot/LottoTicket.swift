@@ -1,4 +1,4 @@
-//
+
 //  LottoTicket.swift
 //  Lattery
 //
@@ -23,7 +23,7 @@ struct LottoTicket: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .bottom, spacing: 0) {
-                    Image("LatteryLogo")
+                    Image("paw_pink")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 30)

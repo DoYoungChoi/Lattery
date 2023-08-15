@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D8174BD42A5C311100FC76FC /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */; };
-		D87A8E3B2A7E244F002BA412 /* PawButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E3A2A7E244F002BA412 /* PawButton.swift */; };
 		D87A8E3E2A7E4345002BA412 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D87A8E3D2A7E4345002BA412 /* Colors.xcassets */; };
 		D87A8E462A7FAB03002BA412 /* InfoPagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E452A7FAB03002BA412 /* InfoPagePicker.swift */; };
 		D87A8E482A7FF2FD002BA412 /* LottoStatMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E472A7FF2FD002BA412 /* LottoStatMenuView.swift */; };
@@ -86,7 +85,6 @@
 
 /* Begin PBXFileReference section */
 		D8174BD32A5C311100FC76FC /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
-		D87A8E3A2A7E244F002BA412 /* PawButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawButton.swift; sourceTree = "<group>"; };
 		D87A8E3D2A7E4345002BA412 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D87A8E452A7FAB03002BA412 /* InfoPagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPagePicker.swift; sourceTree = "<group>"; };
 		D87A8E472A7FF2FD002BA412 /* LottoStatMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoStatMenuView.swift; sourceTree = "<group>"; };
@@ -373,7 +371,6 @@
 				D87A8E492A80779A002BA412 /* PieChart.swift */,
 				D8F87BDF2A6029C300940E3B /* DrawLotButton.swift */,
 				D8F87BE52A63AAF500940E3B /* RefreshButton.swift */,
-				D87A8E3A2A7E244F002BA412 /* PawButton.swift */,
 				D87A8E452A7FAB03002BA412 /* InfoPagePicker.swift */,
 			);
 			path = Common;
@@ -493,7 +490,6 @@
 				D87CA2322A7BACE10008FA9C /* PensionResultDetail.swift in Sources */,
 				D8F87BE02A6029C300940E3B /* DrawLotButton.swift in Sources */,
 				D8C4EE722A5441D30092BCA6 /* BackgroundView.swift in Sources */,
-				D87A8E3B2A7E244F002BA412 /* PawButton.swift in Sources */,
 				D87A8E4E2A80C487002BA412 /* LottoCombinationRow.swift in Sources */,
 				D87A8E462A7FAB03002BA412 /* InfoPagePicker.swift in Sources */,
 				D87CA2162A76489B0008FA9C /* LottoTicketRow.swift in Sources */,

@@ -8,24 +8,25 @@
 import SwiftUI
 import Combine
 
+enum Paw: String, Identifiable, CaseIterable {
+    case pink = "삥꾸발바닥"
+    case black = "까망발바닥"
+    
+    var id: String { rawValue }
+    var color: Color {
+        switch (self) {
+            case .pink: return .customPink
+            case .black: return .customDarkGray
+        }
+    }
+}
+
 struct DrawLotButton: View {
     @Binding var isRunning: Bool
     @Binding var isEnded: Bool
     var action: () -> ()
     @State private var showPawPicker: Bool = false
     @State private var paw: Paw = .pink
-    private enum Paw: String, Identifiable, CaseIterable {
-        case pink = "삥꾸발바닥"
-        case black = "까망발바닥"
-        
-        var id: String { rawValue }
-        var color: Color {
-            switch (self) {
-                case .pink: return .customPink
-                case .black: return .customDarkGray
-            }
-        }
-    }
     @State private var timer: Timer?
     
     var body: some View {
@@ -56,7 +57,7 @@ struct DrawLotButton: View {
                 .padding(.top, 3)
             }
             
-            PawButton(color: paw.color)
+            PawButton(paw: paw)
                 .opacity(isRunning ? 0.5 : 1)
                 .simultaneousGesture(longPressGesture)
                 .disabled(isRunning)
@@ -117,6 +118,36 @@ struct DrawLotButton: View {
             timer!.invalidate()
         }
         timer = nil
+    }
+}
+
+struct PawButton: View {
+    var paw: Paw
+    
+    var body: some View {
+        GeometryReader { geo in
+            ZStack {
+                Image("paw_background")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: geo.size.width)
+                
+                if paw == .pink {
+                    Image("paw_pink")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.9)
+                        .offset(x: -geo.size.width * 0.005, y: -geo.size.height * 0.03)
+//                        .shadow(color: .customGray, radius: 3, y: 3)
+                } else {
+                    Image("paw_black")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.9)
+                        .offset(x: -geo.size.width * 0.005, y: -geo.size.height * 0.03)
+                }
+            }
+        }
     }
 }
 
