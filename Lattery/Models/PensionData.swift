@@ -21,6 +21,10 @@ class PensionData: ObservableObject {
     @Published var selectedNumbersForEach = [[Int16]]()
     @Published var isEnded: Bool = false
     @Published var numberCombination = [Int16]()
+    @Published var savedPension: PensionResult? = nil
+    var isSaved: Bool {
+        savedPension != nil
+    }
     
     // MARK: - 초기함수, 리셋
     init() {
@@ -35,6 +39,7 @@ class PensionData: ObservableObject {
         selectedGroup = 1
         selectedNumbersForEach = []
         numberCombination = Array(repeating: -1, count: 7)
+        savedPension = nil
     }
     
     func reset() {
@@ -48,6 +53,7 @@ class PensionData: ObservableObject {
         } else {
             numberGroupForAll = selectedNumbersForAll
         }
+        savedPension = nil
     }
     
     private func resetForEach() {
@@ -60,10 +66,12 @@ class PensionData: ObservableObject {
             }
         }
         numberGroupsForEach = newNumbers
+        savedPension = nil
     }
     
     // MARK: - 번호 추첨
     func drawLot() {
+        savedPension = nil
         if pensionGroup == .allGroup {
             drawLotForAll()
         } else {
@@ -320,11 +328,19 @@ class PensionData: ObservableObject {
             if count > 4 { result.numbers5 = numberGroupsForEach[4].map { String($0) }.joined(separator: "") }
         }
         
+        savedPension = result
         PersistenceController.shared.save()
     }
     
-    func deletePensionResult(_ pension: PensionResult, context: NSManagedObjectContext) {
-        context.delete(pension)
+    func deletePensionResult(_ pension: PensionResult?, context: NSManagedObjectContext) {
+        if let pension = pension {
+            context.delete(pension)
+        } else {
+            if let savedPension = savedPension {
+                context.delete(savedPension)
+            }
+            savedPension = nil
+        }
         PersistenceController.shared.save()
     }
 }

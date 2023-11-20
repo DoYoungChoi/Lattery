@@ -13,8 +13,9 @@ struct ContentView: View {
     @StateObject private var pensionData = PensionData()
     @StateObject private var viewModel = GeneralViewModel()
     @StateObject private var notiManager = NotificationManager()
-    @State private var errorTitle: String? = nil
+    @State private var errorTitle: String = "에러 발생"
     @State private var errorMessage: String? = nil
+    @State private var errorAlertPresented: Bool = false
     
     var body: some View {
         ZStack {
@@ -39,6 +40,12 @@ struct ContentView: View {
             notiManager.requestNotiAuthorization()
         }
         .task { fetchData() }
+        .alert(
+            errorMessage ?? errorTitle,
+            isPresented: $errorAlertPresented
+        ) {
+            Button("확인", role: .cancel) { }
+        }
         .environmentObject(lottoData)
         .environmentObject(pensionData)
         .environmentObject(viewModel)
@@ -52,6 +59,7 @@ struct ContentView: View {
             if let resultMessage = result {
                 errorTitle = "로또 오류"
                 errorMessage = resultMessage
+                errorAlertPresented = true
                 viewModel.isLoading = false
                 return
             }
@@ -60,6 +68,7 @@ struct ContentView: View {
             if let resultMessage = result {
                 errorTitle = "연금복권 오류"
                 errorMessage = resultMessage
+                errorAlertPresented = true
                 viewModel.isLoading = false
                 return
             }

@@ -13,10 +13,8 @@ struct LoadingView: View {
     
     var body: some View {
         ZStack {
-            Color(uiColor: .systemBackground)
-            
-            BackgroundView()
-                .opacity(0.5)
+            Color.customPink
+                .opacity(0.4)
             
             VStack {
                 HStack {
@@ -32,7 +30,8 @@ struct LoadingView: View {
                         .offset(y: index == 4 ? -30 : 0)
                 }
                 
-                Text("데이터를 가져오는 중입니다")
+                Text("최신 복권 정보를\n가져오는 중입니다")
+                    .multilineTextAlignment(.center)
             }
             .padding()
             .padding(.top, 50)

@@ -27,8 +27,8 @@
                                     <constraint firstAttribute="width" constant="120" id="m1r-Vh-VhD"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="행운의 젤리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXI-7b-SDJ">
-                                <rect key="frame" x="159" y="471" width="94" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 행운 젤리" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXI-7b-SDJ">
+                                <rect key="frame" x="0.0" y="471" width="393" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="MVT-Uj-50c"/>
                                 </constraints>
@@ -40,10 +40,11 @@
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" name="BackgroundGray"/>
                         <constraints>
-                            <constraint firstItem="FXI-7b-SDJ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="159" id="P5f-nF-p3v"/>
-                            <constraint firstItem="cmN-Nw-fSO" firstAttribute="centerX" secondItem="FXI-7b-SDJ" secondAttribute="centerX" constant="-10" id="Thf-pS-Ah2"/>
+                            <constraint firstItem="FXI-7b-SDJ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="P5f-nF-p3v"/>
+                            <constraint firstItem="cmN-Nw-fSO" firstAttribute="centerX" secondItem="FXI-7b-SDJ" secondAttribute="centerX" constant="-0.5" id="Thf-pS-Ah2"/>
                             <constraint firstItem="cmN-Nw-fSO" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="273" id="dLu-gM-zfM"/>
                             <constraint firstItem="FXI-7b-SDJ" firstAttribute="top" secondItem="cmN-Nw-fSO" secondAttribute="bottom" constant="8" id="sFR-jh-ki0"/>
+                            <constraint firstItem="FXI-7b-SDJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uh0-jC-Ht3"/>
                             <constraint firstItem="cmN-Nw-fSO" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="136" id="wNM-nH-YYp"/>
                         </constraints>
                     </view>

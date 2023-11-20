@@ -18,7 +18,7 @@ struct PensionTicket: View {
     var body: some View {
         ZStack {
             Color.customGray
-                .opacity(0.7)
+                .opacity(0.3)
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 0) {
@@ -88,7 +88,7 @@ struct PensionTicket: View {
             }
             .padding(25)
             .background {
-                RoundedRectangle(cornerRadius: 5)
+                RoundedRectangle(cornerRadius: 10)
                     .fill(.background)
             }
             .frame(maxWidth: 400)
@@ -104,5 +104,6 @@ struct PensionTicket: View {
 struct PensionTicket_Previews: PreviewProvider {
     static var previews: some View {
         PensionTicket(show: .constant(true))
+            .environmentObject(PensionData())
     }
 }

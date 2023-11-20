@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct PensionDrawLotView: View {
+    @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var data: PensionData
     @State private var pensionGroup: PensionGroup = .allGroup
     @State private var showNumberBoard: Bool = false
     @State private var isRunning: Bool = false
-
+    private var noData: Bool {
+        data.numberGroupForAll.contains(-1) && data.numberGroupsForEach[0].contains(-1)
+    }
+    
     var body: some View {
         VStack {
             // MARK: - '모든 조' 또는 '조 선택'
@@ -45,11 +49,27 @@ struct PensionDrawLotView: View {
         .navigationTitle("연금720번호 추첨")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem {
-                RefreshButton(action: data.reset)
-            }
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    if data.isSaved {
+                        data.deletePensionResult(nil, context: moc)
+                    } else {
+                        data.savePensionResult(moc)
+                    }
+                } label: {
+                    Image(data.isSaved ? "heart_fill" : "heart")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .shadow(color: .customRed, radius: data.isSaved ? 5 : 0)
+                        .opacity(noData || isRunning ? 0.7 : 1)
+                }
+                .disabled(noData || isRunning)
             
-            ToolbarItem {
+                RefreshButton(action: data.reset)
+                    .opacity(noData || isRunning ? 0.7 : 1)
+                    .disabled(noData || isRunning)
+            
                 Button {
                     showNumberBoard.toggle()
                 } label: {

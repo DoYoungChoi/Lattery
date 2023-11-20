@@ -59,8 +59,10 @@ struct DrawLotButton: View {
             
             PawButton(paw: paw)
                 .opacity(isRunning ? 0.5 : 1)
+                .scaleEffect(isRunning ? 0.95 : 1)
                 .simultaneousGesture(longPressGesture)
                 .disabled(isRunning)
+                .animation(.easeOut(duration: 0.1), value: isRunning)
         }
         .aspectRatio(CGSize(width: 1, height: 1.1), contentMode: .fit)
         .onDisappear {

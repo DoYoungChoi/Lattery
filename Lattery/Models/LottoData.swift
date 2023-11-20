@@ -16,6 +16,10 @@ class LottoData: ObservableObject {
     @Published var favorites = [Set<Int16>]()
     @Published var isEnded: Bool = false
     @Published var numberCombination = Set<Int16>()
+    @Published var savedLotto: LottoResult? = nil
+    var isSaved: Bool {
+        savedLotto != nil
+    }
     
     // MARK: - 초기함수, 리셋
     init() {
@@ -28,6 +32,7 @@ class LottoData: ObservableObject {
             self.numberGroups[group] = Array(repeating: 0, count: 6)
             selectedGroup = nil
             selectedNumbers = [LottoGroup: Set<Int16>]()
+            savedLotto = nil
         }
         numberCombination = Set<Int16>()
     }
@@ -40,10 +45,12 @@ class LottoData: ObservableObject {
                 self.numberGroups[group] = Array(repeating: 0, count: 6)
             }
         }
+        savedLotto = nil
     }
     
     // MARK: - 번호 추첨
     func drawLot() {
+        savedLotto = nil
         for group in LottoGroup.allCases {
             var numbers: [Int16] = Array(selectedNumbers[group] ?? [])
             while numbers.count < 6 {
@@ -273,11 +280,19 @@ class LottoData: ObservableObject {
         result.dGroup = numberGroups[LottoGroup.d]?.map { String($0) }.joined(separator: ",")
         result.eGroup = numberGroups[LottoGroup.e]?.map { String($0) }.joined(separator: ",")
         
+        savedLotto = result
         PersistenceController.shared.save()
     }
     
-    func deleteLottoResult(_ lotto: LottoResult, context: NSManagedObjectContext) {
-        context.delete(lotto)
+    func deleteLottoResult(_ lotto: LottoResult?, context: NSManagedObjectContext) {
+        if let lotto = lotto {
+            context.delete(lotto)
+        } else {
+            if let savedLotto = savedLotto {
+                context.delete(savedLotto)
+            }
+            savedLotto = nil
+        }
         PersistenceController.shared.save()
     }
 }
