@@ -70,34 +70,41 @@ struct PensionCombinationView: View {
                 }
             }
             
-            Button {
-                showNumberBoard.toggle()
-            } label: {
-                PensionBallRow(group: data.numberCombination)
-            }
-            
-            List {
-                HStack {
-                    Rectangle()
-                        .frame(width: 5)
-                        .foregroundColor(.backgroundGray)
-                    
-                    Toggle("회차 오름차순", isOn: $ascending)
-                        .tint(.customPink)
+            if pensions.count > 0 {
+                Button {
+                    showNumberBoard.toggle()
+                } label: {
+                    PensionBallRow(group: data.numberCombination)
                 }
                 
-                ForEach(filteredPensions) { pension in
-                    NavigationLink {
-                        PensionResultDetail(pension: pension)
-                    } label: {
-                        PensionCombinationRow(pension: pension,
-                                              selected: data.numberCombination,
-                                              includeBonus: includeBonus)
+                List {
+                    HStack {
+                        Rectangle()
+                            .frame(width: 5)
+                            .foregroundColor(.backgroundGray)
+                        
+                        Toggle("회차 오름차순", isOn: $ascending)
+                            .tint(.customPink)
+                    }
+                    
+                    ForEach(filteredPensions) { pension in
+                        NavigationLink {
+                            PensionResultDetail(pension: pension)
+                        } label: {
+                            PensionCombinationRow(pension: pension,
+                                                  selected: data.numberCombination,
+                                                  includeBonus: includeBonus)
+                        }
                     }
                 }
+                .padding(.leading, -15)
+                .listStyle(.inset)
+            } else {
+                Text("연금복권 데이터가 없습니다.\n새로고침 버튼을 눌러 데이터를 가져오세요.")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.customGray)
+                    .padding(.vertical)
             }
-            .padding(.leading, -15)
-            .listStyle(.inset)
         }
         .sheet(isPresented: $showNumberBoard) {
             if #available(iOS 16.0, *) {

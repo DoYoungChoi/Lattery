@@ -7,6 +7,8 @@
 
 import Foundation
 
+let initialOpenKey: String = "InitialOpen"
+
 // MARK: - LOTTO
 let lastestLottoKey: String = "Lotto"
 let favoritesLottoKey: String = "LottoFavorites"

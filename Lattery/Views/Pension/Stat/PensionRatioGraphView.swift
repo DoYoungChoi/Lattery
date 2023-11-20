@@ -91,31 +91,38 @@ struct PensionRatioGraphView: View {
                         .foregroundColor(.accentColor)
                 }
                 
-                if selection == .total {
-                    PieChart(data: totalData)
-                } else {
-                    VStack(alignment: .leading) {
-                        Text("1등 번호")
-                            .bold()
-                        HStack(alignment: .bottom) {
-                            ForEach(0...6, id:\.self) { nth in
-                                RatioBarGraph(data: sortedData(nth), axis: .vertical)
-                            }
-                        }
-                        
-                        if includeBonus {
-                            Text("보너스 번호")
+                if pensions.count > 0 {
+                    if selection == .total {
+                        PieChart(data: totalData)
+                    } else {
+                        VStack(alignment: .leading) {
+                            Text("1등 번호")
                                 .bold()
-                                .padding(.top, 10)
                             HStack(alignment: .bottom) {
                                 ForEach(0...6, id:\.self) { nth in
-                                    RatioBarGraph(data: sortedData(nth, forBonus: true), axis: .vertical)
-                                        .opacity(nth == 0 ? 0 : 1)
+                                    RatioBarGraph(data: sortedData(nth), axis: .vertical)
+                                }
+                            }
+                            
+                            if includeBonus {
+                                Text("보너스 번호")
+                                    .bold()
+                                    .padding(.top, 10)
+                                HStack(alignment: .bottom) {
+                                    ForEach(0...6, id:\.self) { nth in
+                                        RatioBarGraph(data: sortedData(nth, forBonus: true), axis: .vertical)
+                                            .opacity(nth == 0 ? 0 : 1)
+                                    }
                                 }
                             }
                         }
+                        .font(.system(size: 13))
                     }
-                    .font(.system(size: 13))
+                } else {
+                    Text("연금복권 데이터가 없습니다.\n새로고침 버튼을 눌러 데이터를 가져오세요.")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.customGray)
+                        .padding(.vertical)
                 }
             }
         }

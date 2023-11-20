@@ -14,28 +14,35 @@ struct PensionResultList: View {
     @State private var ascending: Bool = false // descending
     
     var body: some View {
-        List {
-            HStack {
-                Rectangle()
-                    .frame(width: 5)
-                    .foregroundColor(.backgroundGray)
+        if pensions.count > 0 {
+            List {
+                HStack {
+                    Rectangle()
+                        .frame(width: 5)
+                        .foregroundColor(.backgroundGray)
+                    
+                    Toggle("회차 오름차순", isOn: $ascending)
+                        .tint(.customPink)
+                }
                 
-                Toggle("회차 오름차순", isOn: $ascending)
-                    .tint(.customPink)
-            }
-            
-            ForEach(pensions) { pension in
-                NavigationLink {
-                    PensionResultDetail(pension: pension)
-                } label: {
-                    PensionResultRow(pension: pension)
+                ForEach(pensions) { pension in
+                    NavigationLink {
+                        PensionResultDetail(pension: pension)
+                    } label: {
+                        PensionResultRow(pension: pension)
+                    }
                 }
             }
-        }
-        .listStyle(.inset)
-        .onChange(of: ascending) { newValue in
-            let order: SortOrder = newValue ? .forward : .reverse
-            pensions.sortDescriptors = [SortDescriptor(\.round, order: order)]
+            .listStyle(.inset)
+            .onChange(of: ascending) { newValue in
+                let order: SortOrder = newValue ? .forward : .reverse
+                pensions.sortDescriptors = [SortDescriptor(\.round, order: order)]
+            }
+        } else {
+            Text("연금복권 데이터가 없습니다.\n새로고침 버튼을 눌러 데이터를 가져오세요.")
+                .multilineTextAlignment(.center)
+                .foregroundColor(.customGray)
+                .padding(.vertical)
         }
     }
 }

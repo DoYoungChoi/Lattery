@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoadingView: View {
+    var text: String
     @State private var index: Int = 0
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
@@ -30,11 +31,14 @@ struct LoadingView: View {
                         .offset(y: index == 4 ? -30 : 0)
                 }
                 
-                Text("최신 복권 정보를\n가져오는 중입니다")
+                Text(text)
                     .multilineTextAlignment(.center)
             }
             .padding()
             .padding(.top, 50)
+            .padding()
+            .background(Color.customPink)
+            .cornerRadius(20)
         }
         .ignoresSafeArea()
         .onReceive(timer) { _ in
@@ -57,6 +61,6 @@ struct LoadingView: View {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView()
+        LoadingView(text: "헤헤")
     }
 }

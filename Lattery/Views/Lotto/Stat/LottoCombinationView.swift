@@ -44,50 +44,57 @@ struct LottoCombinationView: View {
                 }
             }
             
-            Button {
-                showNumberBoard.toggle()
-            } label: {
-                HStack {
-                    if data.numberCombination.count < 1 {
-                        ForEach(0..<6, id:\.self) { _ in
-                            LottoBall(number: 0)
-                        }
-                    } else {
-                        ForEach(Array(data.numberCombination.sorted()), id:\.self) { number in
-                            LottoBall(number: number)
+            if lottos.count > 0 {
+                Button {
+                    showNumberBoard.toggle()
+                } label: {
+                    HStack {
+                        if data.numberCombination.count < 1 {
+                            ForEach(0..<6, id:\.self) { _ in
+                                LottoBall(number: 0)
+                            }
+                        } else {
+                            ForEach(Array(data.numberCombination.sorted()), id:\.self) { number in
+                                LottoBall(number: number)
+                            }
                         }
                     }
-                }
-                .padding(10)
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.backgroundGray)
-                }
-            }
-            
-            List {
-                HStack {
-                    Rectangle()
-                        .frame(width: 5)
-                        .foregroundColor(.backgroundGray)
-                    
-                    Toggle("회차 오름차순", isOn: $ascending)
-                        .tint(.customPink)
+                    .padding(10)
+                    .frame(maxWidth: .infinity)
+                    .background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.backgroundGray)
+                    }
                 }
                 
-                ForEach(filteredLottos) { lotto in
-                    NavigationLink {
-                        LottoResultDetail(lotto: lotto)
-                    } label: {
-                        LottoCombinationRow(lotto: lotto,
-                                           selected: data.numberCombination,
-                                           includeBonus: includeBonus)
+                List {
+                    HStack {
+                        Rectangle()
+                            .frame(width: 5)
+                            .foregroundColor(.backgroundGray)
+                        
+                        Toggle("회차 오름차순", isOn: $ascending)
+                            .tint(.customPink)
+                    }
+                    
+                    ForEach(filteredLottos) { lotto in
+                        NavigationLink {
+                            LottoResultDetail(lotto: lotto)
+                        } label: {
+                            LottoCombinationRow(lotto: lotto,
+                                                selected: data.numberCombination,
+                                                includeBonus: includeBonus)
+                        }
                     }
                 }
+                .padding(.leading, -15)
+                .listStyle(.inset)
+            } else {
+                Text("로또 데이터가 없습니다.\n새로고침 버튼을 눌러 데이터를 가져오세요.")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.customGray)
+                    .padding(.vertical)
             }
-            .padding(.leading, -15)
-            .listStyle(.inset)
         }
         .sheet(isPresented: $showNumberBoard) {
             LottoNumberBoard(forStat: true)

@@ -16,15 +16,15 @@ struct LottoNumberCheckRow: View {
     private var rank: String {
         let include: [Int16] = numbers.filter({ lottoWin.numbers.contains($0) })
         if include.count == 6 {
-            return "1등 당첨"
+            return "🥇1등🥇"
         } else if include.count == 5 && numbers.contains(lottoWin.bonus) {
-            return "2등 당첨"
+            return "🥈2등🥈"
         } else if include.count == 5 {
-            return "3등 당첨"
+            return "🥉3등🥉"
         } else if include.count == 4 {
-            return "4등 당첨"
+            return "4등"
         } else if include.count == 3 {
-            return "5등 당첨"
+            return "5등"
         } else {
             return "낙첨"
         }

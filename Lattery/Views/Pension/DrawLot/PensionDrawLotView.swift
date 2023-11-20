@@ -50,30 +50,32 @@ struct PensionDrawLotView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button {
-                    if data.isSaved {
-                        data.deletePensionResult(nil, context: moc)
-                    } else {
-                        data.savePensionResult(moc)
+                if noData {
+                    Button {
+                        showNumberBoard.toggle()
+                    } label: {
+                        Image("check_pencil")
                     }
-                } label: {
-                    Image(data.isSaved ? "heart_fill" : "heart")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                        .shadow(color: .customRed, radius: data.isSaved ? 5 : 0)
-                        .opacity(noData || isRunning ? 0.7 : 1)
-                }
-                .disabled(noData || isRunning)
-            
-                RefreshButton(action: data.reset)
-                    .opacity(noData || isRunning ? 0.7 : 1)
+                } else {
+                    Button {
+                        if data.isSaved {
+                            data.deletePensionResult(nil, context: moc)
+                        } else {
+                            data.savePensionResult(moc)
+                        }
+                    } label: {
+                        Image(data.isSaved ? "heart_fill" : "heart")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .shadow(color: .customRed, radius: data.isSaved ? 5 : 0)
+                            .opacity(noData || isRunning ? 0.7 : 1)
+                    }
                     .disabled(noData || isRunning)
-            
-                Button {
-                    showNumberBoard.toggle()
-                } label: {
-                    Image("check_pencil")
+                
+                    RefreshButton(action: data.reset)
+                        .opacity(noData || isRunning ? 0.7 : 1)
+                        .disabled(noData || isRunning)
                 }
             }
         }
@@ -89,6 +91,9 @@ struct PensionDrawLotView: View {
         .onAppear {
             pensionGroup = data.pensionGroup
             data.reset()
+        }
+        .onDisappear {
+            data.totallyReset()
         }
     }
     

@@ -13,9 +13,7 @@ struct ContentView: View {
     @StateObject private var pensionData = PensionData()
     @StateObject private var viewModel = GeneralViewModel()
     @StateObject private var notiManager = NotificationManager()
-    @State private var errorTitle: String = "에러 발생"
-    @State private var errorMessage: String? = nil
-    @State private var errorAlertPresented: Bool = false
+    @State private var initAlert: Bool = !UserDefaults.standard.bool(forKey: initialOpenKey)
     
     var body: some View {
         ZStack {
@@ -33,18 +31,30 @@ struct ContentView: View {
             }
             
             if viewModel.isLoading {
-                LoadingView()
+                LoadingView(text: viewModel.loadingText)
             }
         }
         .onAppear {
             notiManager.requestNotiAuthorization()
         }
-        .task { fetchData() }
         .alert(
-            errorMessage ?? errorTitle,
-            isPresented: $errorAlertPresented
+            "전체 복권정보를 받아오시겠습니까?\n(약 10초 소요)",
+            isPresented: $initAlert
         ) {
-            Button("확인", role: .cancel) { }
+            Button("취소") {
+                UserDefaults.standard.set(true, forKey: initialOpenKey)
+            }
+            
+            Button {
+                fetchData()
+                UserDefaults.standard.set(true, forKey: initialOpenKey)
+            } label: {
+                Text("가져오기")
+                    .foregroundColor(.customPink)
+            }
+            .buttonStyle(.plain)
+        } message: {
+            Text("지금 받지 않아도 설정 또는 당첨 정보를 확인하는 페이지에서 데이터를 받아올 수 있습니다.")
         }
         .environmentObject(lottoData)
         .environmentObject(pensionData)
@@ -53,27 +63,34 @@ struct ContentView: View {
     }
     
     private func fetchData() {
+        // 맨 처음 앱을 실행했을 때 전체 데이터를 다운로드 받을건지 물어보기 위한 용도
         viewModel.isLoading = true
+        var lottoFetch = false
+        var pensionFetch = false
         Task {
             var result = await lottoData.getLastestData(context: moc)
             if let resultMessage = result {
-                errorTitle = "로또 오류"
-                errorMessage = resultMessage
-                errorAlertPresented = true
+                viewModel.errorMessage = resultMessage
+                viewModel.errorAlertPresented = true
                 viewModel.isLoading = false
                 return
             }
+            lottoFetch = true
             
-            result = await pensionData.getLastestData(context: moc)
+            viewModel.isLoading = !(lottoFetch && pensionFetch)
+        }
+        
+        Task {
+            var result = await pensionData.getLastestData(context: moc)
             if let resultMessage = result {
-                errorTitle = "연금복권 오류"
-                errorMessage = resultMessage
-                errorAlertPresented = true
+                viewModel.errorMessage = resultMessage
+                viewModel.errorAlertPresented = true
                 viewModel.isLoading = false
                 return
             }
+            pensionFetch = true
             
-            viewModel.isLoading = false
+            viewModel.isLoading = !(lottoFetch && pensionFetch)
         }
     }
 }

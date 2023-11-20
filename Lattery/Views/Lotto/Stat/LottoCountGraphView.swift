@@ -50,8 +50,15 @@ struct LottoCountGraphView: View {
                 }
             }
             
-            BarGraph(data: statMode == .ordered ? data : sortedData,
-                     axis: .horizontal)
+            if lottos.count > 0 {
+                BarGraph(data: statMode == .ordered ? data : sortedData,
+                         axis: .horizontal)
+            } else {
+                Text("로또 데이터가 없습니다.\n새로고침 버튼을 눌러 데이터를 가져오세요.")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.customGray)
+                    .padding(.vertical)
+            }
         }
         .onAppear(perform: setData)
         .onChange(of: includeBonus) { _ in

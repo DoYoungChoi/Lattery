@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PensionResultCheckView: View {
+    @EnvironmentObject var viewModel: GeneralViewModel
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.round, order: .reverse)
     ]) var pensions: FetchedResults<PensionEntity>
@@ -111,12 +112,12 @@ struct PensionResultCheckView: View {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .foregroundColor(.customYellow)
                             .imageScale(.large)
-                        Text("ERROR")
+                        Text("연금복권 회차를 선택하세요")
                             .font(.title2)
                     }
                     .padding(.top, 5)
                     
-                    Text("당첨결과 확인할 연금복권 회차를 선택하세요.\n당첨 데이터가 없거나 최신 데이터에 문제가 있는 경우 'My메뉴'>'설정'으로 이동하여 네트워크 상에서 '연금복권 데이터 가져오기'를 실행하거나 앱을 껐다 다시 실행하세요.\n그 외 문제 발생 시 개발자에게 문의하세요.")
+                    Text("데이터가 없는 경우 새로고침 버튼으로 데이터를 가져오거나, 'My메뉴'>'설정'으로 이동하여 네트워크 상에서 '연금복권 데이터 가져오기'를 실행하세요.\n그 외 문제 발생 시 개발자에게 문의하세요.")
                         .lineSpacing(8)
                         .font(.callout)
                         .padding(5)
@@ -163,6 +164,11 @@ struct PensionResultCheckView: View {
         .onAppear {
             selectedPension = pensions.first ?? nil
             selectedSave = saves.first ?? nil
+        }
+        .onChange(of: viewModel.isLoading) { value in
+            if value == false {
+                selectedPension = pensions.first ?? nil
+            }
         }
     }
 }

@@ -88,23 +88,34 @@ struct LottoRatioGraphView: View {
                         .foregroundColor(.accentColor)
                 }
                 
-                if selection == .total {
-                    PieChart(data: totalData)
-                } else {
-                    VStack {
-                        RatioBarGraph(data: sortedData(1), axis: .horizontal, titleSpace: 40)
-                        RatioBarGraph(data: sortedData(2), axis: .horizontal, titleSpace: 40)
-                        RatioBarGraph(data: sortedData(3), axis: .horizontal, titleSpace: 40)
-                        RatioBarGraph(data: sortedData(4), axis: .horizontal, titleSpace: 40)
-                        RatioBarGraph(data: sortedData(5), axis: .horizontal, titleSpace: 40)
-                        RatioBarGraph(data: sortedData(6), axis: .horizontal, titleSpace: 40)
-                        if includeBonus {
-                            Image(systemName: "plus")
-                                .padding(.leading, 30)
-                            RatioBarGraph(data: sortedData(7), axis: .horizontal, titleSpace: 40)
+                if lottos.count > 0 {
+                    if selection == .total {
+                        PieChart(data: totalData)
+                    } else {
+                        VStack {
+                            RatioBarGraph(data: sortedData(1), axis: .horizontal, titleSpace: 40)
+                            RatioBarGraph(data: sortedData(2), axis: .horizontal, titleSpace: 40)
+                            RatioBarGraph(data: sortedData(3), axis: .horizontal, titleSpace: 40)
+                            RatioBarGraph(data: sortedData(4), axis: .horizontal, titleSpace: 40)
+                            RatioBarGraph(data: sortedData(5), axis: .horizontal, titleSpace: 40)
+                            RatioBarGraph(data: sortedData(6), axis: .horizontal, titleSpace: 40)
+                            if includeBonus {
+                                Image(systemName: "plus")
+                                    .padding(.leading, 30)
+                                RatioBarGraph(data: sortedData(7), axis: .horizontal, titleSpace: 40)
+                            }
                         }
+                        .font(.system(size: 15))
                     }
-                    .font(.system(size: 15))
+                } else {
+                    HStack {
+                        Spacer()
+                        Text("로또 데이터가 없습니다.\n새로고침 버튼을 눌러 데이터를 가져오세요.")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.customGray)
+                            .padding(.vertical)
+                        Spacer()
+                    }
                 }
             }
         }

@@ -62,6 +62,9 @@ struct LottoDrawLotView: View {
             LottoNumberBoard()
         }
         .onAppear(perform: data.reset)
+        .onDisappear {
+            data.totallyReset()
+        }
     }
 }
 

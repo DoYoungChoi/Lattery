@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct LottoResultCheckView: View {
+    @EnvironmentObject var viewModel: GeneralViewModel
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.round, order: .reverse)
     ]) var lottos: FetchedResults<LottoEntity>
@@ -23,7 +24,7 @@ struct LottoResultCheckView: View {
             // MARK: - 로또 발표 시간 안내
             HStack {
                 Image(systemName: "speaker.wave.2")
-                Text("매주 토요일 오후 8시 30분경 발표")
+                Text("매주 토요일 오후 8시 35분경 발표")
                 Spacer()
             }
             .foregroundColor(.customGray)
@@ -104,12 +105,12 @@ struct LottoResultCheckView: View {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .foregroundColor(.customYellow)
                             .imageScale(.large)
-                        Text("ERROR")
+                        Text("로또 회차를 선택하세요")
                             .font(.title2)
                     }
                     .padding(.top, 5)
                     
-                    Text("당첨결과 확인할 로또 회차를 선택하세요.\n당첨 데이터가 없거나 최신 데이터에 문제가 있는 경우 'My메뉴'>'설정'으로 이동하여 네트워크 상에서 '로또 데이터 가져오기'를 실행하거나 앱을 껐다 다시 실행하세요.\n그 외 문제 발생 시 개발자에게 문의하세요.")
+                    Text("데이터가 없는 경우 새로고침 버튼으로 데이터를 가져오거나, 'My메뉴'>'설정'으로 이동하여 네트워크 상에서 '로또 데이터 가져오기'를 실행하세요.\n그 외 문제 발생 시 개발자에게 문의하세요.")
                         .lineSpacing(8)
                         .font(.callout)
                         .padding(5)
@@ -156,6 +157,11 @@ struct LottoResultCheckView: View {
         .onAppear {
             selectedLotto = lottos.first ?? nil
             selectedSave = saves.first ?? nil
+        }
+        .onChange(of: viewModel.isLoading) { value in
+            if value == false {
+                selectedLotto = lottos.first ?? nil
+            }
         }
     }
 }

@@ -11,6 +11,21 @@ struct PensionNumberCheckRow: View {
     var numberString: String
     var winNumbers: String
     var bonusNumbers: String
+    private var rankText: String {
+        if rank == 1 {
+            return "🥇1등🥇"
+        } else if rank == 2 {
+            return "🥈2등🥈"
+        } else if rank == 3 {
+            return "🥉3등🥉"
+        } else if rank == 8 {
+            return "🏅보너스🏅"
+        } else if rank < 8 {
+            return "\(rank)등"
+        } else {
+            return "낙첨"
+        }
+    }
     private var rank: Int {
         guard winNumbers.count == 7 && bonusNumbers.count == 6 && numberString.count == 7 else { return 9 }
         
@@ -48,23 +63,27 @@ struct PensionNumberCheckRow: View {
     }
     
     var body: some View {
-        HStack {
-            Spacer()
-            Text(rank < 8 ? "\(rank)등 당첨" : rank == 8 ? "보너스 당첨" : "낙첨")
+        VStack(alignment: .leading, spacing: 0) {
+            Text(rankText)
                 .bold()
-                .multilineTextAlignment(.center)
-            Spacer()
-            ForEach(Array(numberString.enumerated()), id:\.offset) { (index, char) in
-                PensionBall(number: Int16(String(char)),
-                            unit: index,
-                            isSelected: index+1 >= rank)
-                
-                if index == 0 {
-                    Text("조")
+                .lineLimit(1)
+                .font(.headline)
+                .padding(.leading)
+            
+            HStack {
+                Spacer()
+                ForEach(Array(numberString.enumerated()), id:\.offset) { (index, char) in
+                    PensionBall(number: Int16(String(char)),
+                                unit: index,
+                                isSelected: index+1 >= rank)
+                    
+                    if index == 0 {
+                        Text("조")
+                    }
                 }
             }
+            .padding(.trailing, 1)
         }
-        .padding(.trailing, 1)
     }
 }
 
