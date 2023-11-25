@@ -13,10 +13,18 @@ let initialOpenKey: String = "InitialOpen"
 let lastestLottoKey: String = "Lotto"
 let favoritesLottoKey: String = "LottoFavorites"
 let lottoNotiKey: String = "LottoNoti"
+let lottoOnAirNotiKey: String = "LottoOnAirNoti"
+let lottoBuyNotiKey: String = "LottoBuyNoti"
+let lottoBuyTimeKey: String = "LottoBuyTime"
+let lottoBuyDaysKey: String = "LottoBuyDays"
 
 // MARK: - Pension720
 let lastestPensionKey: String = "Pension"
 let pensionNotiKey: String = "PensionNoti"
+let pensionOnAirNotiKey: String = "PensionOnAirNoti"
+let pensionBuyNotiKey: String = "PensionBuyNoti"
+let pensionBuyTimeKey: String = "PensionBuyTime"
+let pensionBuyDaysKey: String = "PensionBuyDays"
 
 // MARK: - Structure
 struct Lastest: Identifiable, Codable {

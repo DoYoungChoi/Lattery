@@ -35,7 +35,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            notiManager.requestNotiAuthorization()
+            if initAlert { notiManager.initiateNotiAuthorization() }
         }
         .alert(
             "전체 복권정보를 받아오시겠습니까?\n(약 10초 소요)",
@@ -45,14 +45,10 @@ struct ContentView: View {
                 UserDefaults.standard.set(true, forKey: initialOpenKey)
             }
             
-            Button {
+            Button("가져오기") {
                 fetchData()
                 UserDefaults.standard.set(true, forKey: initialOpenKey)
-            } label: {
-                Text("가져오기")
-                    .foregroundColor(.customPink)
             }
-            .buttonStyle(.plain)
         } message: {
             Text("지금 받지 않아도 설정 또는 당첨 정보를 확인하는 페이지에서 데이터를 받아올 수 있습니다.")
         }

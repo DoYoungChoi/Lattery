@@ -60,6 +60,7 @@
 		D8D659202A5BAEFD003F2516 /* LottoCountGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D6591F2A5BAEFD003F2516 /* LottoCountGraphView.swift */; };
 		D8D659222A5BB42C003F2516 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659212A5BB42C003F2516 /* PersistenceController.swift */; };
 		D8D659282A5BCB2E003F2516 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8D659262A5BCB2E003F2516 /* DataModel.xcdatamodeld */; };
+		D8F7933B2B0DCA9A00FB1D0E /* BuyDaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7933A2B0DCA9A00FB1D0E /* BuyDaySheet.swift */; };
 		D8F87BD42A5DB7A700940E3B /* LottoRatioGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD32A5DB7A700940E3B /* LottoRatioGraphView.swift */; };
 		D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */; };
 		D8F87BD82A5E95DF00940E3B /* LottoBallRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */; };
@@ -140,6 +141,7 @@
 		D8D6591F2A5BAEFD003F2516 /* LottoCountGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoCountGraphView.swift; sourceTree = "<group>"; };
 		D8D659212A5BB42C003F2516 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		D8D659272A5BCB2E003F2516 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		D8F7933A2B0DCA9A00FB1D0E /* BuyDaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyDaySheet.swift; sourceTree = "<group>"; };
 		D8F87BD32A5DB7A700940E3B /* LottoRatioGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoRatioGraphView.swift; sourceTree = "<group>"; };
 		D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioBarGraph.swift; sourceTree = "<group>"; };
 		D8F87BD72A5E95DF00940E3B /* LottoBallRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoBallRow.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				D8C4EE7E2A5545ED0092BCA6 /* SettingView.swift */,
+				D8F7933A2B0DCA9A00FB1D0E /* BuyDaySheet.swift */,
 				D8FDC8D72A860DCC00238C38 /* SavedLottoNumberView.swift */,
 				D8FDC8D92A860DFD00238C38 /* LottoFavoritesView.swift */,
 				D8FDC8DD2A860E3800238C38 /* SavedPensionNumberView.swift */,
@@ -493,6 +496,7 @@
 				D87A8E4E2A80C487002BA412 /* LottoCombinationRow.swift in Sources */,
 				D87A8E462A7FAB03002BA412 /* InfoPagePicker.swift in Sources */,
 				D87CA2162A76489B0008FA9C /* LottoTicketRow.swift in Sources */,
+				D8F7933B2B0DCA9A00FB1D0E /* BuyDaySheet.swift in Sources */,
 				D87CA2382A7BD6A80008FA9C /* PensionResultRow.swift in Sources */,
 				D87CA2242A791F7A0008FA9C /* MenuView.swift in Sources */,
 				D8F87BE42A62769C00940E3B /* PensionData.swift in Sources */,

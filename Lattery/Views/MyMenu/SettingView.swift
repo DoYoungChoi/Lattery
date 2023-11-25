@@ -13,13 +13,116 @@ struct SettingView: View {
     @EnvironmentObject var pensionData: PensionData
     @EnvironmentObject var viewModel: GeneralViewModel
     @EnvironmentObject var notiManager: NotificationManager
+    @State private var targetNoti: NotificationManager.Noti? = nil
+    private let weekdays: [String] = ["일", "월", "화", "수", "목", "금", "토"]
+    private var lottoBuyDays: String {
+        notiManager.lottoBuyDay.sorted().map({ weekdays[$0-1] }).joined(separator: " / ")
+    }
+    private var pensionBuyDays: String {
+        notiManager.pensionBuyDay.sorted().map({ weekdays[$0-1] }).joined(separator: " / ")
+    }
     
     var body: some View {
         List {
             // MARK: - 알림
             Section(header: Text("알림")) {
-                Toggle("로또방송 알림 받기", isOn: $notiManager.lottoNotiOn)
-                Toggle("연금복권방송 알림 받기", isOn: $notiManager.pensionNotiOn)
+                HStack {
+                    Text("로또 알림 받기")
+                    Spacer()
+                    if !notiManager.lottoNotiOn {
+                        Toggle("", isOn: $notiManager.lottoNotiOn.animation())
+                    }
+                }
+                if notiManager.lottoNotiOn {
+                    VStack(spacing: 4) {
+                        Toggle(isOn: $notiManager.lottoOnAirNotiOn) {
+                            Text("▶︎ 방송 시작 알림")
+                                .padding(.leading, 10)
+                        }
+                        if notiManager.lottoOnAirNotiOn {
+                            HStack {
+                                Text("매주 토")
+                                Spacer()
+                                Text("오후 8시 35분")
+                            }
+                            .foregroundColor(.accentColor)
+                            .padding(.leading, 26)
+                        }
+                    }
+                    .font(.subheadline)
+                    
+                    VStack(spacing: 4) {
+                        Toggle(isOn: $notiManager.lottoBuyNotiOn) {
+                            Text("▶︎ 구매 알림")
+                                .padding(.leading, 10)
+                        }
+                        if notiManager.lottoBuyNotiOn {
+                            Button {
+                                notiManager.targetNoti = .lottoBuy
+                                notiManager.showBuyDaySheet = true
+                            } label: {
+                                HStack {
+                                    Text("매주 \(lottoBuyDays)")
+                                        .bold()
+                                        .padding(.leading, 28)
+                                    Spacer()
+                                    Text(notiManager.lottoBuyTime.toTimeKor)
+                                        .bold()
+                                }
+                            }
+                        }
+                    }
+                    .font(.subheadline)
+                }
+                
+                HStack {
+                    Text("연금복권 알림 받기")
+                    Spacer()
+                    if !notiManager.pensionNotiOn {
+                        Toggle("", isOn: $notiManager.pensionNotiOn.animation())
+                    }
+                }
+                if notiManager.pensionNotiOn {
+                    VStack(spacing: 4) {
+                        Toggle(isOn: $notiManager.pensionOnAirNotiOn) {
+                            Text("▶︎ 방송 시작 알림")
+                                .padding(.leading, 10)
+                        }
+                        if notiManager.pensionOnAirNotiOn {
+                            HStack {
+                                Text("매주 목")
+                                Spacer()
+                                Text("오후 7시 5분")
+                            }
+                            .foregroundColor(.accentColor)
+                            .padding(.leading, 26)
+                        }
+                    }
+                    .font(.subheadline)
+                    
+                    VStack(spacing: 4) {
+                        Toggle(isOn: $notiManager.pensionBuyNotiOn) {
+                            Text("▶︎ 구매 알림")
+                                .padding(.leading, 10)
+                        }
+                        if notiManager.pensionBuyNotiOn {
+                            Button {
+                                notiManager.targetNoti = .pensionBuy
+                                notiManager.showBuyDaySheet = true
+                            } label: {
+                                HStack {
+                                    Text("매주 \(pensionBuyDays)")
+                                        .bold()
+                                        .padding(.leading, 28)
+                                    Spacer()
+                                    Text(notiManager.pensionBuyTime.toTimeKor)
+                                        .bold()
+                                }
+                            }
+                        }
+                    }
+                    .font(.subheadline)
+                }
             }
             .tint(.customPink)
             
@@ -47,10 +150,31 @@ struct SettingView: View {
             }
         }
         .onAppear {
-            notiManager.requestNotiAuthorization()
+            notiManager.checkAuthorization()
         }
         .navigationTitle("설정")
         .navigationBarTitleDisplayMode(.large)
+        .sheet(isPresented: $notiManager.showBuyDaySheet) {
+            BuyDaySheet()
+                .environmentObject(notiManager)
+        }
+        .alert(
+            "설정 앱에서 알림을 허용하시기 바랍니다.",
+            isPresented: $notiManager.showAlert
+        ) {
+            Button("확인") { notiManager.showAlert = false }
+            Button("설정으로 이동") {
+                notiManager.showAlert = false
+                guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        } message: {
+            Text("설정 앱에서 알림을 끈 경우 앱에서 알림을 받기 위한 설정을 하여도 알림을 받을 수 없습니다. 설정으로 이동하여 알림을 켜주세요.")
+                .foregroundColor(.customDarkGray)
+        }
     }
     
     private func fetchLottoData() {
@@ -75,5 +199,9 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+            .environmentObject(LottoData())
+            .environmentObject(PensionData())
+            .environmentObject(GeneralViewModel())
+            .environmentObject(NotificationManager())
     }
 }
