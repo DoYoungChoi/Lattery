@@ -158,7 +158,7 @@ class NotificationManager: ObservableObject {
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: "\(Noti.lottoBuy.rawValue)_\(buyDay)", content: content, trigger: trigger)
             notiCenter.add(request)
-            print("add: \(Noti.lottoBuy.rawValue)_\(buyDay)")
+//            print("add: \(Noti.lottoBuy.rawValue)_\(buyDay)")
         }
     }
     
@@ -185,7 +185,7 @@ class NotificationManager: ObservableObject {
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: "\(Noti.pensionBuy.rawValue)_\(buyDay)", content: content, trigger: trigger)
             notiCenter.add(request)
-            print("add: \(Noti.pensionBuy.rawValue)_\(buyDay)")
+//            print("add: \(Noti.pensionBuy.rawValue)_\(buyDay)")
         }
     }
     
@@ -210,7 +210,7 @@ class NotificationManager: ObservableObject {
         let notis = Array(1...7).map { "\(Noti.lottoBuy.rawValue)_\($0)" }
         notiCenter.removeDeliveredNotifications(withIdentifiers: notis)
         notiCenter.removePendingNotificationRequests(withIdentifiers: notis)
-        print("remove: \(notis)")
+//        print("remove: \(notis)")
     }
     
     func removePensionNoti() {
@@ -227,7 +227,7 @@ class NotificationManager: ObservableObject {
         let notis = Array(1...7).map { "\(Noti.pensionBuy.rawValue)_\($0)" }
         notiCenter.removeDeliveredNotifications(withIdentifiers: notis)
         notiCenter.removePendingNotificationRequests(withIdentifiers: notis)
-        print("remove: \(notis)")
+//        print("remove: \(notis)")
     }
     
     // MARK: - 구매 알림 노티 변경
