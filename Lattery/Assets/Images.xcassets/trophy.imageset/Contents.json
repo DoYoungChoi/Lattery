@@ -3,16 +3,6 @@
     {
       "filename" : "trophy.svg",
       "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "trophy_dark.svg",
-      "idiom" : "universal"
     }
   ],
   "info" : {

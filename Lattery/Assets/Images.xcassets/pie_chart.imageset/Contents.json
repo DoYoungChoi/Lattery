@@ -3,16 +3,6 @@
     {
       "filename" : "pie_chart.svg",
       "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "pie_chart_dark.svg",
-      "idiom" : "universal"
     }
   ],
   "info" : {

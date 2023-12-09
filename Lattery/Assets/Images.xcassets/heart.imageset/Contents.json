@@ -3,16 +3,6 @@
     {
       "filename" : "heart.svg",
       "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "heart_dark.svg",
-      "idiom" : "universal"
     }
   ],
   "info" : {

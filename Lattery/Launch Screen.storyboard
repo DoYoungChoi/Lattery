@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,50 +16,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paw_pink" translatesAutoresizingMaskIntoConstraints="NO" id="cmN-Nw-fSO">
-                                <rect key="frame" x="136" y="332" width="120" height="131"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cmN-Nw-fSO" secondAttribute="height" multiplier="120:131" id="1as-pJ-d6E"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="NJe-T7-UBH"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="OFZ-ex-rBk"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="QsV-m0-Tpj"/>
-                                    <constraint firstAttribute="width" constant="120" id="m1r-Vh-VhD"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="Y7H-bY-6gJ">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 행운 젤리" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXI-7b-SDJ">
-                                <rect key="frame" x="0.0" y="471" width="393" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="MVT-Uj-50c"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                <color key="textColor" name="Pink"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" name="BackgroundGray"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FXI-7b-SDJ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="P5f-nF-p3v"/>
-                            <constraint firstItem="cmN-Nw-fSO" firstAttribute="centerX" secondItem="FXI-7b-SDJ" secondAttribute="centerX" constant="-0.5" id="Thf-pS-Ah2"/>
-                            <constraint firstItem="cmN-Nw-fSO" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="273" id="dLu-gM-zfM"/>
-                            <constraint firstItem="FXI-7b-SDJ" firstAttribute="top" secondItem="cmN-Nw-fSO" secondAttribute="bottom" constant="8" id="sFR-jh-ki0"/>
-                            <constraint firstItem="FXI-7b-SDJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uh0-jC-Ht3"/>
-                            <constraint firstItem="cmN-Nw-fSO" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="136" id="wNM-nH-YYp"/>
+                            <constraint firstAttribute="bottom" secondItem="Y7H-bY-6gJ" secondAttribute="bottom" id="IVE-EX-lh3"/>
+                            <constraint firstItem="Y7H-bY-6gJ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="Inr-Dy-3q1"/>
+                            <constraint firstItem="Y7H-bY-6gJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="b2s-FB-tVT"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="Y7H-bY-6gJ" secondAttribute="trailing" id="en2-4w-c7t"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+            <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
     <resources>
-        <image name="paw_pink" width="341" height="321"/>
-        <namedColor name="BackgroundGray">
-            <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Pink">
-            <color red="1" green="0.71372549019607845" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="launch_screen" width="393" height="852"/>
     </resources>
 </document>

@@ -3,16 +3,6 @@
     {
       "filename" : "bar_chart.svg",
       "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "bar_chart_dark.svg",
-      "idiom" : "universal"
     }
   ],
   "info" : {
