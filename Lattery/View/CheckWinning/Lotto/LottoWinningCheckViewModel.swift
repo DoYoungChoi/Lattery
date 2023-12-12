@@ -12,24 +12,29 @@ class LottoWinningCheckViewModel: ObservableObject {
     @Published var selectedLotto: LottoEntity?
     @Published var selectedResult: LottoDrawingLotResult?
 
-    var lottos: [LottoEntity] = []
-    var drawingLotResults: [LottoDrawingLotResult] = []
+    @Published var lottos: [LottoEntity] = []
+    @Published var drawingLotResults: [LottoDrawingLotResult] = []
     
     var winningNumbers: [Int] {
         selectedLotto?.numbers ?? []
     }
     var bonus: Int { Int(selectedLotto?.bonus ?? 0) }
     var resultNumbers: [LottoNumbers] {
-        if let selected = self.selectedResult {
-            return [selected.data[.a],
-                    selected.data[.b],
-                    selected.data[.c],
-                    selected.data[.d],
-                    selected.data[.e]]
-                .filter { $0 != nil }
-                .map { $0! }
-        } else {
-            return []
-        }
+        selectedResult?.numbers ?? []
+    }
+    
+    private var services: ServiceProtocol
+    
+    init(services: ServiceProtocol) {
+        self.services = services
+        self.lottos = self.services.lottoService.getLottoEntities(ascending: false)
+        self.drawingLotResults = self.services.lottoService.getLottoDrawingLotResults()
+        self.selectedLotto = self.lottos.first ?? nil
+        self.selectedResult = self.drawingLotResults.first ?? nil
+    }
+    
+    func getLottoEntity() {
+        lottos = services.lottoService.getLottoEntities(ascending: false)
+        selectedLotto = lottos.first ?? nil
     }
 }

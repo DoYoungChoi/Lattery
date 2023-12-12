@@ -20,7 +20,7 @@ struct LottoBall: View {
                     if fixed {
                         Circle()
                             .stroke(Color.accentColor,
-                                    lineWidth: 2)
+                                    lineWidth: 3)
                     }
                     
                     Text("\(number)")

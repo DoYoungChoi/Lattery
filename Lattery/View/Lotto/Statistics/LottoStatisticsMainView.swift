@@ -15,6 +15,7 @@ struct LottoStatisticsMainView: View {
         ZStack {
             VStack {
                 LottoPagePicker(viewModel: viewModel)
+                    .padding(.horizontal, 20)
                 
                 switch viewModel.page {
                 case .detail:
@@ -23,7 +24,6 @@ struct LottoStatisticsMainView: View {
                     LottoStatisticsView(viewModel: viewModel)
                 }
             }
-            .padding(.horizontal, 20)
             .navigationTitle("로또 정보")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -37,11 +37,8 @@ struct LottoStatisticsMainView: View {
             }
             
             if viewModel.phase == .loading {
-                LoadingView()
-                    .onTapGesture {
-                        // TODO: 지우기
-                        viewModel.phase = .notRequested
-                    }
+                LoadingView(phase: $viewModel.phase,
+                            work: .lotto)
             }
         }
     }
@@ -63,5 +60,5 @@ private struct LottoPagePicker: View {
 }
 
 #Preview {
-    LottoStatisticsMainView(viewModel: .init())
+    LottoStatisticsMainView(viewModel: .init(services: StubService()))
 }

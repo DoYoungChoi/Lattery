@@ -37,12 +37,14 @@ struct RatioBarGraph: View {
                     }
                     
                     Text(sorted.first?.name ?? "")
+                        .font(.system(size: 16))
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             } else {
                 let width = round((geo.size.width - titleSpace) / 10) * 10
                 HStack(alignment: .top, spacing: 0) {
                     Text(sorted.first?.name ?? "")
+                        .font(.system(size: 16))
                         .frame(maxHeight: .infinity, alignment: .center)
                         .frame(maxWidth: 50, alignment: .leading)
                     

@@ -11,16 +11,24 @@ class LottoNumberSheetViewModel: ObservableObject {
     
     enum Action {
         case tapNumber(Int)
-        case tapFavorite
+        case toggleFavorite
+        case tapFavoriteNumber(LottoFavorite?)
         case save
         case reset
     }
     
     @Published var selected: Set<Int> = []
+    @Published var favorites = [LottoFavorite]()
     
-    var isContainedFavoriteNumberSet: Bool {
-        // TODO: 즐겨찾기 번호 모음(FavoriteNumberSet)에 지금 선택한 번호(selected)가 포함되어 있는지
-        false
+    var isContainedFavorites: Bool {
+        favorites.filter { $0.numbers == Array(selected).toLottoNumberString }.count == 1
+    }
+    
+    private var services: ServiceProtocol
+    
+    init(services: ServiceProtocol) {
+        self.services = services
+        fetchFavorites()
     }
     
     func send(action: Action) {
@@ -32,14 +40,15 @@ class LottoNumberSheetViewModel: ObservableObject {
                 if selected.count > 5 { return }
                 selected.insert(number)
             }
-        case .tapFavorite:
-            // TODO: 하트 버튼 눌렀을 때 즐겨찾기 번호 모음에 추가/삭제
-            return
+        case .toggleFavorite:
+            toggleFavorite()
+        case .tapFavoriteNumber(let favorite):
+            selected = Set(favorite?.numbers?.toLottoNumbers ?? [])
         case .save:
             // TODO: 지금 선택한 번호 저장하기
             return
         case .reset:
-            // TODO: 번호 선택 초기화
+            selected = []
             return
         }
     }
@@ -48,4 +57,34 @@ class LottoNumberSheetViewModel: ObservableObject {
         selected.contains(number)
     }
     
+    // MARK: - Favorites
+    private func toggleFavorite() {
+        if isContainedFavorites {
+            deleteFavorite(Array(selected))
+        } else {
+            addFavorite(Array(selected))
+        }
+    }
+    
+    private func fetchFavorites() {
+        favorites = services.lottoService.getFavoriteNumbers()
+    }
+    
+    private func addFavorite(_ numbers: [Int]) {
+        do {
+            try services.lottoService.add(favoriteNumbers: numbers)
+        } catch { print(error.localizedDescription) }
+        fetchFavorites()
+    }
+    
+    private func deleteFavorite(_ numbers: [Int]) {
+        do {
+            try services.lottoService.delete(favoriteNumbers: numbers)
+        } catch { print(error.localizedDescription) }
+        fetchFavorites()
+    }
+    
+    func isContained(favorite: LottoFavorite) -> Bool {
+        favorites.filter { $0.numbers == favorite.numbers }.count == 1
+    }
 }

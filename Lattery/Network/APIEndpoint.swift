@@ -22,9 +22,3 @@ enum HTTPMethod: String {
     case patch = "PATCH"
     case delete = "DELETE"
 }
-
-enum APIError: Error {
-    case invalidURL
-    case invalidResponse
-    case invalidData
-}

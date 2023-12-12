@@ -9,17 +9,20 @@ import SwiftUI
 
 struct LottoCombinationView: View {
     
+    @EnvironmentObject private var services: Service
     @ObservedObject var viewModel: LottoStatisticsViewModel
     
     var body: some View {
         VStack(spacing: 8) {
             HeadInfoView(viewModel: viewModel)
+                .padding(.horizontal, 20)
             
             // TODO: 로또 조합 선택창
-            LottoRow(numbers: LottoNumbers(numbers: []),
+            LottoRow(numbers: viewModel.fixedNumbers ?? LottoNumbers(numbers: []),
                      presentEmptyBool: false) {
                 viewModel.send(action: .toggleNumberBoard)
             }
+            .padding(.horizontal, 20)
             
             List {
                 AscendingToggle(isOn: $viewModel.ascending)
@@ -27,16 +30,19 @@ struct LottoCombinationView: View {
                 ForEach(viewModel.filtered, id:\.round) { lotto in
                     NavigationLink {
                         LottoResultView(lotto: lotto)
+                            .padding(.horizontal, 20)
                     } label: {
                         LottoCombinationRow(lotto: lotto,
-                                            includeBonus: viewModel.includeBonus)
+                                            includeBonus: viewModel.includeBonus,
+                                            fixedNumbers: viewModel.fixedNumbers?.numbers ?? [])
                     }
                 }
             }
             .listStyle(.inset)
         }
         .sheet(isPresented: $viewModel.showNumberSheet) {
-            LottoNumberSheet(viewModel: .init())
+            LottoNumberSheet(viewModel: .init(services: services),
+                             fixedNumbers: $viewModel.fixedNumbers)
         }
     }
 }
@@ -74,11 +80,14 @@ private struct LottoCombinationRow: View {
     
     let lotto: LottoEntity
     let includeBonus: Bool
+    let fixedNumbers: [Int]
     
     fileprivate init(lotto: LottoEntity,
-                     includeBonus: Bool) {
+                     includeBonus: Bool,
+                     fixedNumbers: [Int]) {
         self.lotto = lotto
         self.includeBonus = includeBonus
+        self.fixedNumbers = fixedNumbers
     }
     
     fileprivate var body: some View {
@@ -99,16 +108,19 @@ private struct LottoCombinationRow: View {
                 }
                 .font(.system(size: 11))
                 
-                HStack(spacing: 12) {
+                HStack(spacing: 8) {
                     Spacer()
                     ForEach(lotto.numbers, id:\.self) { number in
-                        LottoBall(number: number)
+                        LottoBall(number: number,
+                                  fixed: fixedNumbers.contains(number))
                     }
                     
                     if includeBonus {
                         Image(systemName: "plus")
                             .foregroundStyle(Color.gray3)
-                        LottoBall(number: Int(lotto.bonus))
+                        LottoBall(number: Int(lotto.bonus),
+                                  fixed: fixedNumbers.contains(Int(lotto.bonus))
+                        )
                     }
                     Spacer()
                 }
@@ -119,5 +131,5 @@ private struct LottoCombinationRow: View {
 }
 
 #Preview {
-    LottoCombinationView(viewModel: .init())
+    LottoCombinationView(viewModel: .init(services: StubService()))
 }

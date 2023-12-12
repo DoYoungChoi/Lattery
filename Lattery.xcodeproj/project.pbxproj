@@ -76,11 +76,9 @@
 		D8C2D8DB2B242C11008D582B /* LottoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8DA2B242C11008D582B /* LottoResult.swift */; };
 		D8C2D8DD2B2430D5008D582B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8DC2B2430D5008D582B /* String+Extension.swift */; };
 		D8C2D8DF2B24343C008D582B /* PensionStatisticsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8DE2B24343B008D582B /* PensionStatisticsType.swift */; };
-		D8C2D8E42B244545008D582B /* LottoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E32B244545008D582B /* LottoEntity.swift */; };
 		D8C2D8E62B244662008D582B /* PensionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E52B244662008D582B /* PensionEntity.swift */; };
 		D8C2D8E82B244684008D582B /* PensionResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E72B244684008D582B /* PensionResultObject.swift */; };
 		D8C2D8EA2B24496F008D582B /* PensionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E92B24496F008D582B /* PensionResult.swift */; };
-		D8C2D8ED2B246F9A008D582B /* LottoDrawingLotResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8EC2B246F9A008D582B /* LottoDrawingLotResult.swift */; };
 		D8C2D8EF2B247233008D582B /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8EE2B247233008D582B /* OffsetObservingScrollView.swift */; };
 		D8C2D8F22B2473C0008D582B /* PensionDrawingLotResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8F12B2473C0008D582B /* PensionDrawingLotResult.swift */; };
 		D8C2D8F72B247BB3008D582B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8F62B247BB3008D582B /* SettingView.swift */; };
@@ -88,7 +86,19 @@
 		D8C2D8FB2B247C89008D582B /* LottoFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8FA2B247C89008D582B /* LottoFavoriteView.swift */; };
 		D8C2D8FD2B247D0A008D582B /* SavedLottoNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8FC2B247D0A008D582B /* SavedLottoNumberView.swift */; };
 		D8C2D8FF2B247D7A008D582B /* SavedPensionNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8FE2B247D7A008D582B /* SavedPensionNumberView.swift */; };
-		D8D659062A556965003F2516 /* LottoResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659052A556965003F2516 /* LottoResultObject.swift */; };
+		D8C2D9012B2497B4008D582B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9002B2497B4008D582B /* Service.swift */; };
+		D8C2D9032B24982F008D582B /* PensionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9022B24982F008D582B /* PensionService.swift */; };
+		D8C2D9062B258353008D582B /* LottoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9042B258353008D582B /* LottoModel.xcdatamodeld */; };
+		D8C2D9082B258DE7008D582B /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9072B258DE7008D582B /* Array+Extension.swift */; };
+		D8C2D90A2B25E630008D582B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9092B25E630008D582B /* ServiceError.swift */; };
+		D8C2D90D2B25EA72008D582B /* LottoEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D90B2B25EA72008D582B /* LottoEntity+CoreDataClass.swift */; };
+		D8C2D90E2B25EA72008D582B /* LottoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D90C2B25EA72008D582B /* LottoEntity+CoreDataProperties.swift */; };
+		D8C2D9102B269D78008D582B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D90F2B269D78008D582B /* Constant.swift */; };
+		D8C2D9122B26AFE6008D582B /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9112B26AFE6008D582B /* APIError.swift */; };
+		D8C2D9192B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9172B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift */; };
+		D8C2D91A2B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9182B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift */; };
+		D8C2D91C2B283CCA008D582B /* LottoDrawingLotResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D91B2B283CCA008D582B /* LottoDrawingLotResult.swift */; };
+		D8D659062A556965003F2516 /* LottoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659052A556965003F2516 /* LottoObject.swift */; };
 		D8D659142A57D192003F2516 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659132A57D192003F2516 /* DateExtension.swift */; };
 		D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */; };
 		D8FDC9022A8A5C5300238C38 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */; };
@@ -166,11 +176,9 @@
 		D8C2D8DA2B242C11008D582B /* LottoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoResult.swift; sourceTree = "<group>"; };
 		D8C2D8DC2B2430D5008D582B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D8C2D8DE2B24343B008D582B /* PensionStatisticsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionStatisticsType.swift; sourceTree = "<group>"; };
-		D8C2D8E32B244545008D582B /* LottoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoEntity.swift; sourceTree = "<group>"; };
 		D8C2D8E52B244662008D582B /* PensionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionEntity.swift; sourceTree = "<group>"; };
 		D8C2D8E72B244684008D582B /* PensionResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionResultObject.swift; sourceTree = "<group>"; };
 		D8C2D8E92B24496F008D582B /* PensionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionResult.swift; sourceTree = "<group>"; };
-		D8C2D8EC2B246F9A008D582B /* LottoDrawingLotResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoDrawingLotResult.swift; sourceTree = "<group>"; };
 		D8C2D8EE2B247233008D582B /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
 		D8C2D8F12B2473C0008D582B /* PensionDrawingLotResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionDrawingLotResult.swift; sourceTree = "<group>"; };
 		D8C2D8F62B247BB3008D582B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -178,8 +186,20 @@
 		D8C2D8FA2B247C89008D582B /* LottoFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoFavoriteView.swift; sourceTree = "<group>"; };
 		D8C2D8FC2B247D0A008D582B /* SavedLottoNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLottoNumberView.swift; sourceTree = "<group>"; };
 		D8C2D8FE2B247D7A008D582B /* SavedPensionNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPensionNumberView.swift; sourceTree = "<group>"; };
+		D8C2D9002B2497B4008D582B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		D8C2D9022B24982F008D582B /* PensionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionService.swift; sourceTree = "<group>"; };
+		D8C2D9052B258353008D582B /* LottoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LottoModel.xcdatamodel; sourceTree = "<group>"; };
+		D8C2D9072B258DE7008D582B /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		D8C2D9092B25E630008D582B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		D8C2D90B2B25EA72008D582B /* LottoEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LottoEntity+CoreDataClass.swift"; path = "Lattery/Model/LottoEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D8C2D90C2B25EA72008D582B /* LottoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LottoEntity+CoreDataProperties.swift"; path = "Lattery/Model/LottoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D8C2D90F2B269D78008D582B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		D8C2D9112B26AFE6008D582B /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		D8C2D9172B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LottoDrawingLotResultEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D8C2D9182B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LottoDrawingLotResultEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D8C2D91B2B283CCA008D582B /* LottoDrawingLotResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoDrawingLotResult.swift; sourceTree = "<group>"; };
 		D8C4EE6A2A5431240092BCA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D8D659052A556965003F2516 /* LottoResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoResultObject.swift; sourceTree = "<group>"; };
+		D8D659052A556965003F2516 /* LottoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoObject.swift; sourceTree = "<group>"; };
 		D8D659132A57D192003F2516 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioBarGraph.swift; sourceTree = "<group>"; };
 		D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -203,6 +223,7 @@
 				D88933A52B20324700BFB959 /* Int+Extension.swift */,
 				D88933A72B203CCA00BFB959 /* Date+Extension.swift */,
 				D8C2D8DC2B2430D5008D582B /* String+Extension.swift */,
+				D8C2D9072B258DE7008D582B /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -424,6 +445,10 @@
 		D8AB9BAC2A526B5400E5883C = {
 			isa = PBXGroup;
 			children = (
+				D8C2D9172B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift */,
+				D8C2D9182B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift */,
+				D8C2D90B2B25EA72008D582B /* LottoEntity+CoreDataClass.swift */,
+				D8C2D90C2B25EA72008D582B /* LottoEntity+CoreDataProperties.swift */,
 				D8AB9BB72A526B5400E5883C /* Lattery */,
 				D8AB9BB62A526B5400E5883C /* Products */,
 			);
@@ -446,8 +471,8 @@
 				D88933432B1D915200BFB959 /* Components */,
 				D8AB9BCE2A5284DF00E5883C /* View */,
 				D8C2D8CD2B22D9AF008D582B /* Service */,
-				D8AB9BCD2A5284CB00E5883C /* Model */,
 				D8C2D8D12B22EC51008D582B /* Network */,
+				D8AB9BCD2A5284CB00E5883C /* Model */,
 				D8C4EE632A53F5D90092BCA6 /* Utils */,
 				D88933352B1D71F700BFB959 /* Extension */,
 				D8C4EE642A542EC70092BCA6 /* Assets */,
@@ -499,7 +524,10 @@
 		D8C2D8CD2B22D9AF008D582B /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D8C2D9002B2497B4008D582B /* Service.swift */,
 				D8C2D8CE2B22DE8F008D582B /* LottoService.swift */,
+				D8C2D9022B24982F008D582B /* PensionService.swift */,
+				D8C2D9092B25E630008D582B /* ServiceError.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -507,7 +535,7 @@
 		D8C2D8D02B22E305008D582B /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				D8D659052A556965003F2516 /* LottoResultObject.swift */,
+				D8D659052A556965003F2516 /* LottoObject.swift */,
 				D8C2D8E72B244684008D582B /* PensionResultObject.swift */,
 			);
 			path = DTO;
@@ -519,6 +547,7 @@
 				D8C2D8D62B22F09D008D582B /* APIClient.swift */,
 				D8C2D8D22B22EC5C008D582B /* APIEndpoint.swift */,
 				D8C2D8D42B22ECD8008D582B /* LotteryEndpoint.swift */,
+				D8C2D9112B26AFE6008D582B /* APIError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -526,10 +555,10 @@
 		D8C2D8EB2B246F34008D582B /* Lotto */ = {
 			isa = PBXGroup;
 			children = (
+				D8C2D9042B258353008D582B /* LottoModel.xcdatamodeld */,
 				D8C2D8D82B242A3F008D582B /* LottoNumbers.swift */,
 				D8C2D8DA2B242C11008D582B /* LottoResult.swift */,
-				D8C2D8E32B244545008D582B /* LottoEntity.swift */,
-				D8C2D8EC2B246F9A008D582B /* LottoDrawingLotResult.swift */,
+				D8C2D91B2B283CCA008D582B /* LottoDrawingLotResult.swift */,
 			);
 			path = Lotto;
 			sourceTree = "<group>";
@@ -565,6 +594,7 @@
 				D87CA2292A7A3AD20008FA9C /* CustomErrors.swift */,
 				D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */,
 				D88933722B1EC34C00BFB959 /* Phase.swift */,
+				D8C2D90F2B269D78008D582B /* Constant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -663,12 +693,15 @@
 				D8C2D8F72B247BB3008D582B /* SettingView.swift in Sources */,
 				D88933BD2B21CEF400BFB959 /* PensionWinningCheckView.swift in Sources */,
 				D8C2D8FF2B247D7A008D582B /* SavedPensionNumberView.swift in Sources */,
+				D8C2D91C2B283CCA008D582B /* LottoDrawingLotResult.swift in Sources */,
+				D8C2D9122B26AFE6008D582B /* APIError.swift in Sources */,
 				D88933AE2B20575100BFB959 /* LoadingView.swift in Sources */,
 				D88933922B1EFEE500BFB959 /* PensionStatisticsView.swift in Sources */,
 				D88933A42B1F128C00BFB959 /* PensionBall.swift in Sources */,
 				D8C2D8D92B242A3F008D582B /* LottoNumbers.swift in Sources */,
-				D8D659062A556965003F2516 /* LottoResultObject.swift in Sources */,
+				D8D659062A556965003F2516 /* LottoObject.swift in Sources */,
 				D88933402B1D850B00BFB959 /* LottoDrawingLotView.swift in Sources */,
+				D8C2D9102B269D78008D582B /* Constant.swift in Sources */,
 				D8919DCA2A5BE999008591F1 /* BarGraph.swift in Sources */,
 				D8C2D8CF2B22DE8F008D582B /* LottoService.swift in Sources */,
 				D8C2D8D72B22F09D008D582B /* APIClient.swift in Sources */,
@@ -676,8 +709,10 @@
 				D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */,
 				D889339F2B1F10C100BFB959 /* PensionDrawingLotViewModel.swift in Sources */,
 				D87CA2282A7944360008FA9C /* UserDefaults.swift in Sources */,
+				D8C2D9082B258DE7008D582B /* Array+Extension.swift in Sources */,
 				D8C2D8DF2B24343C008D582B /* PensionStatisticsType.swift in Sources */,
-				D8C2D8ED2B246F9A008D582B /* LottoDrawingLotResult.swift in Sources */,
+				D8C2D9012B2497B4008D582B /* Service.swift in Sources */,
+				D8C2D9032B24982F008D582B /* PensionService.swift in Sources */,
 				D8C2D8F22B2473C0008D582B /* PensionDrawingLotResult.swift in Sources */,
 				D88933762B1ED90700BFB959 /* LottoCountView.swift in Sources */,
 				D8FDC9022A8A5C5300238C38 /* NotificationManager.swift in Sources */,
@@ -691,21 +726,25 @@
 				D88933532B1DBB4D00BFB959 /* LottoNumberSheet.swift in Sources */,
 				D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */,
 				D88933452B1D916E00BFB959 /* HeartIcon.swift in Sources */,
+				D8C2D90D2B25EA72008D582B /* LottoEntity+CoreDataClass.swift in Sources */,
 				D88933652B1DFFC500BFB959 /* LottoStatisticsViewModel.swift in Sources */,
+				D8C2D91A2B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift in Sources */,
 				D88933992B1F027900BFB959 /* PensionNumberSheet.swift in Sources */,
 				D88933732B1EC34C00BFB959 /* Phase.swift in Sources */,
 				D8D659142A57D192003F2516 /* DateExtension.swift in Sources */,
 				D88933A62B20324700BFB959 /* Int+Extension.swift in Sources */,
 				D88933A12B1F114300BFB959 /* PensionDrawingLotView.swift in Sources */,
+				D8C2D90A2B25E630008D582B /* ServiceError.swift in Sources */,
 				D8C2D8D32B22EC5C008D582B /* APIEndpoint.swift in Sources */,
 				D889334F2B1D9FB900BFB959 /* LottoRow.swift in Sources */,
 				D88933782B1ED91200BFB959 /* LottoRatioView.swift in Sources */,
 				D8C2D8E82B244684008D582B /* PensionResultObject.swift in Sources */,
 				D88933612B1DFBDA00BFB959 /* LottoStatisticsType.swift in Sources */,
-				D8C2D8E42B244545008D582B /* LottoEntity.swift in Sources */,
+				D8C2D90E2B25EA72008D582B /* LottoEntity+CoreDataProperties.swift in Sources */,
 				D889333A2B1D7AE700BFB959 /* MainButtonStyle.swift in Sources */,
 				D8C2D8F92B247C07008D582B /* BuyDaySheet.swift in Sources */,
 				D88933B92B21CB4600BFB959 /* WinningCheckMainView.swift in Sources */,
+				D8C2D9192B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift in Sources */,
 				D889338C2B1EFC2A00BFB959 /* PensionResultListView.swift in Sources */,
 				D88933882B1EF97800BFB959 /* PensionStatisticsMainView.swift in Sources */,
 				D88933422B1D851D00BFB959 /* LottoDrawingLotViewModel.swift in Sources */,
@@ -722,6 +761,7 @@
 				D88933902B1EFD5F00BFB959 /* EmptyPensionDataView.swift in Sources */,
 				D88933AC2B20563A00BFB959 /* LottoGroup.swift in Sources */,
 				D87A8E4A2A80779A002BA412 /* PieChart.swift in Sources */,
+				D8C2D9062B258353008D582B /* LottoModel.xcdatamodeld in Sources */,
 				D88933972B1F006E00BFB959 /* PensionCombinationView.swift in Sources */,
 				D88933682B1E2ADE00BFB959 /* LottoResultListView.swift in Sources */,
 				D889337C2B1EEEEF00BFB959 /* LottoResultView.swift in Sources */,
@@ -960,6 +1000,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D8C2D9042B258353008D582B /* LottoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D8C2D9052B258353008D582B /* LottoModel.xcdatamodel */,
+			);
+			currentVersion = D8C2D9052B258353008D582B /* LottoModel.xcdatamodel */;
+			path = LottoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D8AB9BAD2A526B5400E5883C /* Project object */;
 }

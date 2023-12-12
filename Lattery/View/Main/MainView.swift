@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
@@ -24,6 +25,8 @@ struct MainView: View {
 
 // MARK: - 로또 6/45
 private struct LottoMenu: View {
+    @EnvironmentObject private var services: Service
+    
     fileprivate var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("로또 6/45")
@@ -32,10 +35,11 @@ private struct LottoMenu: View {
             
             HStack(spacing: 16) {
                 NavigationLink("로또 번호추첨", 
-                               destination: LottoDrawingLotView(viewModel: .init()))
+                               destination: LottoDrawingLotView(viewModel: .init(services: services)))
                     .buttonStyle(MainButtonStyle(imageName: "lotto_ball"))
                 
-                NavigationLink("로또 정보", destination: LottoStatisticsMainView(viewModel: .init()))
+                NavigationLink("로또 정보", 
+                               destination: LottoStatisticsMainView(viewModel: .init(services: services)))
                     .buttonStyle(MainButtonStyle(imageName: "bar_chart"))
             }
         }

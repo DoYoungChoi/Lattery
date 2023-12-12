@@ -24,7 +24,8 @@ class LottoDrawingLotViewModel: ObservableObject {
         case toggleTicket
         case toggleShowPicker
         case changePaw(Paw)
-        case toggleNumberSheet
+        case toggleNumberSheet(LottoGroup)
+        case disappear
     }
     
     @Published var drawingLotResult: [LottoGroup: LottoNumbers] = [:]
@@ -37,6 +38,16 @@ class LottoDrawingLotViewModel: ObservableObject {
     @Published var paw: Paw = .pink
     
     @Published var showNumberSheet: Bool = false
+    
+    var group: LottoGroup = .a
+    
+    private var services: ServiceProtocol
+    private var timer: Timer? = nil
+    private var saveId: String?
+    
+    init(services: ServiceProtocol) {
+        self.services = services
+    }
     
     func send(action: Action) {
         switch action {
@@ -52,8 +63,12 @@ class LottoDrawingLotViewModel: ObservableObject {
             self.showPicker.toggle()
         case .changePaw(let paw):
             self.paw = paw
-        case .toggleNumberSheet:
+        case .toggleNumberSheet(let group):
+            self.group = group
+            if drawingLotResult[group] == nil { drawingLotResult[group] = LottoNumbers(numbers: []) }
             self.showNumberSheet.toggle()
+        case .disappear:
+            self.stopRunning()
         }
     }
     
@@ -63,13 +78,51 @@ class LottoDrawingLotViewModel: ObservableObject {
     }
     
     private func run() {
+        self.save = false
         self.isRunning = true
-        self.drawingLotResult = lottoDrawingLotresult
-        self.showTicket.toggle()
+        self.drawLot()
+    }
+    
+    private func drawLot() {
+        if timer != nil {
+            timer!.invalidate()
+            timer = nil
+        }
+        var times = 0
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            for group in LottoGroup.allCases {
+                self.drawingLotResult[group] = self.services.lottoService.drawLot(contain: self.drawingLotResult[group]?.fixedNumbers ?? [])
+            }
+            times += 1
+            
+            if times > 20 {
+                self.stopRunning()
+                self.showTicket.toggle()
+            }
+        }
+    }
+    
+    private func stopRunning() {
+        if timer != nil && timer!.isValid {
+            timer!.invalidate()
+        }
+        timer = nil
+        
         self.isRunning = false
     }
     
     private func toggleSave() {
-        self.save.toggle()
+        if save {
+            do {
+                try services.lottoService.delete(drawingLotNumbersById: saveId ?? "")
+            } catch { print(error.localizedDescription) }
+        } else {
+            do {
+                saveId = try services.lottoService.add(drawingLotNumbers: drawingLotResult.map { $0.value.numbers })
+            } catch { print(error.localizedDescription) }
+        }
+        
+        save.toggle()
     }
 }

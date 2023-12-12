@@ -72,5 +72,5 @@ private struct LottoBarGraph: View {
 }
 
 #Preview {
-    LottoCountView(viewModel: .init())
+    LottoCountView(viewModel: .init(services: StubService()))
 }

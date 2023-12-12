@@ -17,7 +17,7 @@ class APIClient<EndpointType: APIEndpoint>: APIClientProtocol {
         var urlString = endpoint.baseURL + endpoint.path
         if let parameters = endpoint.parameters {
             urlString += "?"
-            parameters.forEach { urlString += "\($0.key)=\($0.value)" }
+            parameters.forEach { urlString += "\($0.key)=\($0.value)&" }
         }
 
         guard let url = URL(string: urlString) else { throw APIError.invalidURL }
@@ -26,7 +26,10 @@ class APIClient<EndpointType: APIEndpoint>: APIClientProtocol {
         endpoint.headers?.forEach { request.addValue($0.value, forHTTPHeaderField: $0.key) }
         
         let (data, response) = try await URLSession.shared.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse, (200..<300) ~= httpResponse.statusCode else { throw APIError.invalidResponse}
+        guard let httpResponse = response as? HTTPURLResponse, (200..<300) ~= httpResponse.statusCode else {
+            throw APIError.invalidResponse
+        }
+        print("Returned: \(String(data: data, encoding: .utf8) ?? "--")")
         
         guard let dataObject = try? JSONDecoder().decode(T.self, from: data) else { throw APIError.invalidData }
         

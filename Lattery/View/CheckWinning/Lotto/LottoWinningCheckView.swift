@@ -10,6 +10,7 @@ import SwiftUI
 struct LottoWinningCheckView: View {
     
     @StateObject var viewModel: LottoWinningCheckViewModel
+    @Binding var phase: Phase
     
     var body: some View {
         VStack(spacing: 20) {
@@ -20,13 +21,15 @@ struct LottoWinningCheckView: View {
             }
             .foregroundColor(.gray1)
             
-            if viewModel.lottos.count < 1 {
-                EmptyLottoDataView()
-            } else {
-                SelectedLottoResult(viewModel: viewModel)
-                SelectedDrawingLotResult(viewModel: viewModel)
+            SelectedLottoResult(viewModel: viewModel)
+            SelectedDrawingLotResult(viewModel: viewModel)
+            Spacer()
+        }
+        .onChange(of: phase) { newValue in
+            if newValue == .success || newValue == .fail {
+                self.viewModel.getLottoEntity()
+                self.phase = .notRequested
             }
-            
         }
     }
 }
@@ -45,13 +48,13 @@ private struct SelectedLottoResult: View {
                 
                 if viewModel.lottos.count > 0 {
                     Picker("", selection: $viewModel.selectedLotto) {
-                        ForEach(viewModel.lottos, id: \.self) { lotto in
+                        ForEach(viewModel.lottos) { lotto in
                             Text(verbatim: "\(lotto.round)회")
-                                .foregroundColor(.gray2)
-                                .tag(lotto)
+                                .tag(Optional(lotto))
                         }
                     }
                     .pickerStyle(.menu)
+                    .tint(.gray2)
                 } else {
                     Text("데이터가 없습니다")
                         .font(.subheadline)
@@ -62,9 +65,15 @@ private struct SelectedLottoResult: View {
             Group {
                 if viewModel.winningNumbers.count == 6 {
                     resultBoard
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 24)
                 } else {
-                    EmptyLottoDataView()
-                        .frame(maxHeight: 150)
+                    VStack {
+                        Spacer()
+                        EmptyLottoDataView()
+                        Spacer()
+                    }
+                    .frame(maxHeight: 150)
                 }
             }
             .background(Color.backgroundGray)
@@ -74,7 +83,7 @@ private struct SelectedLottoResult: View {
     
     var resultBoard: some View {
         VStack(spacing: 4) {
-            Text(verbatim: "\(viewModel.selectedLotto?.round)회 당첨결과")
+            Text(verbatim: "\(viewModel.selectedLotto!.round)회 당첨결과")
                 .font(.title)
                 .bold()
                 .foregroundStyle(Color.primaryColor)
@@ -83,7 +92,7 @@ private struct SelectedLottoResult: View {
                 .font(.caption)
                 .foregroundStyle(Color.gray2)
             
-            HStack(spacing: 4) {
+            HStack(alignment: .top, spacing: 4) {
                 VStack(spacing: 4) {
                     HStack(spacing: 8) {
                         ForEach(viewModel.winningNumbers, id:\.self) { number in
@@ -101,6 +110,7 @@ private struct SelectedLottoResult: View {
                 
                 Image(systemName: "plus")
                     .foregroundColor(.gray2)
+                    .padding(.top, 16)
                 
                 VStack(spacing: 4) {
                     HStack(spacing: 8) {
@@ -139,10 +149,10 @@ private struct SelectedDrawingLotResult: View {
                         Picker("", selection: $viewModel.selectedResult) {
                             ForEach(viewModel.drawingLotResults, id: \.self) { result in
                                 Text("\(result.date.toDateTimeKor) 추첨번호")
-                                    .foregroundColor(.gray2)
-                                    .tag(result)
+                                    .tag(Optional(result))
                             }
                         }
+                        .tint(.gray2)
                         .pickerStyle(.menu)
                     } else {
                         Text("데이터가 없습니다")
@@ -202,23 +212,23 @@ private struct CheckRow: View {
     
     fileprivate var body: some View {
         HStack {
-            Spacer()
             Text(rank)
                 .multilineTextAlignment(.center)
                 .font(.headline)
+                .frame(maxWidth: 44)
+                .padding(.trailing, 16)
             
-            Spacer()
             HStack(spacing: 8) {
                 ForEach(result.numbers, id:\.self) { number in
                     LottoBall(number: number,
-                              fixed: result.fixedNumbers.contains(number))
+                              fixed: viewModel.winningNumbers.contains(number))
                 }
             }
-            Spacer()
         }
     }
 }
 
 #Preview {
-    LottoWinningCheckView(viewModel: .init())
+    LottoWinningCheckView(viewModel: .init(services: StubService()),
+                          phase: .constant(.notRequested))
 }

@@ -14,6 +14,7 @@ struct LottoStatisticsView: View {
     var body: some View {
         VStack(spacing: 8) {
             LottoStatisticsTypePicker(viewModel: viewModel)
+                .padding(.horizontal, 20)
             
             contentView
             
@@ -33,8 +34,10 @@ struct LottoStatisticsView: View {
                 switch viewModel.statType {
                 case .count:
                     LottoCountView(viewModel: viewModel)
+                        .padding(.horizontal, 20)
                 case .color:
                     LottoRatioView(viewModel: viewModel)
+                        .padding(.horizontal, 20)
                 case .combination:
                     LottoCombinationView(viewModel: viewModel)
                 }
@@ -62,5 +65,5 @@ private struct LottoStatisticsTypePicker: View {
 }
 
 #Preview {
-    LottoStatisticsView(viewModel: .init())
+    LottoStatisticsView(viewModel: .init(services: StubService()))
 }

@@ -37,7 +37,8 @@ struct PensionStatisticsMainView: View {
             }
             
             if viewModel.phase == .loading {
-                LoadingView()
+                LoadingView(phase: $viewModel.phase,
+                            work: .pension)
                     .ignoresSafeArea(edges: .vertical)
                     .onTapGesture {
                         // TODO: 지우기

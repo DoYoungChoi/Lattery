@@ -33,6 +33,7 @@ struct LottoResultListView: View {
             ForEach(viewModel.lottos) { lotto in
                 NavigationLink {
                     LottoResultView(lotto: lotto)
+                        .padding(.horizontal, 20)
                 } label: {
                     LottoResultRow(lotto: lotto)
                 }
@@ -63,5 +64,5 @@ private struct LottoResultRow: View {
 }
 
 #Preview {
-    LottoResultListView(viewModel: .init())
+    LottoResultListView(viewModel: .init(services: StubService()))
 }

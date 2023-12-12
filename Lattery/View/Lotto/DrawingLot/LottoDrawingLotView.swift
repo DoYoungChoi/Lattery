@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 struct LottoDrawingLotView: View {
+    @EnvironmentObject private var services: Service
     
     @StateObject var viewModel: LottoDrawingLotViewModel
     
@@ -18,7 +19,7 @@ struct LottoDrawingLotView: View {
                 ForEach(LottoGroup.allCases) { group in
                     LottoRow(group: group,
                              numbers: viewModel.drawingLotResult[group] ?? .init(numbers: [])) {
-                        viewModel.send(action: .toggleNumberSheet)
+                        viewModel.send(action: .toggleNumberSheet(group))
                     }
                 }
                 
@@ -27,6 +28,8 @@ struct LottoDrawingLotView: View {
                 PawButton(type: viewModel.paw) {
                     viewModel.send(action: .run)
                 }
+                .opacity(viewModel.isRunning ? 0.5 : 1)
+                .scaleEffect(viewModel.isRunning ? 0.95 : 1)
             }
             .padding(.horizontal, 20)
             .navigationTitle("로또 번호추첨")
@@ -38,22 +41,29 @@ struct LottoDrawingLotView: View {
                     } label: {
                         HeartIcon(checked: viewModel.save)
                     }
+                    .disabled(viewModel.showTicket)
                     
                     Button {
                         viewModel.send(action: .refresh)
                     } label: {
                         Image("refresh")
                     }
+                    .disabled(viewModel.showTicket)
                 }
             }
+            .disabled(viewModel.isRunning)
             .sheet(isPresented: $viewModel.showNumberSheet) {
-                LottoNumberSheet(viewModel: .init())
+                LottoNumberSheet(viewModel: .init(services: services),
+                                 fixedNumbers: $viewModel.drawingLotResult[viewModel.group])
             }
             
             if viewModel.showTicket {
                 LottoTicketView(viewModel: viewModel)
                     .ignoresSafeArea(edges: .vertical)
             }
+        }
+        .onDisappear {
+            viewModel.send(action: .disappear)
         }
     }
 }
@@ -86,6 +96,6 @@ private struct PawButtonPicker: View {
 
 #Preview {
     NavigationView {
-        LottoDrawingLotView(viewModel: .init())
+        LottoDrawingLotView(viewModel: .init(services: StubService()))
     }
 }

@@ -17,3 +17,11 @@ struct LottoResult: Identifiable {
     var totalSalePrice: Int64? // 총 판매금액
 }
 
+extension LottoResult {
+    static let stub1: LottoResult = .init(round: 1,
+                                          numbers: LottoNumbers(numbers: [1,11,21,31,41,15]),
+                                          date: Date(),
+                                          winnings: 1_000_000_000,
+                                          winnerCount: 10,
+                                          totalSalePrice: 30_000_000_000)
+}

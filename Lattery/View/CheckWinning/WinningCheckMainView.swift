@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WinningCheckMainView: View {
     
+    @EnvironmentObject private var services: Service
+    
     @State private var phase: Phase = .notRequested
     @State private var type: LotteryType = .lotto
     enum LotteryType: String, Identifiable, CaseIterable {
@@ -25,12 +27,12 @@ struct WinningCheckMainView: View {
                 
                 switch type {
                 case .lotto:
-                    LottoWinningCheckView(viewModel: .init())
+                    LottoWinningCheckView(viewModel: .init(services: services),
+                                          phase: $phase)
                 case .pension:
-                    PensionWinningCheckView(viewModel: .init()
-                    
-                    )
+                    PensionWinningCheckView(viewModel: .init())
                 }
+                Spacer()
             }
             .padding(.horizontal, 20)
             .navigationTitle("추첨결과 확인")
@@ -38,7 +40,7 @@ struct WinningCheckMainView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        // fetch
+                        phase = .loading
                     } label: {
                         Image("refresh")
                     }
@@ -46,11 +48,8 @@ struct WinningCheckMainView: View {
             }
             
             if phase == .loading {
-                LoadingView()
-                    .onTapGesture {
-                        // TODO: 지우기
-                        phase = .notRequested
-                    }
+                LoadingView(phase: $phase,
+                            work: type == .lotto ? .lotto : .pension)
             }
         }
     }

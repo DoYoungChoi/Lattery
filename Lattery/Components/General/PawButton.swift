@@ -24,13 +24,21 @@ enum Paw: String, Identifiable, CaseIterable {
 
 struct PawButton: View {
     
+    @State private var timer: Timer?
+    
     var type: Paw
     var action: () -> Void
     
     var body: some View {
+        let longPressGesture = LongPressGesture(minimumDuration: 0.01)
+            .onEnded { _ in
+                action()
+            }
+
         VStack(spacing: 0) {
             Spacer()
-            Button(action: action) {
+            Button {
+            } label: {
                 type.image
                     .resizable()
                     .scaledToFit()
@@ -38,6 +46,7 @@ struct PawButton: View {
             }
             Spacer()
         }
+        .simultaneousGesture(longPressGesture)
     }
 }
 

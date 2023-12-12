@@ -91,9 +91,8 @@ private struct LottoWinResult: View {
                 Text("\(lotto.totalSalePrice)원")
                     .bold()
             }
-            .foregroundColor(.primaryColor)
-            .font(.caption)
             .foregroundColor(.gray2)
+            .font(.caption)
             .padding(.horizontal, 20)
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -133,6 +132,7 @@ private struct LottoWinInfoTable: View {
             
             Divider()
             LottoWinInfoRow()
+            Divider()
             ForEach(lottoInfo) { info in
                 LottoWinInfoRow(info: info)
                 Divider()

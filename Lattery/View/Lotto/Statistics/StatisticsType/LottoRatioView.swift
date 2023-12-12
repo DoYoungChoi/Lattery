@@ -84,8 +84,8 @@ private struct GraphInfoView: View {
             }
         }
         .padding(.vertical, 8)
-        .padding(.horizontal, 20)
-        .font(.system(size: 13))
+        .padding(.horizontal, 16)
+        .font(.system(size: 12))
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.backgroundGray)
@@ -144,5 +144,5 @@ private struct LottoPositionChart: View {
 }
 
 #Preview {
-    LottoRatioView(viewModel: .init())
+    LottoRatioView(viewModel: .init(services: StubService()))
 }

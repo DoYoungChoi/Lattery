@@ -29,7 +29,7 @@ extension PensionResultObject {
     func toModel() -> PensionResult? {
         guard let win = self.rows2.filter({ $0.rank == "1" }).first,
               let round = Int(win.round),
-              let date = win.pensionDrawDate.toDate,
+              let date = win.pensionDrawDate.toLottoDate,
               let group = Int(win.rankClass),
               let bonus = self.rows1.first
         else { return nil }

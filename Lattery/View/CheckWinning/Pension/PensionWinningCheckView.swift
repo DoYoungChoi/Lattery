@@ -20,13 +20,8 @@ struct PensionWinningCheckView: View {
             }
             .foregroundColor(.gray1)
             
-            if viewModel.pensions.count < 1 {
-                EmptyPensionDataView()
-            } else {
-                SelectedPensionResult(viewModel: viewModel)
-                SelectedDrawingLotResult(viewModel: viewModel)
-            }
-            
+            SelectedPensionResult(viewModel: viewModel)
+            SelectedDrawingLotResult(viewModel: viewModel)
         }
     }
 }

@@ -28,6 +28,4 @@ enum LotteryEndpoint: APIEndpoint {
             return ["method": "get720Number", "drwNo": round]
         }
     }
-    
-    
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct LottoResultObject: Codable {
-    var id: UUID { UUID() }
+struct LottoObject: Codable {
+    var id: Int { drwNo ?? -1 }
     var returnValue: String // success, fail
     
     var drwNo: Int? // 로또 회차
@@ -26,13 +26,12 @@ struct LottoResultObject: Codable {
     var bnusNo: Int?
 }
 
-extension LottoResultObject {
+extension LottoObject {
     func toModel() -> LottoResult? {
         guard let drwNo,
-              let drwNoDate, let date = drwNoDate.toDate,
+              let date = drwNoDate?.toLottoDate,
               let firstWinamnt,
               let firstPrzwnerCo,
-              let totSellamnt,
               let drwtNo1,
               let drwtNo2,
               let drwtNo3,

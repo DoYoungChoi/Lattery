@@ -14,6 +14,9 @@ struct LottoTicketView: View {
     var body: some View {
         ZStack {
             Color.primaryColor.opacity(0.3)
+                .onTapGesture {
+                    viewModel.send(action: .toggleTicket)
+                }
             
             HStack(spacing: 0) {
                 Spacer()
@@ -89,7 +92,7 @@ private struct LottoTicketRow: View {
             Text(group)
                 .font(.headline)
             Spacer()
-            ForEach(numbers.numbers, id:\.self) { number in
+            ForEach(numbers.numbers.sorted(), id:\.self) { number in
                 Text("\(String(format: "%02d", number))")
                     .font(.body)
                 Spacer()
@@ -99,7 +102,7 @@ private struct LottoTicketRow: View {
 }
 
 #Preview {
-    let viewModel: LottoDrawingLotViewModel = .init()
+    let viewModel: LottoDrawingLotViewModel = .init(services: StubService())
     viewModel.send(action: .run)
     
     return LottoTicketView(viewModel: viewModel)

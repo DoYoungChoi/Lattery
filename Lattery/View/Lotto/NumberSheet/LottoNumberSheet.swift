@@ -11,6 +11,7 @@ struct LottoNumberSheet: View {
     
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: LottoNumberSheetViewModel
+    @Binding var fixedNumbers: LottoNumbers?
     
     var body: some View {
         VStack(spacing: 8) {
@@ -20,8 +21,7 @@ struct LottoNumberSheet: View {
                 }
                 Spacer()
                 Button("저장") {
-                    viewModel.send(action: .save)
-                    presentationMode.wrappedValue.dismiss()
+                    save()
                 }
             }
             .padding(.vertical, 20)
@@ -33,13 +33,13 @@ struct LottoNumberSheet: View {
                 SelectedNumbers(viewModel: viewModel)
                 
                 Button {
-                    viewModel.send(action: .tapFavorite)
+                    viewModel.send(action: .toggleFavorite)
                 } label: {
-                    HeartIcon(checked: viewModel.isContainedFavoriteNumberSet)
+                    HeartIcon(checked: viewModel.isContainedFavorites)
                 }
             }
             
-            MyFavoriteNumberSetView()
+            MyFavoriteNumbersView(viewModel: viewModel)
             
             LottoNumberBoard(viewModel: viewModel)
             
@@ -49,18 +49,26 @@ struct LottoNumberSheet: View {
                 }
                 
                 Button("저장") {
-                    viewModel.send(action: .save)
-                    presentationMode.wrappedValue.dismiss()
+                    save()
                 }
             }
             .buttonStyle(CustomButtonStyle())
         }
         .padding(.horizontal, 20)
+        .onAppear {
+            viewModel.selected = Set(fixedNumbers?.fixedNumbers ?? [])
+        }
+    }
+    
+    private func save() {
+        fixedNumbers = LottoNumbers(fixedNumbers: Array(self.viewModel.selected))
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
 // MARK: - 선택한 번호
 private struct SelectedNumbers: View {
+    
     @ObservedObject private var viewModel: LottoNumberSheetViewModel
     
     fileprivate init(viewModel: LottoNumberSheetViewModel) {
@@ -84,7 +92,14 @@ private struct SelectedNumbers: View {
 }
 
 // MARK: - 나의 즐겨찾기 번호
-private struct MyFavoriteNumberSetView: View {
+private struct MyFavoriteNumbersView: View {
+    
+    @ObservedObject private var viewModel: LottoNumberSheetViewModel
+    
+    fileprivate init(viewModel: LottoNumberSheetViewModel) {
+        self.viewModel = viewModel
+    }
+    
     fileprivate var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("나의 즐겨찾기 번호")
@@ -95,10 +110,47 @@ private struct MyFavoriteNumberSetView: View {
                 RoundedRectangle(cornerRadius: 5)
                     .foregroundColor(.backgroundGray)
                 
-                // TODO: 즐겨찾기 번호
+                ScrollView(.horizontal) {
+                    LazyHStack(spacing: 8) {
+                        ForEach(viewModel.favorites, id:\.numbers) { favorite in
+                            MyFavoriteNumberItem(favorite: favorite.numbers ?? "",
+                                                 isSelected: favorite.numbers == Array(viewModel.selected).toLottoNumberString)
+                            .onTapGesture {
+                                if favorite.numbers == Array(viewModel.selected).toLottoNumberString {
+                                    viewModel.send(action: .tapFavoriteNumber(nil))
+                                } else {
+                                    viewModel.send(action: .tapFavoriteNumber(favorite))
+                                }
+                            }
+                        }
+                    }
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: 55)
         }
+    }
+}
+
+private struct MyFavoriteNumberItem: View {
+    
+    var favorite: String
+    var isSelected: Bool
+    
+    fileprivate var body: some View {
+        HStack(spacing: 8) {
+            ForEach(favorite.toLottoNumbers, id:\.self) { number in
+                LottoBall(number: number)
+            }
+        }
+        .padding(8)
+        .background(Color.pureBackground)
+        .overlay {
+            if isSelected {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.accentColor, lineWidth: 3)
+            }
+        }
+        .cornerRadius(10)
     }
 }
 
@@ -128,7 +180,7 @@ private struct LottoNumberBoard: View {
                                         .stroke(Color.accentColor)
                                     
                                     Text("\(number)")
-                                        .font(.title3)
+                                        .font(.system(size: 18))
                                         .foregroundColor(viewModel.isSelected(number) ? .white : .accentColor)
                                         .padding(10)
                                 }
@@ -145,6 +197,6 @@ private struct LottoNumberBoard: View {
     }
 }
 
-#Preview {
-    LottoNumberSheet(viewModel: .init())
-}
+//#Preview {
+//    LottoNumberSheet(fixedNumbers: .constant([1,2,3]))
+//}
