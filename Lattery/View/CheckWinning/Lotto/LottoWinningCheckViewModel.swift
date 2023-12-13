@@ -33,7 +33,7 @@ class LottoWinningCheckViewModel: ObservableObject {
         self.selectedResult = self.drawingLotResults.first ?? nil
     }
     
-    func getLottoEntity() {
+    func getLottoEntities() {
         lottos = services.lottoService.getLottoEntities(ascending: false)
         selectedLotto = lottos.first ?? nil
     }

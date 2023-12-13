@@ -84,7 +84,7 @@ private struct GraphInfoView: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
-        .font(.system(size: 13))
+        .font(.system(size: 12))
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.backgroundGray)
@@ -116,7 +116,7 @@ private struct PensionPieChart: View {
     fileprivate var body: some View {
         GeometryReader { _ in
             PieChart(data: viewModel.totalRatioData)
-                .padding(.top, 16)
+                .padding(.top, 20)
         }
     }
 }
@@ -141,5 +141,5 @@ private struct PensionPositionChart: View {
 }
 
 #Preview {
-    PensionRatioView(viewModel: .init())
+    PensionRatioView(viewModel: .init(services: StubService()))
 }

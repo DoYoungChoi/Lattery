@@ -10,15 +10,18 @@ import SwiftUI
 struct PensionDrawingLotView: View {
     
     @StateObject var viewModel: PensionDrawingLotViewModel
+    private var disableSave: Bool {
+        viewModel.drawingLotResult.count != 5
+        || viewModel.drawingLotResult.map({ $0.numbers.filter({ $0 != nil }).count < 7 }).reduce(false) { $0 || $1 }
+    }
     
     var body: some View {
         ZStack {
             VStack(spacing: 8) {
                 ForEach(viewModel.drawingLotResult, id:\.self) { result in
-                    PensionRow(numbers: result,
-                               action: {
+                    PensionRow(numbers: result) {
                         viewModel.send(action: .toggleNumberSheet)
-                    })
+                    }
                 }
                 
                 PawButtonPicker(viewModel: viewModel)
@@ -26,6 +29,8 @@ struct PensionDrawingLotView: View {
                 PawButton(type: viewModel.paw) {
                     viewModel.send(action: .run)
                 }
+                .opacity(viewModel.isRunning ? 0.5 : 1)
+                .scaleEffect(viewModel.isRunning ? 0.95 : 1)
             }
             .padding(.horizontal, 20)
             .navigationTitle("연금복권 번호추첨")
@@ -37,6 +42,7 @@ struct PensionDrawingLotView: View {
                     } label: {
                         HeartIcon(checked: viewModel.save)
                     }
+                    .disabled(disableSave)
                     
                     Button {
                         viewModel.send(action: .refresh)
@@ -45,14 +51,23 @@ struct PensionDrawingLotView: View {
                     }
                 }
             }
+            .disabled(viewModel.isRunning || viewModel.showTicket)
             .sheet(isPresented: $viewModel.showNumberSheet) {
-                PensionNumberSheet(viewModel: .init())
+                if #available(iOS 16.0, *) {
+                    PensionNumberSheet(fixedNumbers: $viewModel.fixedNumbers)
+                        .presentationDetents([.fraction(0.7)])
+                } else {
+                    PensionNumberSheet(fixedNumbers: $viewModel.fixedNumbers)
+                }
             }
             
             if viewModel.showTicket {
                 PensionTicketView(viewModel: viewModel)
                     .ignoresSafeArea(edges: .vertical)
             }
+        }
+        .onDisappear {
+            viewModel.send(action: .disappear)
         }
     }
 }
@@ -85,6 +100,6 @@ private struct PawButtonPicker: View {
 
 #Preview {
     NavigationView {
-        PensionDrawingLotView(viewModel: .init())
+        PensionDrawingLotView(viewModel: .init(services: StubService()))
     }
 }

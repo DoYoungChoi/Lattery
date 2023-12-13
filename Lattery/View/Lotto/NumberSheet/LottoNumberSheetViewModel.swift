@@ -13,7 +13,6 @@ class LottoNumberSheetViewModel: ObservableObject {
         case tapNumber(Int)
         case toggleFavorite
         case tapFavoriteNumber(LottoFavorite?)
-        case save
         case reset
     }
     
@@ -44,9 +43,6 @@ class LottoNumberSheetViewModel: ObservableObject {
             toggleFavorite()
         case .tapFavoriteNumber(let favorite):
             selected = Set(favorite?.numbers?.toLottoNumbers ?? [])
-        case .save:
-            // TODO: 지금 선택한 번호 저장하기
-            return
         case .reset:
             selected = []
             return

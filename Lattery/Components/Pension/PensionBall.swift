@@ -11,6 +11,7 @@ struct PensionBall: View {
     
     let position: Int
     let number: Int?
+    var fixed: Bool = false
     
     var body: some View {
         ZStack {
@@ -30,7 +31,7 @@ struct PensionBall: View {
                     .stroke(position.pensionColor, style: StrokeStyle(lineWidth: 2, dash: [5]))
             }
         }
-        .background(Color.pureBackground)
+        .background(fixed ? position.pensionColor.opacity(0.2) : Color.pureBackground)
         .clipShape(Circle())
         .frame(width: 30, height: 30)
     }

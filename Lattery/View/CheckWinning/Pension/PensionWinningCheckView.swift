@@ -10,6 +10,7 @@ import SwiftUI
 struct PensionWinningCheckView: View {
     
     @StateObject var viewModel: PensionWinningCheckViewModel
+    @Binding var phase: Phase
     
     var body: some View {
         VStack(spacing: 20) {
@@ -22,6 +23,13 @@ struct PensionWinningCheckView: View {
             
             SelectedPensionResult(viewModel: viewModel)
             SelectedDrawingLotResult(viewModel: viewModel)
+            Spacer()
+        }
+        .onChange(of: phase) { newValue in
+            if newValue == .success || newValue == .fail {
+                self.viewModel.getPensionEntities()
+                self.phase = .notRequested
+            }
         }
     }
 }
@@ -42,11 +50,11 @@ private struct SelectedPensionResult: View {
                     Picker("", selection: $viewModel.selectedPension) {
                         ForEach(viewModel.pensions, id: \.self) { pension in
                             Text(verbatim: "\(pension.round)회")
-                                .foregroundColor(.gray2)
-                                .tag(pension)
+                                .tag(Optional(pension))
                         }
                     }
                     .pickerStyle(.menu)
+                    .tint(.gray2)
                 } else {
                     Text("데이터가 없습니다")
                         .font(.subheadline)
@@ -57,9 +65,15 @@ private struct SelectedPensionResult: View {
             Group {
                 if viewModel.selectedPension != nil {
                     resultBoard
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 20)
                 } else {
-                    EmptyPensionDataView()
-                        .frame(maxHeight: 150)
+                    VStack {
+                        Spacer()
+                        EmptyPensionDataView()
+                        Spacer()
+                    }
+                    .frame(maxHeight: 150)
                 }
             }
             .background(Color.backgroundGray)
@@ -69,12 +83,12 @@ private struct SelectedPensionResult: View {
     
     var resultBoard: some View {
         VStack(spacing: 4) {
-            Text(verbatim: "\(viewModel.selectedPension?.round)회 당첨결과")
+            Text(verbatim: "\(viewModel.selectedPension!.round)회 당첨결과")
                 .font(.title)
                 .bold()
                 .foregroundStyle(Color.primaryColor)
             
-            Text("(\(viewModel.selectedPension?.date.toDateStringKor ?? "YYYY년 MM월 dd일") 추첨)")
+            Text("(\(viewModel.selectedPension!.date.toDateStringKor) 추첨)")
                 .font(.caption)
                 .foregroundStyle(Color.gray2)
             
@@ -87,18 +101,19 @@ private struct SelectedPensionResult: View {
                 }
                 HStack(spacing: 6) {
                     Spacer()
-                    PensionBall(position: 0,
-                                number: Int(viewModel.selectedPension!.group))
-                    Text("조")
-                        .font(.subheadline)
                     ForEach(Array(viewModel.winNumbers.enumerated()), id:\.offset) { (index, number) in
-                        PensionBall(position: index+1,
-                                    number: Int(String(number)))
+                        PensionBall(position: index,
+                                    number: number ?? -1)
+                        if index == 0 {
+                            Text("조")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.primaryColor)
+                        }
                     }
                 }
             }
             .padding(.vertical, 8)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 8)
             .background(Color.pureBackground)
             .cornerRadius(10)
             
@@ -113,14 +128,15 @@ private struct SelectedPensionResult: View {
                     Spacer()
                     Text("각 조")
                         .font(.subheadline)
+                        .foregroundStyle(Color.primaryColor)
                     ForEach(Array(viewModel.bonusNumbers.enumerated()), id:\.offset) { (index, number) in
                         PensionBall(position: index+1,
-                                    number: Int(String(number)))
+                                    number: number ?? -1)
                     }
                 }
             }
             .padding(.vertical, 8)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 8)
             .background(Color.pureBackground)
             .cornerRadius(10)
         }
@@ -148,10 +164,11 @@ private struct SelectedDrawingLotResult: View {
                             ForEach(viewModel.drawingLotResults, id: \.self) { result in
                                 Text("\(result.date.toDateTimeKor) 추첨번호")
                                     .foregroundColor(.gray2)
-                                    .tag(result)
+                                    .tag(Optional(result))
                             }
                         }
                         .pickerStyle(.menu)
+                        .tint(.gray2)
                     } else {
                         Text("데이터가 없습니다")
                             .font(.subheadline)
@@ -170,9 +187,10 @@ private struct SelectedDrawingLotResult: View {
         ScrollView {
             Divider()
             VStack(spacing: 8) {
-                ForEach(viewModel.savedResult, id:\.self) { result in
+                ForEach(viewModel.resultNumbers, id:\.self) { number in
                     CheckRow(viewModel: viewModel,
-                             result: result)
+                             number: number)
+                    .padding(.horizontal, 20)
                     Divider()
                 }
             }
@@ -183,58 +201,36 @@ private struct SelectedDrawingLotResult: View {
 private struct CheckRow: View {
     
     @ObservedObject var viewModel: PensionWinningCheckViewModel
-    let result: String
-    private var drawingLotNumbers: [Int?] {
-        result.split(separator: ",").map { Int($0) }
-    }
-    private var rankText: String {
-        if rank == 1 {
-            return "🥇1등🥇"
-        } else if rank == 2 {
-            return "🥈2등🥈"
-        } else if rank == 3 {
-            return "🥉3등🥉"
-        } else if rank == 8 {
-            return "🏅보너스🏅"
-        } else if rank < 8 {
-            return "\(rank)등"
-        } else {
+    let number: PensionNumbers
+    
+    private var rank: String {
+        if number.numbers.count < 7 || viewModel.winNumbers.count < 7 || viewModel.bonusNumbers.count < 6 {
             return "낙첨"
         }
-    }
-    private var rank: Int {
-        guard viewModel.winNumbers.count == 7
-                && viewModel.bonusNumbers.count == 6
-                && result.count == 7
-        else { return 9 }
         
-        if viewModel.winNumbers == result { return 1 }
-        var index = viewModel.winNumbers.index(viewModel.winNumbers.startIndex, offsetBy: 1)
-        if viewModel.winNumbers.suffix(from: index) == result.suffix(from: index) { return 2 }
-        if viewModel.bonusNumbers == result.suffix(from: index) { return 8 }
-        index = viewModel.winNumbers.index(viewModel.winNumbers.startIndex, offsetBy: 2)
-        if viewModel.winNumbers.suffix(from: index) == result.suffix(from: index) { return 3 }
-        index = viewModel.winNumbers.index(viewModel.winNumbers.startIndex, offsetBy: 3)
-        if viewModel.winNumbers.suffix(from: index) == result.suffix(from: index) { return 4 }
-        index = viewModel.winNumbers.index(viewModel.winNumbers.startIndex, offsetBy: 4)
-        if viewModel.winNumbers.suffix(from: index) == result.suffix(from: index) { return 5 }
-        index = viewModel.winNumbers.index(viewModel.winNumbers.startIndex, offsetBy: 5)
-        if viewModel.winNumbers.suffix(from: index) == result.suffix(from: index) { return 6 }
-        index = viewModel.winNumbers.index(viewModel.winNumbers.startIndex, offsetBy: 6)
-        if viewModel.winNumbers.suffix(from: index) == result.suffix(from: index) { return 7 }
-        return 9
+        let numbers = number.numbers
+        let winNumbers = viewModel.winNumbers
+        if numbers.toPensionNumberString == winNumbers.toPensionNumberString { return "1등🥇" }
+        else if Array(numbers[1..<7]).toPensionNumberString == viewModel.bonusNumbers.toPensionNumberString { return "보너스🏅" }
+        else if Array(numbers[1..<7]).toPensionNumberString == Array(winNumbers[1..<7]).toPensionNumberString { return "2등🥈" }
+        else if Array(numbers[2..<7]).toPensionNumberString == Array(winNumbers[2..<7]).toPensionNumberString { return "3등🥉" }
+        else if Array(numbers[3..<7]).toPensionNumberString == Array(winNumbers[3..<7]).toPensionNumberString { return "4등" }
+        else if Array(numbers[4..<7]).toPensionNumberString == Array(winNumbers[4..<7]).toPensionNumberString { return "5등" }
+        else if Array(numbers[5..<7]).toPensionNumberString == Array(winNumbers[5..<7]).toPensionNumberString { return "6등" }
+        else if numbers[6] == winNumbers[6] { return "7등" }
+        else { return "낙첨" }
     }
     
     fileprivate init(viewModel: PensionWinningCheckViewModel,
-                     result: String) {
+                     number: PensionNumbers) {
         self.viewModel = viewModel
-        self.result = result
+        self.number = number
     }
     
     fileprivate var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text(rankText)
+                Text(rank)
                     .multilineTextAlignment(.center)
                     .font(.headline)
                 Spacer()
@@ -242,12 +238,23 @@ private struct CheckRow: View {
             
             HStack(spacing: 6) {
                 Spacer()
-                ForEach(Array(drawingLotNumbers.enumerated()), id:\.offset) { (index, number) in
-                    PensionBall(position: index+1,
-                                number: number)
-                    if index == 0 {
-                        Text("조")
-                            .font(.subheadline)
+                ForEach(Array(number.numbers.enumerated()), id:\.offset) { (index, number) in
+                    if rank == "보너스🏅" {
+                        PensionBall(position: index,
+                                    number: number,
+                                    fixed: index > 0)
+                        if index == 0 {
+                            Text("조")
+                                .font(.subheadline)
+                        }
+                    } else {
+                        PensionBall(position: index,
+                                    number: number,
+                                    fixed: number == viewModel.winNumbers[index])
+                        if index == 0 {
+                            Text("조")
+                                .font(.subheadline)
+                        }
                     }
                 }
             }
@@ -256,5 +263,6 @@ private struct CheckRow: View {
 }
 
 #Preview {
-    PensionWinningCheckView(viewModel: .init())
+    PensionWinningCheckView(viewModel: .init(services: StubService()), 
+                            phase: .constant(.notRequested))
 }

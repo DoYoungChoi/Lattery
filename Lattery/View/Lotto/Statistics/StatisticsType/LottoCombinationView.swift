@@ -75,7 +75,6 @@ private struct HeadInfoView: View {
     }
 }
 
-
 private struct LottoCombinationRow: View {
     
     let lotto: LottoEntity

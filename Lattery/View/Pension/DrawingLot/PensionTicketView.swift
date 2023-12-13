@@ -14,6 +14,9 @@ struct PensionTicketView: View {
     var body: some View {
         ZStack {
             Color.primaryColor.opacity(0.3)
+                .onTapGesture {
+                    viewModel.send(action: .toggleTicket)
+                }
             
             HStack(spacing: 0) {
                 Spacer()
@@ -40,10 +43,9 @@ struct PensionTicketView: View {
                         .foregroundStyle(Color.gray2)
                     
                     Divider()
-                        .padding(.bottom, 16)
                     
                     ForEach(viewModel.drawingLotResult, id:\.self) { numbers in
-                        PensionTicketRow(numbers: numbers)
+                        PensionTicketRow(numbers: numbers.numbers)
                     }
                     
                     Divider()
@@ -88,7 +90,7 @@ private struct PensionTicketRow: View {
                     Text("\(number ?? 0)조")
                         .font(.headline)
                 } else {
-                    Text("\(String(format: "%02d", number ?? 0))")
+                    Text("\(String(format: "%01d", number ?? 0))")
                         .font(.body)
                 }
                 Spacer()
@@ -98,7 +100,7 @@ private struct PensionTicketRow: View {
 }
 
 #Preview {
-    let viewModel: PensionDrawingLotViewModel = .init()
+    let viewModel: PensionDrawingLotViewModel = .init(services: StubService())
     viewModel.send(action: .run)
     
     return PensionTicketView(viewModel: viewModel)

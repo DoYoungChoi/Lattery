@@ -46,7 +46,6 @@
 		D88933942B1EFF8000BFB959 /* PensionRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88933932B1EFF8000BFB959 /* PensionRatioView.swift */; };
 		D88933972B1F006E00BFB959 /* PensionCombinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88933962B1F006E00BFB959 /* PensionCombinationView.swift */; };
 		D88933992B1F027900BFB959 /* PensionNumberSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88933982B1F027900BFB959 /* PensionNumberSheet.swift */; };
-		D889339B2B1F02A500BFB959 /* PensionNumberSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D889339A2B1F02A500BFB959 /* PensionNumberSheetViewModel.swift */; };
 		D889339D2B1F0F0200BFB959 /* PensionTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D889339C2B1F0F0200BFB959 /* PensionTicketView.swift */; };
 		D889339F2B1F10C100BFB959 /* PensionDrawingLotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D889339E2B1F10C000BFB959 /* PensionDrawingLotViewModel.swift */; };
 		D88933A12B1F114300BFB959 /* PensionDrawingLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88933A02B1F114300BFB959 /* PensionDrawingLotView.swift */; };
@@ -76,8 +75,7 @@
 		D8C2D8DB2B242C11008D582B /* LottoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8DA2B242C11008D582B /* LottoResult.swift */; };
 		D8C2D8DD2B2430D5008D582B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8DC2B2430D5008D582B /* String+Extension.swift */; };
 		D8C2D8DF2B24343C008D582B /* PensionStatisticsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8DE2B24343B008D582B /* PensionStatisticsType.swift */; };
-		D8C2D8E62B244662008D582B /* PensionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E52B244662008D582B /* PensionEntity.swift */; };
-		D8C2D8E82B244684008D582B /* PensionResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E72B244684008D582B /* PensionResultObject.swift */; };
+		D8C2D8E82B244684008D582B /* PensionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E72B244684008D582B /* PensionObject.swift */; };
 		D8C2D8EA2B24496F008D582B /* PensionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E92B24496F008D582B /* PensionResult.swift */; };
 		D8C2D8EF2B247233008D582B /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8EE2B247233008D582B /* OffsetObservingScrollView.swift */; };
 		D8C2D8F22B2473C0008D582B /* PensionDrawingLotResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8F12B2473C0008D582B /* PensionDrawingLotResult.swift */; };
@@ -98,6 +96,12 @@
 		D8C2D9192B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9172B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift */; };
 		D8C2D91A2B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9182B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift */; };
 		D8C2D91C2B283CCA008D582B /* LottoDrawingLotResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D91B2B283CCA008D582B /* LottoDrawingLotResult.swift */; };
+		D8C2D9222B28542A008D582B /* PensionModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9202B28542A008D582B /* PensionModel.xcdatamodeld */; };
+		D8C2D9242B286649008D582B /* PensionNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9232B286649008D582B /* PensionNumbers.swift */; };
+		D8C2D9272B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9252B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataClass.swift */; };
+		D8C2D9282B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9262B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift */; };
+		D8C2D92B2B29348F008D582B /* PensionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9292B29348F008D582B /* PensionEntity+CoreDataClass.swift */; };
+		D8C2D92C2B29348F008D582B /* PensionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D92A2B29348F008D582B /* PensionEntity+CoreDataProperties.swift */; };
 		D8D659062A556965003F2516 /* LottoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659052A556965003F2516 /* LottoObject.swift */; };
 		D8D659142A57D192003F2516 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659132A57D192003F2516 /* DateExtension.swift */; };
 		D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */; };
@@ -144,7 +148,6 @@
 		D88933932B1EFF8000BFB959 /* PensionRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionRatioView.swift; sourceTree = "<group>"; };
 		D88933962B1F006E00BFB959 /* PensionCombinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionCombinationView.swift; sourceTree = "<group>"; };
 		D88933982B1F027900BFB959 /* PensionNumberSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionNumberSheet.swift; sourceTree = "<group>"; };
-		D889339A2B1F02A500BFB959 /* PensionNumberSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionNumberSheetViewModel.swift; sourceTree = "<group>"; };
 		D889339C2B1F0F0200BFB959 /* PensionTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionTicketView.swift; sourceTree = "<group>"; };
 		D889339E2B1F10C000BFB959 /* PensionDrawingLotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionDrawingLotViewModel.swift; sourceTree = "<group>"; };
 		D88933A02B1F114300BFB959 /* PensionDrawingLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionDrawingLotView.swift; sourceTree = "<group>"; };
@@ -176,8 +179,7 @@
 		D8C2D8DA2B242C11008D582B /* LottoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoResult.swift; sourceTree = "<group>"; };
 		D8C2D8DC2B2430D5008D582B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D8C2D8DE2B24343B008D582B /* PensionStatisticsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionStatisticsType.swift; sourceTree = "<group>"; };
-		D8C2D8E52B244662008D582B /* PensionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionEntity.swift; sourceTree = "<group>"; };
-		D8C2D8E72B244684008D582B /* PensionResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionResultObject.swift; sourceTree = "<group>"; };
+		D8C2D8E72B244684008D582B /* PensionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionObject.swift; sourceTree = "<group>"; };
 		D8C2D8E92B24496F008D582B /* PensionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionResult.swift; sourceTree = "<group>"; };
 		D8C2D8EE2B247233008D582B /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
 		D8C2D8F12B2473C0008D582B /* PensionDrawingLotResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionDrawingLotResult.swift; sourceTree = "<group>"; };
@@ -198,6 +200,12 @@
 		D8C2D9172B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LottoDrawingLotResultEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D8C2D9182B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LottoDrawingLotResultEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D8C2D91B2B283CCA008D582B /* LottoDrawingLotResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoDrawingLotResult.swift; sourceTree = "<group>"; };
+		D8C2D9212B28542A008D582B /* PensionModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PensionModel.xcdatamodel; sourceTree = "<group>"; };
+		D8C2D9232B286649008D582B /* PensionNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionNumbers.swift; sourceTree = "<group>"; };
+		D8C2D9252B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PensionDrawingLotResultEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D8C2D9262B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PensionDrawingLotResultEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D8C2D9292B29348F008D582B /* PensionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PensionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D8C2D92A2B29348F008D582B /* PensionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PensionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D8C4EE6A2A5431240092BCA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D8D659052A556965003F2516 /* LottoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoObject.swift; sourceTree = "<group>"; };
 		D8D659132A57D192003F2516 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -368,7 +376,6 @@
 			isa = PBXGroup;
 			children = (
 				D88933982B1F027900BFB959 /* PensionNumberSheet.swift */,
-				D889339A2B1F02A500BFB959 /* PensionNumberSheetViewModel.swift */,
 			);
 			path = NumberSheet;
 			sourceTree = "<group>";
@@ -445,6 +452,10 @@
 		D8AB9BAC2A526B5400E5883C = {
 			isa = PBXGroup;
 			children = (
+				D8C2D9292B29348F008D582B /* PensionEntity+CoreDataClass.swift */,
+				D8C2D92A2B29348F008D582B /* PensionEntity+CoreDataProperties.swift */,
+				D8C2D9252B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataClass.swift */,
+				D8C2D9262B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift */,
 				D8C2D9172B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift */,
 				D8C2D9182B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift */,
 				D8C2D90B2B25EA72008D582B /* LottoEntity+CoreDataClass.swift */,
@@ -536,7 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				D8D659052A556965003F2516 /* LottoObject.swift */,
-				D8C2D8E72B244684008D582B /* PensionResultObject.swift */,
+				D8C2D8E72B244684008D582B /* PensionObject.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -566,8 +577,9 @@
 		D8C2D8F02B2473B3008D582B /* Pension */ = {
 			isa = PBXGroup;
 			children = (
+				D8C2D9202B28542A008D582B /* PensionModel.xcdatamodeld */,
+				D8C2D9232B286649008D582B /* PensionNumbers.swift */,
 				D8C2D8E92B24496F008D582B /* PensionResult.swift */,
-				D8C2D8E52B244662008D582B /* PensionEntity.swift */,
 				D8C2D8F12B2473C0008D582B /* PensionDrawingLotResult.swift */,
 			);
 			path = Pension;
@@ -688,12 +700,13 @@
 				D88933B62B21605800BFB959 /* GraphData.swift in Sources */,
 				D8C2D8EF2B247233008D582B /* OffsetObservingScrollView.swift in Sources */,
 				D87CA2342A7BC9160008FA9C /* StringExtension.swift in Sources */,
-				D8C2D8E62B244662008D582B /* PensionEntity.swift in Sources */,
 				D889338A2B1EF98500BFB959 /* PensionStatisticsViewModel.swift in Sources */,
 				D8C2D8F72B247BB3008D582B /* SettingView.swift in Sources */,
 				D88933BD2B21CEF400BFB959 /* PensionWinningCheckView.swift in Sources */,
+				D8C2D9242B286649008D582B /* PensionNumbers.swift in Sources */,
 				D8C2D8FF2B247D7A008D582B /* SavedPensionNumberView.swift in Sources */,
 				D8C2D91C2B283CCA008D582B /* LottoDrawingLotResult.swift in Sources */,
+				D8C2D9222B28542A008D582B /* PensionModel.xcdatamodeld in Sources */,
 				D8C2D9122B26AFE6008D582B /* APIError.swift in Sources */,
 				D88933AE2B20575100BFB959 /* LoadingView.swift in Sources */,
 				D88933922B1EFEE500BFB959 /* PensionStatisticsView.swift in Sources */,
@@ -714,6 +727,7 @@
 				D8C2D9012B2497B4008D582B /* Service.swift in Sources */,
 				D8C2D9032B24982F008D582B /* PensionService.swift in Sources */,
 				D8C2D8F22B2473C0008D582B /* PensionDrawingLotResult.swift in Sources */,
+				D8C2D9272B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataClass.swift in Sources */,
 				D88933762B1ED90700BFB959 /* LottoCountView.swift in Sources */,
 				D8FDC9022A8A5C5300238C38 /* NotificationManager.swift in Sources */,
 				D889336F2B1E2CD800BFB959 /* LottoStatisticsView.swift in Sources */,
@@ -733,12 +747,13 @@
 				D88933732B1EC34C00BFB959 /* Phase.swift in Sources */,
 				D8D659142A57D192003F2516 /* DateExtension.swift in Sources */,
 				D88933A62B20324700BFB959 /* Int+Extension.swift in Sources */,
+				D8C2D92B2B29348F008D582B /* PensionEntity+CoreDataClass.swift in Sources */,
 				D88933A12B1F114300BFB959 /* PensionDrawingLotView.swift in Sources */,
 				D8C2D90A2B25E630008D582B /* ServiceError.swift in Sources */,
 				D8C2D8D32B22EC5C008D582B /* APIEndpoint.swift in Sources */,
 				D889334F2B1D9FB900BFB959 /* LottoRow.swift in Sources */,
 				D88933782B1ED91200BFB959 /* LottoRatioView.swift in Sources */,
-				D8C2D8E82B244684008D582B /* PensionResultObject.swift in Sources */,
+				D8C2D8E82B244684008D582B /* PensionObject.swift in Sources */,
 				D88933612B1DFBDA00BFB959 /* LottoStatisticsType.swift in Sources */,
 				D8C2D90E2B25EA72008D582B /* LottoEntity+CoreDataProperties.swift in Sources */,
 				D889333A2B1D7AE700BFB959 /* MainButtonStyle.swift in Sources */,
@@ -749,8 +764,10 @@
 				D88933882B1EF97800BFB959 /* PensionStatisticsMainView.swift in Sources */,
 				D88933422B1D851D00BFB959 /* LottoDrawingLotViewModel.swift in Sources */,
 				D88933552B1DBB5A00BFB959 /* LottoNumberSheetViewModel.swift in Sources */,
+				D8C2D92C2B29348F008D582B /* PensionEntity+CoreDataProperties.swift in Sources */,
 				D889335F2B1DFB6300BFB959 /* LottoStatisticsMainView.swift in Sources */,
 				D88933BB2B21CEE900BFB959 /* LottoWinningCheckView.swift in Sources */,
+				D8C2D9282B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift in Sources */,
 				D88933AA2B20423E00BFB959 /* PensionRow.swift in Sources */,
 				D87CA22A2A7A3AD20008FA9C /* CustomErrors.swift in Sources */,
 				D8C2D8FB2B247C89008D582B /* LottoFavoriteView.swift in Sources */,
@@ -768,7 +785,6 @@
 				D88933492B1D975F00BFB959 /* LottoBall.swift in Sources */,
 				D889339D2B1F0F0200BFB959 /* PensionTicketView.swift in Sources */,
 				D88933942B1EFF8000BFB959 /* PensionRatioView.swift in Sources */,
-				D889339B2B1F02A500BFB959 /* PensionNumberSheetViewModel.swift in Sources */,
 				D8C2D8FD2B247D0A008D582B /* SavedLottoNumberView.swift in Sources */,
 				D8C2D8D52B22ECD8008D582B /* LotteryEndpoint.swift in Sources */,
 			);
@@ -1009,6 +1025,16 @@
 			);
 			currentVersion = D8C2D9052B258353008D582B /* LottoModel.xcdatamodel */;
 			path = LottoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		D8C2D9202B28542A008D582B /* PensionModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D8C2D9212B28542A008D582B /* PensionModel.xcdatamodel */,
+			);
+			currentVersion = D8C2D9212B28542A008D582B /* PensionModel.xcdatamodel */;
+			path = PensionModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

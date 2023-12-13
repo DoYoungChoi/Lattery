@@ -11,10 +11,12 @@ import CoreData
 protocol LottoServiceProtocol {
     // 로또 번호추첨
     func drawLot(contain fixedNumbers: [Int]) -> LottoNumbers
+    
     // 추첨번호 조회/추가/삭제
     func getLottoDrawingLotResults() -> [LottoDrawingLotResult]
     func add(drawingLotNumbers: [[Int]]) throws -> String
     func delete(drawingLotNumbersById id: String) throws
+    
     // 즐겨찾기 번호 조회/추가/삭제
     func getFavoriteNumbers() -> [LottoFavorite]
     func add(favoriteNumbers: [Int]) throws
@@ -45,6 +47,7 @@ class LottoService: LottoServiceProtocol {
         }
     }
     
+    // MARK: - 로또 번호추첨
     func drawLot(contain fixedNumbers: [Int] = []) -> LottoNumbers {
         var numbers: [Int] = fixedNumbers
         while numbers.count < 6 {
@@ -199,6 +202,7 @@ class LottoService: LottoServiceProtocol {
 
 class StubLottoService: LottoServiceProtocol {
     
+    // MARK: - 로또 번호추첨
     func drawLot(contain fixedNumbers: [Int]) -> LottoNumbers {
         var numbers: [Int] = fixedNumbers
         while numbers.count < 6 {

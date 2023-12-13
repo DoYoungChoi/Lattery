@@ -9,13 +9,13 @@ import SwiftUI
 
 struct PensionRow: View {
     
-    var numbers: [Int?] = []
+    var numbers: PensionNumbers
     var action: (() -> Void)? = nil
     
     var body: some View {
         HStack(spacing: 8) {
             
-            if numbers.count == 7 {
+            if numbers.numbers.count == 7 {
                 pensionBalls
             } else {
                 emptyBalls
@@ -51,9 +51,12 @@ struct PensionRow: View {
     
     var pensionBalls: some View {
         HStack(spacing: 8) {
-            ForEach(Array(numbers.enumerated()), id:\.offset) { (position, number) in
+            ForEach(Array(numbers.numbers.enumerated()), id:\.offset) { (position, number) in
                 PensionBall(position: position,
-                            number: number)
+                            number: number,
+                            fixed: numbers.fixedNumbers.count > position
+                                    && numbers.fixedNumbers[position] != nil
+                                    && number == numbers.fixedNumbers[position])
                 if position == 0 {
                     Text("조")
                         .font(.subheadline)
@@ -65,5 +68,5 @@ struct PensionRow: View {
 }
 
 #Preview {
-    PensionRow() { }
+    PensionRow(numbers: PensionNumbers(fixedNumbers: [1, nil, nil, nil, nil, nil, nil])) { }
 }

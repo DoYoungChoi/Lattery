@@ -12,3 +12,9 @@ extension Array<Int> {
         self.sorted().map { String($0) }.joined(separator: ",")
     }
 }
+
+extension Array<Int?> {
+    var toPensionNumberString: String {
+        self.map { String($0 ?? -1) }.joined(separator: ",")
+    }
+}

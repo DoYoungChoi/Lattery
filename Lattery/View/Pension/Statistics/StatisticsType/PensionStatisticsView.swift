@@ -14,6 +14,7 @@ struct PensionStatisticsView: View {
     var body: some View {
         VStack(spacing: 8) {
             PensionStatisticsTypePicker(viewModel: viewModel)
+                .padding(.horizontal, 20)
             
             contentView
             
@@ -33,6 +34,7 @@ struct PensionStatisticsView: View {
                 switch viewModel.statType {
                 case .color:
                     PensionRatioView(viewModel: viewModel)
+                        .padding(.horizontal, 20)
                 case .combination:
                     PensionCombinationView(viewModel: viewModel)
                 }
@@ -60,5 +62,5 @@ private struct PensionStatisticsTypePicker: View {
 }
 
 #Preview {
-    PensionStatisticsView(viewModel: .init())
+    PensionStatisticsView(viewModel: .init(services: StubService()))
 }

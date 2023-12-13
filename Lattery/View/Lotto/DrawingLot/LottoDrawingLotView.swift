@@ -12,6 +12,10 @@ struct LottoDrawingLotView: View {
     @EnvironmentObject private var services: Service
     
     @StateObject var viewModel: LottoDrawingLotViewModel
+    private var disableSave: Bool {
+        viewModel.drawingLotResult.count != 5
+        || viewModel.drawingLotResult.map({ $0.value.numbers.count < 6 }).reduce(false) { $0 || $1 }
+    }
     
     var body: some View {
         ZStack {
@@ -41,17 +45,16 @@ struct LottoDrawingLotView: View {
                     } label: {
                         HeartIcon(checked: viewModel.save)
                     }
-                    .disabled(viewModel.showTicket)
+                    .disabled(disableSave)
                     
                     Button {
                         viewModel.send(action: .refresh)
                     } label: {
                         Image("refresh")
                     }
-                    .disabled(viewModel.showTicket)
                 }
             }
-            .disabled(viewModel.isRunning)
+            .disabled(viewModel.isRunning || viewModel.showTicket)
             .sheet(isPresented: $viewModel.showNumberSheet) {
                 LottoNumberSheet(viewModel: .init(services: services),
                                  fixedNumbers: $viewModel.drawingLotResult[viewModel.group])

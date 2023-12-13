@@ -30,7 +30,8 @@ struct WinningCheckMainView: View {
                     LottoWinningCheckView(viewModel: .init(services: services),
                                           phase: $phase)
                 case .pension:
-                    PensionWinningCheckView(viewModel: .init())
+                    PensionWinningCheckView(viewModel: .init(services: services),
+                                            phase: $phase)
                 }
                 Spacer()
             }

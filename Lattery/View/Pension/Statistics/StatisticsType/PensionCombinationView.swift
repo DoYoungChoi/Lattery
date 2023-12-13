@@ -14,11 +14,13 @@ struct PensionCombinationView: View {
     var body: some View {
         VStack(spacing: 8) {
             HeadInfoView(viewModel: viewModel)
+                .padding(.horizontal, 20)
             
             // TODO: 로또 조합 선택창
-            PensionRow(numbers: []) {
+            PensionRow(numbers: PensionNumbers(numbers: viewModel.fixedNumbers)) {
                 viewModel.send(action: .toggleNumberBoard)
             }
+            .padding(.horizontal, 20)
             
             List {
                 AscendingToggle(isOn: $viewModel.ascending)
@@ -26,16 +28,23 @@ struct PensionCombinationView: View {
                 ForEach(viewModel.filtered) { pension in
                     NavigationLink {
                         PensionResultView(pension: pension)
+                            .padding(.horizontal, 20)
                     } label: {
                         PensionCombinationRow(pension: pension,
-                                              includeBonus: viewModel.includeBonus)
+                                              includeBonus: viewModel.includeBonus,
+                                              fixedNumbers: viewModel.fixedNumbers ?? [])
                     }
                 }
             }
             .listStyle(.inset)
         }
         .sheet(isPresented: $viewModel.showNumberSheet) {
-            PensionNumberSheet(viewModel: .init())
+            if #available(iOS 16.0, *) {
+                PensionNumberSheet(fixedNumbers: $viewModel.fixedNumbers)
+                    .presentationDetents([.fraction(0.7)])
+            } else {
+                PensionNumberSheet(fixedNumbers: $viewModel.fixedNumbers)
+            }
         }
     }
 }
@@ -72,17 +81,22 @@ private struct PensionCombinationRow: View {
     
     let pension: PensionEntity
     let includeBonus: Bool
-    private var winNumbers: String {
-        pension.numbers
+    let fixedNumbers: [Int?]
+    
+    private var winNumbers: [Int?] {
+        pension.numbers.toPensionNumbers
     }
-    private var bonusNumbers: String {
-        pension.bonus
+    private var bonusNumbers: [Int?] {
+        let count = pension.bonus.toPensionNumbers.count
+        return Array(pension.bonus.toPensionNumbers[1..<count])
     }
     
     fileprivate init(pension: PensionEntity,
-                     includeBonus: Bool) {
+                     includeBonus: Bool,
+                     fixedNumbers: [Int?]) {
         self.pension = pension
         self.includeBonus = includeBonus
+        self.fixedNumbers = fixedNumbers
     }
     
     fileprivate var body: some View {
@@ -104,35 +118,39 @@ private struct PensionCombinationRow: View {
                 .font(.system(size: 11))
                 
                 // 1등
-                HStack(spacing: 8) {
+                HStack(spacing: 4) {
                     Text("1등")
                         .foregroundStyle(Color.primaryColor)
                     Spacer()
-                    PensionBall(position: 0,
-                                number: Int(pension.group))
-                    Text("조")
-                        .foregroundStyle(Color.primaryColor)
                     ForEach(Array(winNumbers.enumerated()), id:\.offset) { (index, number) in
-                        PensionBall(position: index + 1,
-                                    number: Int(String(number)) ?? -1)
+                        PensionBall(position: index,
+                                    number: number ?? -1,
+                                    fixed: fixedNumbers[index] == number)
+                        if index == 0 {
+                            Text("조")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.primaryColor)
+                        }
                     }
                 }
-                .font(.caption2)
+                .font(.system(size: 13))
                 
                 if includeBonus {
                     // 보너스
-                    HStack(spacing: 8) {
+                    HStack(spacing: 4) {
                         Text("보너스")
                             .foregroundStyle(Color.primaryColor)
                         Spacer()
                         Text("각 조")
+                            .font(.subheadline)
                             .foregroundStyle(Color.primaryColor)
                         ForEach(Array(bonusNumbers.enumerated()), id:\.offset) { (index, number) in
-                            PensionBall(position: index + 1,
-                                        number: Int(String(number)) ?? -1)
+                            PensionBall(position: index+1,
+                                        number: number ?? -1,
+                                        fixed: fixedNumbers[index+1] == number)
                         }
                     }
-                    .font(.caption2)
+                    .font(.system(size: 13))
                 }
             }
         }
@@ -140,5 +158,5 @@ private struct PensionCombinationRow: View {
 }
 
 #Preview {
-    PensionCombinationView(viewModel: .init())
+    PensionCombinationView(viewModel: .init(services: StubService()))
 }

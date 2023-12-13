@@ -20,15 +20,16 @@ struct PensionResultView: View {
         "1천원",
         "월 100만원 X 10년"
     ]
-    private var winNumbers: String {
-        pension.numbers
+    private var winNumbers: [Int?] {
+        pension.numbers.toPensionNumbers
     }
-    private var bonusNumbers: String {
-        pension.bonus
+    private var bonusNumbers: [Int?] {
+        let count = pension.bonus.toPensionNumbers.count
+        return Array(pension.bonus.toPensionNumbers[1..<count])
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(verbatim: "\(pension.round)회 당첨결과")
                 .font(.largeTitle)
             
@@ -54,6 +55,8 @@ struct PensionResultView: View {
                     }
                 }
             }
+            
+            Spacer()
         }
     }
     
@@ -61,15 +64,15 @@ struct PensionResultView: View {
         HStack(spacing: 8) {
             Spacer()
             Text("각 조")
+                .font(.subheadline)
+                .foregroundStyle(Color.primaryColor)
             ForEach(Array(bonusNumbers.enumerated()), id:\.offset) { (index, number) in
-                PensionBall(position: index + 1,
-                            number: Int(String(number)) ?? -1)
+                PensionBall(position: index+1,
+                            number: number ?? -1)
             }
         }
-        .font(.subheadline)
-        .foregroundStyle(Color.primaryColor)
-        .padding(.vertical, 4)
-        .padding(.horizontal, 8)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.backgroundGray)
@@ -80,23 +83,20 @@ struct PensionResultView: View {
         HStack(spacing: 8) {
             Spacer()
             
-            if rank == 0 {
-                PensionBall(position: rank,
-                            number: Int(pension.group))
-                Text("조")
-            }
-                
             ForEach(Array(winNumbers.enumerated()), id:\.offset) { (index, number) in
-                if index + 1 > rank {
-                    PensionBall(position: index + 1,
-                                number: Int(String(number)) ?? -1)
+                if index >= rank {
+                    PensionBall(position: index,
+                                number: number ?? -1)
+                    if rank == 0 && index == 0 {
+                        Text("조")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.primaryColor)
+                    }
                 }
             }
         }
-        .font(.subheadline)
-        .foregroundStyle(Color.primaryColor)
-        .padding(.vertical, 4)
-        .padding(.horizontal, 8)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.backgroundGray)

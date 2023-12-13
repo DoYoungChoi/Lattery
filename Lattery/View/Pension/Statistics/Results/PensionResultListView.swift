@@ -33,6 +33,7 @@ struct PensionResultListView: View {
             ForEach(viewModel.pensions) { pension in
                 NavigationLink {
                     PensionResultView(pension: pension)
+                        .padding(.horizontal, 20)
                 } label: {
                     PensionResultRow(pension: pension)
                 }
@@ -55,7 +56,7 @@ private struct PensionResultRow: View {
                 .font(.headline)
                 .foregroundColor(.primaryColor)
             
-            Text("(\(pension.date.toDateStringKor)")
+            Text("(\(pension.date.toDateStringKor) 추첨)")
                 .font(.subheadline)
                 .foregroundStyle(Color.gray2)
         }
@@ -63,5 +64,5 @@ private struct PensionResultRow: View {
 }
 
 #Preview {
-    PensionResultListView(viewModel: .init())
+    PensionResultListView(viewModel: .init(services: StubService()))
 }

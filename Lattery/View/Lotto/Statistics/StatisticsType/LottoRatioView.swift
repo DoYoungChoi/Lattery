@@ -117,7 +117,7 @@ private struct LottoPieChart: View {
     fileprivate var body: some View {
         GeometryReader { _ in
             PieChart(data: viewModel.totalRatioData)
-                .padding(.top, 16)
+                .padding(.top, 20)
         }
     }
 }

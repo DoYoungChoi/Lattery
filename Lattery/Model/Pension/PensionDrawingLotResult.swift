@@ -8,6 +8,7 @@
 import Foundation
 
 struct PensionDrawingLotResult: Hashable {
-    var date: Date
-    var data: [String]
+    let id: String
+    let date: Date
+    let numbers: [PensionNumbers]
 }

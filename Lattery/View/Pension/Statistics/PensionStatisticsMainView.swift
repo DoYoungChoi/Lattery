@@ -15,6 +15,7 @@ struct PensionStatisticsMainView: View {
         ZStack {
             VStack {
                 PensionPagePicker(viewModel: viewModel)
+                    .padding(.horizontal, 20)
                 
                 switch viewModel.page {
                 case .detail:
@@ -23,7 +24,6 @@ struct PensionStatisticsMainView: View {
                     PensionStatisticsView(viewModel: viewModel)
                 }
             }
-            .padding(.horizontal, 20)
             .navigationTitle("연금복권 정보")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -39,11 +39,6 @@ struct PensionStatisticsMainView: View {
             if viewModel.phase == .loading {
                 LoadingView(phase: $viewModel.phase,
                             work: .pension)
-                    .ignoresSafeArea(edges: .vertical)
-                    .onTapGesture {
-                        // TODO: 지우기
-                        viewModel.phase = .notRequested
-                    }
             }
         }
     }
@@ -55,7 +50,7 @@ private struct PensionPagePicker: View {
     fileprivate var body: some View {
         HStack {
             ForEach(PensionPageType.allCases) { pageType in
-                Button(pageType.rawValue) {
+                Button(pageType.id) {
                     viewModel.send(action: .changePage(pageType))
                 }
                 .buttonStyle(PickerButtonStyle(isSelected: viewModel.page == pageType))
@@ -65,5 +60,5 @@ private struct PensionPagePicker: View {
 }
 
 #Preview {
-    PensionStatisticsMainView(viewModel: .init())
+    PensionStatisticsMainView(viewModel: .init(services: StubService()))
 }

@@ -48,6 +48,8 @@ private struct LottoMenu: View {
 
 // MARK: - 연금복권720+
 private struct PensionMenu: View {
+    @EnvironmentObject private var services: Service
+    
     fileprivate var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("연금복권720+")
@@ -55,10 +57,10 @@ private struct PensionMenu: View {
                 .foregroundColor(.primaryColor)
             
             HStack(spacing: 16) {
-                NavigationLink("연금복권 번호추첨", destination: PensionDrawingLotView(viewModel: .init()))
+                NavigationLink("연금복권 번호추첨", destination: PensionDrawingLotView(viewModel: .init(services: services)))
                     .buttonStyle(MainButtonStyle(imageName: "lottery_box"))
                 
-                NavigationLink("연금복권 정보", destination: PensionStatisticsMainView(viewModel: .init()))
+                NavigationLink("연금복권 정보", destination: PensionStatisticsMainView(viewModel: .init(services: services)))
                     .buttonStyle(MainButtonStyle(imageName: "pie_chart"))
             }
         }

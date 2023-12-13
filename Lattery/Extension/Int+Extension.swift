@@ -11,8 +11,8 @@ extension Int {
     var lottoColor: Color {
         if self > 0 && self < 11 { return .customYellow }
         else if self > 10 && self < 21 { return .customBlue }
-        else if self > 20 && self < 31 { return .customDarkGray }
-        else if self > 30 && self < 41 { return .customRed }
+        else if self > 20 && self < 31 { return .customRed }
+        else if self > 30 && self < 41 { return .customDarkGray }
         else if self > 40 && self < 46 { return .customGreen }
         else { return .gray1 }
     }

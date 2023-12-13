@@ -27,7 +27,7 @@ struct LottoWinningCheckView: View {
         }
         .onChange(of: phase) { newValue in
             if newValue == .success || newValue == .fail {
-                self.viewModel.getLottoEntity()
+                self.viewModel.getLottoEntities()
                 self.phase = .notRequested
             }
         }
@@ -88,7 +88,7 @@ private struct SelectedLottoResult: View {
                 .bold()
                 .foregroundStyle(Color.primaryColor)
             
-            Text("(\(viewModel.selectedLotto?.date.toDateStringKor ?? "YYYY년 MM월 dd일") 추첨)")
+            Text("(\(viewModel.selectedLotto!.date.toDateStringKor) 추첨)")
                 .font(.caption)
                 .foregroundStyle(Color.gray2)
             
@@ -174,7 +174,7 @@ private struct SelectedDrawingLotResult: View {
             VStack(spacing: 8) {
                 ForEach(viewModel.resultNumbers, id:\.self) { number in
                     CheckRow(viewModel: viewModel,
-                             result: number)
+                             number: number)
                     Divider()
                 }
             }
@@ -185,13 +185,13 @@ private struct SelectedDrawingLotResult: View {
 private struct CheckRow: View {
     
     @ObservedObject var viewModel: LottoWinningCheckViewModel
-    let result: LottoNumbers
+    let number: LottoNumbers
     
     private var rank: String {
-        let include: [Int] = viewModel.winningNumbers.filter({ result.numbers.contains($0) })
+        let include: [Int] = viewModel.winningNumbers.filter({ number.numbers.contains($0) })
         if include.count == 6 {
             return "1등🥇"
-        } else if include.count == 5 && result.numbers.contains(viewModel.bonus) {
+        } else if include.count == 5 && number.numbers.contains(viewModel.bonus) {
             return "2등🥈"
         } else if include.count == 5 {
             return "3등🥉"
@@ -205,9 +205,9 @@ private struct CheckRow: View {
     }
     
     fileprivate init(viewModel: LottoWinningCheckViewModel,
-                     result: LottoNumbers) {
+                     number: LottoNumbers) {
         self.viewModel = viewModel
-        self.result = result
+        self.number = number
     }
     
     fileprivate var body: some View {
@@ -219,7 +219,7 @@ private struct CheckRow: View {
                 .padding(.trailing, 16)
             
             HStack(spacing: 8) {
-                ForEach(result.numbers, id:\.self) { number in
+                ForEach(number.numbers, id:\.self) { number in
                     LottoBall(number: number,
                               fixed: viewModel.winningNumbers.contains(number))
                 }

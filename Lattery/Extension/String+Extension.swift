@@ -28,4 +28,10 @@ extension String {
             .filter { $0 != nil }
             .map { $0! }
     }
+    
+    var toPensionNumbers: [Int?] {
+        self.split(separator: ",")
+            .map { Int($0) }
+            .map { $0 == -1 ? nil : $0 }
+    }
 }
