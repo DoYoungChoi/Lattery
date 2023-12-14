@@ -13,7 +13,7 @@ struct LottoTicketView: View {
     
     var body: some View {
         ZStack {
-            Color.primaryColor.opacity(0.3)
+            Color.black.opacity(0.4)
                 .onTapGesture {
                     viewModel.send(action: .toggleTicket)
                 }
@@ -65,7 +65,7 @@ struct LottoTicketView: View {
                 }
                 .padding(.top, 20)
                 .padding(.horizontal, 20)
-                .background(Color.pureBackground)
+                .background(Color.backgroundGray)
                 .frame(maxWidth: 360)
                 .cornerRadius(10)
                 

@@ -9,8 +9,7 @@ import SwiftUI
 
 @main
 struct LatteryApp: App {
-    @StateObject private var services = Service(lottoService: LottoService(),
-                                                pensionService: PensionService())
+    @StateObject private var services = Service()
     
     var body: some Scene {
         WindowGroup {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum FetchWork {
+enum FetchType {
     case lotto
     case pension
 }
@@ -18,19 +18,30 @@ struct LoadingView: View {
     @EnvironmentObject private var services: Service
     @State private var percent: Int = 0
     @Binding var phase: Phase
-    var work: FetchWork
+    var work: FetchType
     
     var body: some View {
         ZStack {
-            Color.primaryColor.opacity(0.3)
+            Color.black.opacity(0.5)
             
-            VStack {
-                ProgressView()
-                Text("loading")
-                Text("\(percent) %")
+            if phase == .loading {
+                VStack(spacing: 12) {
+                    progressBar
+                    if #available(iOS 16.1, *) {
+                        Text("Loading...")
+                            .bold()
+                            .fontDesign(.monospaced)
+                    } else {
+                        Text("Loading...")
+                            .bold()
+                    }
+                }
+                .font(.system(size: 16))
+                .foregroundStyle(Color.white)
+                .padding(.bottom, 20)
+            } else if phase == .fail {
+
             }
-            .foregroundStyle(Color.pureBackground)
-            .clipShape(Rectangle())
         }
         .ignoresSafeArea()
         .task {
@@ -71,7 +82,6 @@ extension LoadingView {
                     results.append(result)
                 } catch {
                     print("Fetch Lotto ERROR: \(error.localizedDescription)")
-                    isContinued = false
                     break
                 }
             }
@@ -88,7 +98,11 @@ extension LoadingView {
         do {
             try services.lottoService.addLottoEntities(by: results)
             self.percent = 100
-            self.phase = .success
+            if !isContinued {
+                self.phase = .success
+            } else {
+                self.phase = .fail
+            }
         } catch {
             print("Add Lotto Entities ERROR: \(error.localizedDescription)")
             self.percent = 100
@@ -120,7 +134,6 @@ extension LoadingView {
                     results.append(result)
                 } catch {
                     print("Fetch Pension ERROR: \(error.localizedDescription)")
-                    isContinued = false
                     break
                 }
             }
@@ -137,7 +150,11 @@ extension LoadingView {
         do {
             try services.pensionService.addPensionEntities(by: results)
             self.percent = 100
-            self.phase = .success
+            if !isContinued {
+                self.phase = .success
+            } else {
+                self.phase = .fail
+            }
         } catch {
             print("Add Pension Entities ERROR: \(error.localizedDescription)")
             self.percent = 100
@@ -146,6 +163,23 @@ extension LoadingView {
     }
 }
 
+extension LoadingView {
+    
+    var progressBar: some View {
+        ZStack(alignment: .leading) {
+            RoundedRectangle(cornerRadius: 2)
+                .fill(Color.accentColor)
+                .frame(width: CGFloat(130 * percent / 100), height: 8)
+                .padding(.horizontal, 2)
+            
+            RoundedRectangle(cornerRadius: 3)
+                .stroke(Color.white, lineWidth: 3)
+        }
+        .frame(width: 130, height: 14)
+    }
+}
+
 #Preview {
-    LoadingView(phase: .constant(.loading), work: .lotto)
+    LoadingView(phase: .constant(.fail), work: .lotto)
+        .environmentObject(StubService())
 }

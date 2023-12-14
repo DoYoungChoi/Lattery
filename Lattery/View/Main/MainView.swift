@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     
+    @EnvironmentObject private var services: Service
+    @AppStorage(AppStorageKey.requestNoti) var requestNoti: Bool = UserDefaults.standard.bool(forKey: AppStorageKey.requestNoti)
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
@@ -17,8 +20,15 @@ struct MainView: View {
                 MyMenu()
             }
             .padding(.horizontal, 20)
+            .padding(.bottom, 20)
             .navigationTitle("MENU")
             .navigationBarTitleDisplayMode(.large)
+        }
+        .onAppear {
+            if !requestNoti {
+                services.notificationService.requestAuthorization()
+                requestNoti = true
+            }
         }
     }
 }
@@ -69,6 +79,8 @@ private struct PensionMenu: View {
 
 // MARK: - My메뉴
 private struct MyMenu: View {
+    @EnvironmentObject private var services: Service
+    
     fileprivate var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("My메뉴")
@@ -79,7 +91,7 @@ private struct MyMenu: View {
                 NavigationLink("추첨결과 확인", destination: WinningCheckMainView())
                     .buttonStyle(MainButtonStyle(imageName: "trophy"))
                 
-                NavigationLink("설정", destination: EmptyView())
+                NavigationLink("설정", destination: SettingView(viewModel: .init(services: services)))
                     .buttonStyle(MainButtonStyle(imageName: "gear"))
             }
         }

@@ -26,7 +26,7 @@ class PensionStatisticsViewModel: ObservableObject {
     // 통계 페이지 표시 상태
     @Published var phase: Phase = .notRequested {
         didSet {
-            if phase == .success || phase == .fail {
+            if phase == .success {
                 self.pensions = self.services.pensionService.getPensionEntities(ascending: self.ascending)
                 self.phase = .notRequested
             }
@@ -133,7 +133,7 @@ class PensionStatisticsViewModel: ObservableObject {
             fixedNumbers += Array(repeating: nil, count: 7-fixedNumbers.count)
         }
         return pensions.filter { pension in
-            var numbers: [Int?] = pension.numbers.toPensionNumbers
+            let numbers: [Int?] = pension.numbers.toPensionNumbers
             var isContained: Bool = true
             for (index, fixedNumber) in fixedNumbers.enumerated() {
                 if fixedNumber == nil { continue }
@@ -143,7 +143,7 @@ class PensionStatisticsViewModel: ObservableObject {
             }
             
             if includeBonus && !isContained {
-                var bonus: [Int?] = pension.bonus.toPensionNumbers
+                let bonus: [Int?] = pension.bonus.toPensionNumbers
                 isContained = true
                 for (index, fixedNumber) in fixedNumbers.enumerated() {
                     if fixedNumber == nil { continue }

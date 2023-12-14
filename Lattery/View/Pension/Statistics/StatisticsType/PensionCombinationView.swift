@@ -32,7 +32,7 @@ struct PensionCombinationView: View {
                     } label: {
                         PensionCombinationRow(pension: pension,
                                               includeBonus: viewModel.includeBonus,
-                                              fixedNumbers: viewModel.fixedNumbers ?? [])
+                                              fixedNumbers: viewModel.fixedNumbers)
                     }
                 }
             }

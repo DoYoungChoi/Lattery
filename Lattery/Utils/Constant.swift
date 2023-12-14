@@ -7,15 +7,26 @@
 
 import Foundation
 
-typealias AppStorageKey = Constant.AppStorage
+typealias AppStorageKey = Constant.AppStorageKey
 
 enum Constant { }
 
 extension Constant {
-    struct AppStorage {
-        static let lottoRound = "AppStorage_LottoRound"
-        static let lottoDate = "AppStorage_LottoDate"
-        static let pensionRound = "AppStorage_PensionRound"
-        static let pensionDate = "AppStorage_PensionDate"
+
+}
+
+extension Constant {
+    struct AppStorageKey {
+        static let requestNoti = "RequestNoti"
+        static let lottoNoti = "LottoNoti"
+        static let lottoOnAirNoti = "LottoOnAirNoti"
+        static let lottoBuyNoti = "LottoBuyNoti"
+        static let lottoBuyDays = "LottoBuyDays"
+        static let lottoBuyTime = "LottoBuyTime"
+        static let pensionNoti = "PensionNoti"
+        static let pensionOnAirNoti = "PensionOnAirNoti"
+        static let pensionBuyNoti = "PensionBuyNoti"
+        static let pensionBuyDays = "PensionBuyDays"
+        static let pensionBuyTime = "PensionBuyTime"
     }
 }

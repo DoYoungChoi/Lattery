@@ -27,7 +27,7 @@ class LottoStatisticsViewModel: ObservableObject {
     // 통계 페이지 표시 상태
     @Published var phase: Phase = .notRequested {
         didSet {
-            if phase == .success || phase == .fail {
+            if phase == .success {
                 self.lottos = self.services.lottoService.getLottoEntities(ascending: self.ascending)
                 self.phase = .notRequested
             }

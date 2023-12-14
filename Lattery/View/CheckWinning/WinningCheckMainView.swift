@@ -13,12 +13,6 @@ struct WinningCheckMainView: View {
     
     @State private var phase: Phase = .notRequested
     @State private var type: LotteryType = .lotto
-    enum LotteryType: String, Identifiable, CaseIterable {
-        case lotto = "로또 6/45"
-        case pension = "연금복권720+"
-        
-        var id: String { rawValue }
-    }
     
     var body: some View {
         ZStack {
@@ -51,17 +45,22 @@ struct WinningCheckMainView: View {
             if phase == .loading {
                 LoadingView(phase: $phase,
                             work: type == .lotto ? .lotto : .pension)
+            } else if phase == .fail {
+                AlertView(title: "데이터를 가져오는 중\n에러가 발생했습니다.",
+                          content: "안정된 네트워크 환경에서\n다시 시도해주시기 바랍니다.") {
+                    phase = .success
+                }
             }
         }
     }
 }
 
 private struct LotteryPagePicker: View {
-    @Binding var type: WinningCheckMainView.LotteryType
+    @Binding var type: LotteryType
     
     fileprivate var body: some View {
         HStack {
-            ForEach(WinningCheckMainView.LotteryType.allCases) { type in
+            ForEach(LotteryType.allCases) { type in
                 Button(type.id) {
                     self.type = type
                 }

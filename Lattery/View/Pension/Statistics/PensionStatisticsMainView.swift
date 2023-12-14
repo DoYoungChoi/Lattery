@@ -39,6 +39,11 @@ struct PensionStatisticsMainView: View {
             if viewModel.phase == .loading {
                 LoadingView(phase: $viewModel.phase,
                             work: .pension)
+            } else if viewModel.phase == .fail {
+                AlertView(title: "데이터를 가져오는 중\n에러가 발생했습니다.",
+                          content: "안정된 네트워크 환경에서\n다시 시도해주시기 바랍니다.") {
+                    viewModel.phase = .success
+                }
             }
         }
     }

@@ -10,22 +10,22 @@ import SwiftUI
 
 extension Color {
     static let primaryColor = Color("primaryColor")
-    static let backgroundGray = Color("backgroundGray")
+//    static let backgroundGray = Color("backgroundGray")
     static let pureBackground = Color(uiColor: .systemBackground)
     
-    static let customRed = Color("customRed")
-    static let customPink = Color("customPink")
-    static let customOrange = Color("customOrange")
-    static let customYellow = Color("customYellow")
-    static let customGreen = Color("customGreen")
-    static let customLightBlue = Color("customLightBlue")
-    static let customBlue = Color("customBlue")
-    static let customPurple = Color("customPurple")
-    static let customDarkGray = Color("customDarkGray")
-    
-    static let gray1 = Color("gray1")
-    static let gray2 = Color("gray2")
-    static let gray3 = Color("gray3")
+//    static let customRed = Color("customRed")
+//    static let customPink = Color("customPink")
+//    static let customOrange = Color("customOrange")
+//    static let customYellow = Color("customYellow")
+//    static let customGreen = Color("customGreen")
+//    static let customLightBlue = Color("customLightBlue")
+//    static let customBlue = Color("customBlue")
+//    static let customPurple = Color("customPurple")
+//    static let customDarkGray = Color("customDarkGray")
+//    
+//    static let gray1 = Color("gray1")
+//    static let gray2 = Color("gray2")
+//    static let gray3 = Color("gray3")
 }
 
 extension Color {

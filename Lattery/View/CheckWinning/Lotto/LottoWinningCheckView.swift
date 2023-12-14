@@ -26,7 +26,7 @@ struct LottoWinningCheckView: View {
             Spacer()
         }
         .onChange(of: phase) { newValue in
-            if newValue == .success || newValue == .fail {
+            if newValue == .success {
                 self.viewModel.getLottoEntities()
                 self.phase = .notRequested
             }

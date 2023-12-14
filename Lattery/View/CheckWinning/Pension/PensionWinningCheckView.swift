@@ -26,7 +26,7 @@ struct PensionWinningCheckView: View {
             Spacer()
         }
         .onChange(of: phase) { newValue in
-            if newValue == .success || newValue == .fail {
+            if newValue == .success {
                 self.viewModel.getPensionEntities()
                 self.phase = .notRequested
             }

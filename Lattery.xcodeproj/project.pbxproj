@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		D87A8E3E2A7E4345002BA412 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D87A8E3D2A7E4345002BA412 /* Colors.xcassets */; };
 		D87A8E4A2A80779A002BA412 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A8E492A80779A002BA412 /* PieChart.swift */; };
-		D87CA2282A7944360008FA9C /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2272A7944360008FA9C /* UserDefaults.swift */; };
-		D87CA22A2A7A3AD20008FA9C /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2292A7A3AD20008FA9C /* CustomErrors.swift */; };
-		D87CA2342A7BC9160008FA9C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CA2332A7BC9160008FA9C /* StringExtension.swift */; };
 		D88933372B1D753800BFB959 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88933362B1D753800BFB959 /* MainView.swift */; };
 		D889333A2B1D7AE700BFB959 /* MainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88933392B1D7AE700BFB959 /* MainButtonStyle.swift */; };
 		D889333E2B1D83E200BFB959 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D889333D2B1D83E200BFB959 /* Launch Screen.storyboard */; };
@@ -79,11 +76,6 @@
 		D8C2D8EA2B24496F008D582B /* PensionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8E92B24496F008D582B /* PensionResult.swift */; };
 		D8C2D8EF2B247233008D582B /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8EE2B247233008D582B /* OffsetObservingScrollView.swift */; };
 		D8C2D8F22B2473C0008D582B /* PensionDrawingLotResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8F12B2473C0008D582B /* PensionDrawingLotResult.swift */; };
-		D8C2D8F72B247BB3008D582B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8F62B247BB3008D582B /* SettingView.swift */; };
-		D8C2D8F92B247C07008D582B /* BuyDaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8F82B247C07008D582B /* BuyDaySheet.swift */; };
-		D8C2D8FB2B247C89008D582B /* LottoFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8FA2B247C89008D582B /* LottoFavoriteView.swift */; };
-		D8C2D8FD2B247D0A008D582B /* SavedLottoNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8FC2B247D0A008D582B /* SavedLottoNumberView.swift */; };
-		D8C2D8FF2B247D7A008D582B /* SavedPensionNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D8FE2B247D7A008D582B /* SavedPensionNumberView.swift */; };
 		D8C2D9012B2497B4008D582B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9002B2497B4008D582B /* Service.swift */; };
 		D8C2D9032B24982F008D582B /* PensionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9022B24982F008D582B /* PensionService.swift */; };
 		D8C2D9062B258353008D582B /* LottoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9042B258353008D582B /* LottoModel.xcdatamodeld */; };
@@ -102,18 +94,24 @@
 		D8C2D9282B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9262B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift */; };
 		D8C2D92B2B29348F008D582B /* PensionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9292B29348F008D582B /* PensionEntity+CoreDataClass.swift */; };
 		D8C2D92C2B29348F008D582B /* PensionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D92A2B29348F008D582B /* PensionEntity+CoreDataProperties.swift */; };
+		D8C2D92E2B2A958A008D582B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D92D2B2A958A008D582B /* SettingView.swift */; };
+		D8C2D9302B2A95A3008D582B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D92F2B2A95A3008D582B /* SettingViewModel.swift */; };
+		D8C2D9322B2A9E8F008D582B /* LotteryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9312B2A9E8F008D582B /* LotteryType.swift */; };
+		D8C2D9342B2ABB79008D582B /* SavedLottoDrawingLotResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9332B2ABB79008D582B /* SavedLottoDrawingLotResultView.swift */; };
+		D8C2D9362B2AC3FE008D582B /* LottoFavoriteNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9352B2AC3FE008D582B /* LottoFavoriteNumbersView.swift */; };
+		D8C2D9382B2AC834008D582B /* FavoriteLottoNumberSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9372B2AC834008D582B /* FavoriteLottoNumberSheet.swift */; };
+		D8C2D93A2B2AD599008D582B /* SavedPensionDrawingLotResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9392B2AD599008D582B /* SavedPensionDrawingLotResultView.swift */; };
+		D8C2D93E2B2ADCE0008D582B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D93D2B2ADCE0008D582B /* NotificationService.swift */; };
+		D8C2D9412B2AF621008D582B /* NotiSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9402B2AF621008D582B /* NotiSectionView.swift */; };
+		D8C2D9432B2B1CA3008D582B /* BuyDaysSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9422B2B1CA3008D582B /* BuyDaysSheet.swift */; };
+		D8C2D9492B2B73B2008D582B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2D9482B2B73B2008D582B /* AlertView.swift */; };
 		D8D659062A556965003F2516 /* LottoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659052A556965003F2516 /* LottoObject.swift */; };
-		D8D659142A57D192003F2516 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D659132A57D192003F2516 /* DateExtension.swift */; };
 		D8F87BD62A5DB93400940E3B /* RatioBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */; };
-		D8FDC9022A8A5C5300238C38 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D87A8E3D2A7E4345002BA412 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D87A8E492A80779A002BA412 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
-		D87CA2272A7944360008FA9C /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		D87CA2292A7A3AD20008FA9C /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
-		D87CA2332A7BC9160008FA9C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D88933362B1D753800BFB959 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D88933392B1D7AE700BFB959 /* MainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonStyle.swift; sourceTree = "<group>"; };
 		D889333D2B1D83E200BFB959 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -183,11 +181,6 @@
 		D8C2D8E92B24496F008D582B /* PensionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionResult.swift; sourceTree = "<group>"; };
 		D8C2D8EE2B247233008D582B /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
 		D8C2D8F12B2473C0008D582B /* PensionDrawingLotResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionDrawingLotResult.swift; sourceTree = "<group>"; };
-		D8C2D8F62B247BB3008D582B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		D8C2D8F82B247C07008D582B /* BuyDaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyDaySheet.swift; sourceTree = "<group>"; };
-		D8C2D8FA2B247C89008D582B /* LottoFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoFavoriteView.swift; sourceTree = "<group>"; };
-		D8C2D8FC2B247D0A008D582B /* SavedLottoNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLottoNumberView.swift; sourceTree = "<group>"; };
-		D8C2D8FE2B247D7A008D582B /* SavedPensionNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPensionNumberView.swift; sourceTree = "<group>"; };
 		D8C2D9002B2497B4008D582B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		D8C2D9022B24982F008D582B /* PensionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PensionService.swift; sourceTree = "<group>"; };
 		D8C2D9052B258353008D582B /* LottoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LottoModel.xcdatamodel; sourceTree = "<group>"; };
@@ -206,11 +199,20 @@
 		D8C2D9262B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PensionDrawingLotResultEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D8C2D9292B29348F008D582B /* PensionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PensionEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D8C2D92A2B29348F008D582B /* PensionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PensionEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D8C2D92D2B2A958A008D582B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		D8C2D92F2B2A95A3008D582B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		D8C2D9312B2A9E8F008D582B /* LotteryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteryType.swift; sourceTree = "<group>"; };
+		D8C2D9332B2ABB79008D582B /* SavedLottoDrawingLotResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLottoDrawingLotResultView.swift; sourceTree = "<group>"; };
+		D8C2D9352B2AC3FE008D582B /* LottoFavoriteNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoFavoriteNumbersView.swift; sourceTree = "<group>"; };
+		D8C2D9372B2AC834008D582B /* FavoriteLottoNumberSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteLottoNumberSheet.swift; sourceTree = "<group>"; };
+		D8C2D9392B2AD599008D582B /* SavedPensionDrawingLotResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPensionDrawingLotResultView.swift; sourceTree = "<group>"; };
+		D8C2D93D2B2ADCE0008D582B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		D8C2D9402B2AF621008D582B /* NotiSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSectionView.swift; sourceTree = "<group>"; };
+		D8C2D9422B2B1CA3008D582B /* BuyDaysSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyDaysSheet.swift; sourceTree = "<group>"; };
+		D8C2D9482B2B73B2008D582B /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		D8C4EE6A2A5431240092BCA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D8D659052A556965003F2516 /* LottoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottoObject.swift; sourceTree = "<group>"; };
-		D8D659132A57D192003F2516 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D8F87BD52A5DB93400940E3B /* RatioBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioBarGraph.swift; sourceTree = "<group>"; };
-		D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 			children = (
 				D88933362B1D753800BFB959 /* MainView.swift */,
 				D88933392B1D7AE700BFB959 /* MainButtonStyle.swift */,
+				D8C2D9312B2A9E8F008D582B /* LotteryType.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				D88933442B1D916E00BFB959 /* HeartIcon.swift */,
 				D88933462B1D943400BFB959 /* PawButton.swift */,
 				D88933AD2B20575100BFB959 /* LoadingView.swift */,
+				D8C2D9482B2B73B2008D582B /* AlertView.swift */,
 				D88933B22B205E8E00BFB959 /* AscendingToggle.swift */,
 			);
 			path = General;
@@ -538,6 +542,7 @@
 				D8C2D9002B2497B4008D582B /* Service.swift */,
 				D8C2D8CE2B22DE8F008D582B /* LottoService.swift */,
 				D8C2D9022B24982F008D582B /* PensionService.swift */,
+				D8C2D93D2B2ADCE0008D582B /* NotificationService.swift */,
 				D8C2D9092B25E630008D582B /* ServiceError.swift */,
 			);
 			path = Service;
@@ -588,23 +593,45 @@
 		D8C2D8F32B247B6A008D582B /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				D8C2D8F62B247BB3008D582B /* SettingView.swift */,
-				D8C2D8F82B247C07008D582B /* BuyDaySheet.swift */,
-				D8C2D8FA2B247C89008D582B /* LottoFavoriteView.swift */,
-				D8C2D8FC2B247D0A008D582B /* SavedLottoNumberView.swift */,
-				D8C2D8FE2B247D7A008D582B /* SavedPensionNumberView.swift */,
+				D8C2D92D2B2A958A008D582B /* SettingView.swift */,
+				D8C2D92F2B2A95A3008D582B /* SettingViewModel.swift */,
+				D8C2D93F2B2AF612008D582B /* Noti */,
+				D8C2D93B2B2AD5A1008D582B /* Lotto */,
+				D8C2D93C2B2AD5A8008D582B /* Pension */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		D8C2D93B2B2AD5A1008D582B /* Lotto */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2D9332B2ABB79008D582B /* SavedLottoDrawingLotResultView.swift */,
+				D8C2D9352B2AC3FE008D582B /* LottoFavoriteNumbersView.swift */,
+				D8C2D9372B2AC834008D582B /* FavoriteLottoNumberSheet.swift */,
+			);
+			path = Lotto;
+			sourceTree = "<group>";
+		};
+		D8C2D93C2B2AD5A8008D582B /* Pension */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2D9392B2AD599008D582B /* SavedPensionDrawingLotResultView.swift */,
+			);
+			path = Pension;
+			sourceTree = "<group>";
+		};
+		D8C2D93F2B2AF612008D582B /* Noti */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2D9402B2AF621008D582B /* NotiSectionView.swift */,
+				D8C2D9422B2B1CA3008D582B /* BuyDaysSheet.swift */,
+			);
+			path = Noti;
 			sourceTree = "<group>";
 		};
 		D8C4EE632A53F5D90092BCA6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				D8D659132A57D192003F2516 /* DateExtension.swift */,
-				D87CA2332A7BC9160008FA9C /* StringExtension.swift */,
-				D87CA2272A7944360008FA9C /* UserDefaults.swift */,
-				D87CA2292A7A3AD20008FA9C /* CustomErrors.swift */,
-				D8FDC9012A8A5C5300238C38 /* NotificationManager.swift */,
 				D88933722B1EC34C00BFB959 /* Phase.swift */,
 				D8C2D90F2B269D78008D582B /* Constant.swift */,
 			);
@@ -648,7 +675,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					D8AB9BB42A526B5400E5883C = {
 						CreatedOnToolsVersion = 14.2;
@@ -696,15 +723,14 @@
 				D8C2D8DB2B242C11008D582B /* LottoResult.swift in Sources */,
 				D88933632B1DFE5300BFB959 /* PickerButtonStyle.swift in Sources */,
 				D88933372B1D753800BFB959 /* MainView.swift in Sources */,
+				D8C2D9342B2ABB79008D582B /* SavedLottoDrawingLotResultView.swift in Sources */,
 				D8C2D8DD2B2430D5008D582B /* String+Extension.swift in Sources */,
+				D8C2D9362B2AC3FE008D582B /* LottoFavoriteNumbersView.swift in Sources */,
 				D88933B62B21605800BFB959 /* GraphData.swift in Sources */,
 				D8C2D8EF2B247233008D582B /* OffsetObservingScrollView.swift in Sources */,
-				D87CA2342A7BC9160008FA9C /* StringExtension.swift in Sources */,
 				D889338A2B1EF98500BFB959 /* PensionStatisticsViewModel.swift in Sources */,
-				D8C2D8F72B247BB3008D582B /* SettingView.swift in Sources */,
 				D88933BD2B21CEF400BFB959 /* PensionWinningCheckView.swift in Sources */,
 				D8C2D9242B286649008D582B /* PensionNumbers.swift in Sources */,
-				D8C2D8FF2B247D7A008D582B /* SavedPensionNumberView.swift in Sources */,
 				D8C2D91C2B283CCA008D582B /* LottoDrawingLotResult.swift in Sources */,
 				D8C2D9222B28542A008D582B /* PensionModel.xcdatamodeld in Sources */,
 				D8C2D9122B26AFE6008D582B /* APIError.swift in Sources */,
@@ -721,15 +747,14 @@
 				D88933BF2B21CFF600BFB959 /* LottoWinningCheckViewModel.swift in Sources */,
 				D8AB9BB92A526B5400E5883C /* LatteryApp.swift in Sources */,
 				D889339F2B1F10C100BFB959 /* PensionDrawingLotViewModel.swift in Sources */,
-				D87CA2282A7944360008FA9C /* UserDefaults.swift in Sources */,
 				D8C2D9082B258DE7008D582B /* Array+Extension.swift in Sources */,
+				D8C2D9492B2B73B2008D582B /* AlertView.swift in Sources */,
 				D8C2D8DF2B24343C008D582B /* PensionStatisticsType.swift in Sources */,
 				D8C2D9012B2497B4008D582B /* Service.swift in Sources */,
 				D8C2D9032B24982F008D582B /* PensionService.swift in Sources */,
 				D8C2D8F22B2473C0008D582B /* PensionDrawingLotResult.swift in Sources */,
 				D8C2D9272B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataClass.swift in Sources */,
 				D88933762B1ED90700BFB959 /* LottoCountView.swift in Sources */,
-				D8FDC9022A8A5C5300238C38 /* NotificationManager.swift in Sources */,
 				D889336F2B1E2CD800BFB959 /* LottoStatisticsView.swift in Sources */,
 				D88933472B1D943400BFB959 /* PawButton.swift in Sources */,
 				D88933A82B203CCA00BFB959 /* Date+Extension.swift in Sources */,
@@ -745,7 +770,7 @@
 				D8C2D91A2B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataProperties.swift in Sources */,
 				D88933992B1F027900BFB959 /* PensionNumberSheet.swift in Sources */,
 				D88933732B1EC34C00BFB959 /* Phase.swift in Sources */,
-				D8D659142A57D192003F2516 /* DateExtension.swift in Sources */,
+				D8C2D9322B2A9E8F008D582B /* LotteryType.swift in Sources */,
 				D88933A62B20324700BFB959 /* Int+Extension.swift in Sources */,
 				D8C2D92B2B29348F008D582B /* PensionEntity+CoreDataClass.swift in Sources */,
 				D88933A12B1F114300BFB959 /* PensionDrawingLotView.swift in Sources */,
@@ -754,13 +779,16 @@
 				D889334F2B1D9FB900BFB959 /* LottoRow.swift in Sources */,
 				D88933782B1ED91200BFB959 /* LottoRatioView.swift in Sources */,
 				D8C2D8E82B244684008D582B /* PensionObject.swift in Sources */,
+				D8C2D93A2B2AD599008D582B /* SavedPensionDrawingLotResultView.swift in Sources */,
 				D88933612B1DFBDA00BFB959 /* LottoStatisticsType.swift in Sources */,
 				D8C2D90E2B25EA72008D582B /* LottoEntity+CoreDataProperties.swift in Sources */,
 				D889333A2B1D7AE700BFB959 /* MainButtonStyle.swift in Sources */,
-				D8C2D8F92B247C07008D582B /* BuyDaySheet.swift in Sources */,
+				D8C2D93E2B2ADCE0008D582B /* NotificationService.swift in Sources */,
 				D88933B92B21CB4600BFB959 /* WinningCheckMainView.swift in Sources */,
 				D8C2D9192B283AE1008D582B /* LottoDrawingLotResultEntity+CoreDataClass.swift in Sources */,
 				D889338C2B1EFC2A00BFB959 /* PensionResultListView.swift in Sources */,
+				D8C2D9432B2B1CA3008D582B /* BuyDaysSheet.swift in Sources */,
+				D8C2D92E2B2A958A008D582B /* SettingView.swift in Sources */,
 				D88933882B1EF97800BFB959 /* PensionStatisticsMainView.swift in Sources */,
 				D88933422B1D851D00BFB959 /* LottoDrawingLotViewModel.swift in Sources */,
 				D88933552B1DBB5A00BFB959 /* LottoNumberSheetViewModel.swift in Sources */,
@@ -769,23 +797,23 @@
 				D88933BB2B21CEE900BFB959 /* LottoWinningCheckView.swift in Sources */,
 				D8C2D9282B28B5DA008D582B /* PensionDrawingLotResultEntity+CoreDataProperties.swift in Sources */,
 				D88933AA2B20423E00BFB959 /* PensionRow.swift in Sources */,
-				D87CA22A2A7A3AD20008FA9C /* CustomErrors.swift in Sources */,
-				D8C2D8FB2B247C89008D582B /* LottoFavoriteView.swift in Sources */,
 				D88933572B1DCAD800BFB959 /* CustomButtonStyle.swift in Sources */,
 				D889335A2B1DDB6400BFB959 /* LottoTicketView.swift in Sources */,
+				D8C2D9382B2AC834008D582B /* FavoriteLottoNumberSheet.swift in Sources */,
 				D889336C2B1E2B6600BFB959 /* EmptyLottoDataView.swift in Sources */,
 				D8C2D8CB2B21E881008D582B /* PensionWinningCheckViewModel.swift in Sources */,
+				D8C2D9302B2A95A3008D582B /* SettingViewModel.swift in Sources */,
 				D88933902B1EFD5F00BFB959 /* EmptyPensionDataView.swift in Sources */,
 				D88933AC2B20563A00BFB959 /* LottoGroup.swift in Sources */,
 				D87A8E4A2A80779A002BA412 /* PieChart.swift in Sources */,
 				D8C2D9062B258353008D582B /* LottoModel.xcdatamodeld in Sources */,
 				D88933972B1F006E00BFB959 /* PensionCombinationView.swift in Sources */,
 				D88933682B1E2ADE00BFB959 /* LottoResultListView.swift in Sources */,
+				D8C2D9412B2AF621008D582B /* NotiSectionView.swift in Sources */,
 				D889337C2B1EEEEF00BFB959 /* LottoResultView.swift in Sources */,
 				D88933492B1D975F00BFB959 /* LottoBall.swift in Sources */,
 				D889339D2B1F0F0200BFB959 /* PensionTicketView.swift in Sources */,
 				D88933942B1EFF8000BFB959 /* PensionRatioView.swift in Sources */,
-				D8C2D8FD2B247D0A008D582B /* SavedLottoNumberView.swift in Sources */,
 				D8C2D8D52B22ECD8008D582B /* LotteryEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,6 +825,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -826,9 +855,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -855,6 +886,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -884,9 +916,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -911,6 +945,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lattery/Lattery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Lattery/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9UQ8U75N8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -957,6 +992,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lattery/Lattery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Lattery/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9UQ8U75N8;
 				ENABLE_HARDENED_RUNTIME = YES;
