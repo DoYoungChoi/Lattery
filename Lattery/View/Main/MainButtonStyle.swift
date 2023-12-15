@@ -25,6 +25,7 @@ struct MainButtonStyle: ButtonStyle {
                         .foregroundColor(.accentColor)
                     configuration.label
                         .font(.body)
+                        .multilineTextAlignment(.center)
                 }
             }
     }

@@ -47,6 +47,7 @@ struct FavoriteLottoNumberSheet: View {
             .buttonStyle(CustomButtonStyle())
         }
         .padding(.horizontal, 20)
+        .padding(.bottom, 16)
     }
     
     private func save() {

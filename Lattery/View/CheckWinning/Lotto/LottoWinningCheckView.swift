@@ -76,6 +76,7 @@ private struct SelectedLottoResult: View {
                     .frame(maxHeight: 150)
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .center)
             .background(Color.backgroundGray)
             .cornerRadius(10)
         }

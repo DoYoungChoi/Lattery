@@ -37,10 +37,8 @@ class SettingViewModel: ObservableObject {
     @Published var lottoNotiOn: Bool = UserDefaults.standard.bool(forKey: AppStorageKey.lottoNoti) {
         didSet {
             UserDefaults.standard.set(lottoNotiOn, forKey: AppStorageKey.lottoNoti)
-            if lottoNotiOn {
-                lottoOnAirNotiOn = lottoNotiOn
-                lottoBuyNotiOn = lottoNotiOn
-            }
+            lottoOnAirNotiOn = lottoNotiOn
+            lottoBuyNotiOn = lottoNotiOn
         }
     }
     @Published var lottoOnAirNotiOn: Bool = UserDefaults.standard.bool(forKey: AppStorageKey.lottoOnAirNoti) {
@@ -80,10 +78,8 @@ class SettingViewModel: ObservableObject {
     @Published var pensionNotiOn: Bool = UserDefaults.standard.bool(forKey: AppStorageKey.pensionNoti) {
         didSet {
             UserDefaults.standard.set(pensionNotiOn, forKey: AppStorageKey.pensionNoti)
-            if pensionNotiOn {
-                pensionOnAirNotiOn = pensionNotiOn
-                pensionBuyNotiOn = pensionNotiOn
-            }
+            pensionOnAirNotiOn = pensionNotiOn
+            pensionBuyNotiOn = pensionNotiOn
         }
     }
     @Published var pensionOnAirNotiOn: Bool = UserDefaults.standard.bool(forKey: AppStorageKey.pensionOnAirNoti) {
