@@ -23,6 +23,8 @@ struct MainView: View {
             .padding(.bottom, 20)
             .navigationTitle("MENU")
             .navigationBarTitleDisplayMode(.large)
+            
+            LottoDrawingLotView(viewModel: .init(services: services))
         }
         .onAppear {
             if !requestNoti {
